@@ -32,9 +32,11 @@ controlled, Raspberry Pi based roving vehicle.*
 
 
 ## The Bot
+
 ![]({{site.url}}/images/banyan-bot-blue-1/the_bot.jpg)
 *The Banyan Bot Blue*
 
-## The Control App ([Based On Work By Martyn Currey)](http://www.martyncurrey.com/create-a-bluetooth-joypad-with-app-inventor-2/) 
-![Android Control App](({{site.url}}/images/banyan-bot-blue-1/android-gui/AndroidControl.jpg)
+## The Control App ([Based On Work By Martyn Currey)](http://www.martyncurrey.com/create-a-bluetooth-joypad-with-app-inventor-2/)
+
+![]({{site.url}}/images/banyan-bot-blue-1/android-gui/AndroidControl.jpg)) 
 *The Android Control App On A Kindle Fire Tablet*
