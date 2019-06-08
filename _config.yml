@@ -18,8 +18,8 @@ title: Bots In Pieces
 email: your-email@example.com
 description: "Physical Computing In Easy To Digest \"Byte-Size\" Morsels"
 
-url: "https://mryslab.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-baseurl: "/bots-in-pieces" # the subpath of your site, e.g. /blog
+url: "https://mryslab.github.io/bots-in-pieces" # the base hostname & protocol for your site, e.g. http://example.com
+# baseurl: "/bots-in-pieces" # the subpath of your site, e.g. /blog
 logo: "/images/logo.png" # path of site logo, e.g. "/assets/images/logo.png"
 twitter_username: BrassFigLigee
 github_username: MrYsLab
