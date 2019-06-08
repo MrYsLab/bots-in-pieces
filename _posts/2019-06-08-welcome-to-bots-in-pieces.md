@@ -13,7 +13,7 @@ for the past several years and have also documented some of my work [*on another
 ### What You Can Expect To Find On This Site
 
 * Small targeted posts
-  * I can be wordy at times, so the goal here is to keep me in check, and keep the posts short sweet. Wish me luck ;-)
+  * I can be wordy at times, so the goal here is to keep me in check, and keep the posts short and sweet. Wish me luck ;-)
   * A suggested read time is shown for all posts so you can budget your time.
 * Project Presentations
   * A Step-by-step (or better yet, component by component) approach to project implementation.
