@@ -1,0 +1,10 @@
+_site
+.sass-cache
+.jekyll-metadata
+/serve
+/favicon.ico
+/prod_build
+/decision-points.md.save
+/images/logo_save.png
+/_config_dev.yml
+/.idea
