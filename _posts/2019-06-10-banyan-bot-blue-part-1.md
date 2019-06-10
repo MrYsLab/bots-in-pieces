@@ -52,7 +52,7 @@ To receive data, a component *subscribes* to one or more topics. The payloads, a
 requested payloads, 
 are placed on the subscriber's receive queue to process.
 
-![]({{site.url}}/images/banyan-bot-blue-1/Banyan1.jpg)
+![](https://github.com/MrYsLab/bots-in-pieces/blob/gh-pages/images/banyan-bot-blue-1/Banyan1.jpg)
 
 All of the queuing and routing is handled by the framework, again freeing you from
 low-level details. The framework guarantees that messages will be received in 
@@ -95,7 +95,7 @@ For me, Python checks all the boxes.
 Below is a Banyan component diagram for this project. With the exception of the cell phone app, all
 software components will be resident on the Raspberry Pi.
 
-![]({{site.url}}/images/banyan-bot-blue-1/bbb-data-flow.jpg)
+![](https://github.com/MrYsLab/bots-in-pieces/blob/gh-pages/images/banyan-bot-blue-1/bbb-data-flow.jpg)
 
 **The Components:**
 
