@@ -28,6 +28,8 @@ gem "github-pages", group: :jekyll_plugins
 
 # Build settings
 markdown: kramdown
+feed:
+  path: atom.xml
 # theme: jekyll-theme-so-simple
 remote_theme: "mmistakes/so-simple-theme"
 
