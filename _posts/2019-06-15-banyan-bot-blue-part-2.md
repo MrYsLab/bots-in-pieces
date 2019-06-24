@@ -217,7 +217,7 @@ let's install one now.
 
 The server requires the [*pybluez*](https://github.com/pybluez/pybluez) Python package to
 be installed on the Raspberry Pi. Before doing so, let's take the opportunity to update
-*pip* on the RPi to the latest version.
+*pip* on the RPi to the latest version. If you are running Raspbian Buster you can skip this step.
 
 Open a terminal window on your Raspberry Pi and type the following command:
 ```console
@@ -225,7 +225,13 @@ sudo pip3 install -U pip
 ```
 ## Install The *pybluez* Library
 
+First install the required libraries for pybluez.
 In your console type:
+```bash
+sudo apt-get install libbluetooth-dev
+```
+
+Next, in your console type:
 ```
 sudo pip3 install pybluez
 ```
