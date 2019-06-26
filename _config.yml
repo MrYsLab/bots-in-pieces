@@ -52,6 +52,9 @@ author:
 
 google_analytics: "UA-141696254-1"
 
+# Search
+search_full_content: false
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
