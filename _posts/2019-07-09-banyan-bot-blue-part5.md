@@ -289,23 +289,29 @@ retrieve the MAC address.
                               )
 
             print("Waiting for connection on RFCOMM channel %d" % port)
-
-            self.client_sock, self.client_info = self.server_sock.accept()
+            try:
+                self.client_sock, self.client_info = self.server_sock.accept()
+            except KeyboardInterrupt:
+                self.clean_up()
+                sys.exit(0)
 
             print("Accepted connection from ", self.client_info)
+ 
 ```
 
 In the section of code above, we create a BluetoothServer and then wait for an incoming
 connection.
 
 ```python
-        else:
+       else:
             service_matches = find_service(uuid=self.uuid,
                                            address=self.server_bt_address)
 
             if len(service_matches) == 0:
-                print("couldn't find the SampleServer service =(")
+                print("Could not find the remote Bluetooth server - exiting")
+                self.clean_up()
                 sys.exit(0)
+
 
             first_match = service_matches[0]
             port = first_match["port"]
@@ -334,7 +340,11 @@ Above, if the Bluetooth Gateway was configured to be a client, the *else* path i
         self.start()
 
         # this will keep the program running forever
-        self.receive_loop()
+        try:
+            self.receive_loop()
+        except KeyboardInterrupt:
+            self.clean_up()
+            sys.exit(0)
 ```
 
 And in the last section of \__init__ shown above, we wrap the socket with a 
@@ -408,6 +418,9 @@ and sent across the RFCOMM link.
                     data = self.bsock.recv_until(b'}',
                                                  timeout=0,
                                                  with_delimiter=True)
+                except KeyboardInterrupt:
+                    self.clean_up()
+                    sys.exit(0)
                 except Exception as e:
                     continue
 
@@ -418,7 +431,11 @@ and sent across the RFCOMM link.
 
             # data is not json encoded
             else:
-                data = (self.client_sock.recv(1)).decode()
+                try:
+                    data = (self.client_sock.recv(1)).decode()
+                except KeyboardInterrupt:
+                    self.clean_up()
+                    sys.exit(0)
                 payload = {'command': data}
                 self.publish_payload(payload, self.publish_topic)
 
@@ -495,25 +512,24 @@ def bluetooth_gateway():
         'subscriber_list': args.subscriber_list
     }
 
+    BlueToothGateway(**kw_options)
+    
 
-    try:
-        app = BlueToothGateway(**kw_options)
-    except KeyboardInterrupt:
-        sys.exit()
+# signal handler function called when Control-C occurs
+# noinspection PyShadowingNames,PyUnusedLocal,PyUnusedLocal
+def signal_handler(sig, frame):
+    print('Exiting Through Signal Handler')
+    raise KeyboardInterrupt
 
-    # noinspection PyUnusedLocal
-    def signal_handler(sig, frame):
-        print("Control-C detected. See you soon.")
-        app.clean_up()
-        sys.exit(0)
 
-    # listen for SIGINT
-    signal.signal(signal.SIGINT, signal_handler)
-    signal.signal(signal.SIGTERM, signal_handler)
+# listen for SIGINT
+signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGTERM, signal_handler)
 
 
 if __name__ == '__main__':
     bluetooth_gateway()
+
 ```
 
 Python Banyan Components typically allow a user to *tune* the component by specifying
@@ -529,7 +545,8 @@ within this function.
 Notice that this function and everything below it is outside of the definition of the 
 BluetoothGateway class. 
 
-Below the *blue_tooth_gateway* function, there is a signal handler to trap Control-C presses.
+Below the *blue_tooth_gateway* function, there is a signal handler to trap Control-C presses, 
+SIGTERM and SIGINT signals.
 
 And the very last line calls the bluetooth_gateway function to instantiate the gateway.
 
