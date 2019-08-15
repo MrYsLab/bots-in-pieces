@@ -3,7 +3,7 @@ layout: post
 title: "Banyan Bot Blue Part 6"
 date:  2019-07-19 08:24:39 -0400
 categories: banyan-components bluetooth-gateway
-tags: testing banyan-monitor banyan-launcher message-injector whitebox blackbox
+tags: testing banyan-monitor banyan-launcher message-injector whitebox blackbox coverage
 ---
 
 ![]({{site.url}}/images/banyan-bot-blue-1/test.png)
@@ -62,39 +62,58 @@ bots-in-pieces-examples-master
 │   │   └── b_bot_blue.apk
 │   ├── banyan_assets
 │   │   ├── bluetooth_gateway.py
-│   │   └── __init__.py
+│   │   ├── crickit_gateway.py
+│   │   ├── __init__.py
+│   │   └── robot_control.py
 │   ├── banyan_templates
 │   │   ├── banyan_component_template.py
 │   │   └── __init__.py
 │   ├── __init__.py
 │   ├── test_fixtures
 │   │   ├── bluetooth_apk_validation_server.py
+│   │   ├── crickit_gui.py
 │   │   ├── __init__.py
-│   │   └── message_injector.py
+│   │   ├── json_server.py
+│   │   ├── message_injector.py
+│   │   └── rfcomm_server.py
 │   └── tests
-│       └── bluetooth_gateway
-│           ├── btg1.csv
-│           ├── btg2.csv
-│           ├── btg3.csv
-│           ├── btg4.csv
-│           ├── btg5.csv
+│       ├── bluetooth_gateway
+│       │   ├── btg1.csv
+│       │   ├── btg2.csv
+│       │   ├── btg3.csv
+│       │   ├── btg4.csv
+│       │   ├── btg5.csv
+│       │   ├── __init__.py
+│       │   ├── procedures
+│       │   │   ├── btg1.test_spec.pdf
+│       │   │   ├── btg2.test_spec.pdf
+│       │   │   ├── btg3.test_spec.pdf
+│       │   │   ├── btg4.test_spec.pdf
+│       │   │   └── btg5.test_spec.pdf
+│       │   └── test_results
+│       │       ├── btg1_2_3_4_5_results.pdf
+│       │       ├── btg1_2_3_4_5_summary.pdf
+│       │       ├── btg1_2_3_4_results.pdf
+│       │       ├── btg1_2_3_4_summary.pdf
+│       │       ├── btg1_2_3_results.pdf
+│       │       ├── btg1_2_3_summary.pdf
+│       │       ├── btg1_2_results.pdf
+│       │       ├── btg1_2_summary.pdf
+│       │       ├── btg1_results.pdf
+│       │       └── btg1_summary.pdf
+│       ├── crickit_gateway
+│       │   ├── cr1.csv
+│       │   ├── __init__.py
+│       │   └── test_results
+│       │       ├── cr1_results.pdf
+│       │       └── cr1_summary.pdf
+│       ├── __init__.py
+│       └── motor_control
 │           ├── __init__.py
-│           ├── procedures
-│           │   ├── btg1.test_spec.pdf
-│           │   ├── btg2.test_spec.pdf
-│           │   ├── btg3.test_spec.pdf
-│           │   ├── btg4.test_spec.pdf
-│           │   └── btg5.test_spec.pdf
-│           └── test_results
-│               ├── btg_1_2_3_4_5_results..pdf
-│               ├── btg1_2_3_4_5_summary.pdf
-│               ├── btg_1_2_3_4_results..pdf
-│               ├── btg1_2_3_results.pdf
-│               ├── btg1_2_results.pdf
-│               ├── btg1_results.pdf
-│               └── btg1_summary.pdf
+│           └── mc1.csv
 ├── LICENSE
 └── README.md
+
 ```
 
 Next, we need to install xterm on the Raspberry Pi. Open a command window on the Raspberry Pi
