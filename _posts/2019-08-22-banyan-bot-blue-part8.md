@@ -8,9 +8,7 @@ tags:
 
 # Wrapping Up The Project With Robot Control
 {: style="color:rgb(128,0,0); " }
-
 ![]({{site.url}}/images/banyan-bot-blue-1/brain.png) 
-
 {: style="float:left ; "}
  
  
