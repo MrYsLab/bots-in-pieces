@@ -27,7 +27,7 @@ Here is a list of its major features:
 
 * Python 3.7 (or higher) compatible.
 * It offers a simplified pure asyncio [API.](https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata-express/blob/master/html/pymata_express/index.html)
-* Uses asyncio concurrency techniques (threading) for high efficiency.
+* Uses asyncio concurrency techniques for high efficiency.
 * It Is [FirmataExpress](https://github.com/MrYsLab/FirmataExpress) compatible (link speed runs at 115200)
 * Data change events may be associated with a callback function for asynchronous 
 notification, or polling may be used when a synchronous approach is desired.
