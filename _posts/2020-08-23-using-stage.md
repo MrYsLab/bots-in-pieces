@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Creating GUIs With Stage"
+title: "Creating GUIs With Page"
 date:  2020-08-23 11:00:39 -0500
 categories: GUI tkinter pymata-rh
 tags: GUI
