@@ -1,27 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="banyan bot part 8">
-      <change afterPath="$PROJECT_DIR$/.idea/bots-in-pieces.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_posts/2020-04-05-pymata-express.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/s3onegpio/cpx.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/s3onegpio/engine.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/s3onegpio/github1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/s3onegpio/github2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/s3onegpio/github3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/s3onegpio/new_blocks.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/s3onegpio/pico.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/s3onegpio/pico_cpx.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/s3onegpio/whole_enchilada.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2020-3-28-pymata4.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2020-3-28-pymata4.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/s3onegpio/connect_block.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/s3onegpio/connect_block.png" afterDir="false" />
+    <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/_posts/2020-10-08-phase4-sonar.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_posts/2020-20-06-telemetrix-phase3-i2c.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2020-10-06-telemetrix-phase3-i2c.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,10 +34,10 @@
       </map>
     </option>
   </component>
+  <component name="JupyterTrust" id="1f94149f-8940-436a-8c2d-1f3f2832e209" />
   <component name="ProjectId" id="1OYy9TNiZhFdCcq3kHvA8e918ZA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
@@ -92,18 +76,7 @@
       <recent name="$PROJECT_DIR$/images/banyan-bot-blue-1/android-gui" />
     </key>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -342,49 +315,28 @@
       <workItem from="1585492915419" duration="3310000" />
       <workItem from="1585502514589" duration="607000" />
       <workItem from="1585576705177" duration="7000" />
-      <workItem from="1586106508788" duration="898000" />
-    </task>
-    <task id="LOCAL-00001" summary="initial commit">
-      <created>1560022645608</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1560022645608</updated>
-    </task>
-    <task id="LOCAL-00002" summary="initial commit">
-      <created>1560022923184</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1560022923184</updated>
-    </task>
-    <task id="LOCAL-00003" summary="initial commit">
-      <created>1560023332190</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1560023332190</updated>
-    </task>
-    <task id="LOCAL-00004" summary="initial commit">
-      <created>1560023486819</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1560023486819</updated>
-    </task>
-    <task id="LOCAL-00005" summary="initial commit">
-      <created>1560023764582</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1560023764582</updated>
-    </task>
-    <task id="LOCAL-00006" summary="initial commit">
-      <created>1560028373103</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1560028373103</updated>
+      <workItem from="1586106508788" duration="1173000" />
+      <workItem from="1586115164571" duration="53000" />
+      <workItem from="1589286273256" duration="123000" />
+      <workItem from="1598219059446" duration="2118000" />
+      <workItem from="1598221204812" duration="2317000" />
+      <workItem from="1598223826005" duration="209000" />
+      <workItem from="1601068688948" duration="9050000" />
+      <workItem from="1601124614985" duration="15117000" />
+      <workItem from="1601308057325" duration="2474000" />
+      <workItem from="1601582617269" duration="1591000" />
+      <workItem from="1601589642080" duration="1901000" />
+      <workItem from="1601647812830" duration="8394000" />
+      <workItem from="1601674557337" duration="4308000" />
+      <workItem from="1601679209945" duration="56000" />
+      <workItem from="1601727153993" duration="5575000" />
+      <workItem from="1601999093958" duration="3056000" />
+      <workItem from="1602022296291" duration="2814000" />
+      <workItem from="1602181313871" duration="3157000" />
+      <workItem from="1602196958801" duration="4000" />
+      <workItem from="1602200593708" duration="217000" />
+      <workItem from="1602275168523" duration="12000" />
+      <workItem from="1602342487140" duration="2680000" />
     </task>
     <task id="LOCAL-00007" summary="initial commit">
       <created>1560029023166</created>
@@ -673,7 +625,63 @@
       <option name="project" value="LOCAL" />
       <updated>1585495619445</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="pymata-express-updated">
+      <created>1586107505086</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1586107505086</updated>
+    </task>
+    <task id="LOCAL-00049" summary="pymata-express-updated">
+      <created>1586115188203</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1586115188203</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Post about Stage.">
+      <created>1598222937409</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1598222937410</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Post about Page.">
+      <created>1598223865760</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1598223865760</updated>
+    </task>
+    <task id="LOCAL-00052" summary="phase1 of telemetrix">
+      <created>1601077705009</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1601077705010</updated>
+    </task>
+    <task id="LOCAL-00053" summary="phase1 of telemetrix">
+      <created>1601309923193</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1601309923194</updated>
+    </task>
+    <task id="LOCAL-00054" summary="phase2 of telemetrix">
+      <created>1601738957726</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1601738957726</updated>
+    </task>
+    <task id="LOCAL-00055" summary="phase3 of telemetrix">
+      <created>1602024154372</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1602024154372</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TodoView">
@@ -686,20 +694,19 @@
     </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
@@ -714,36 +721,26 @@
     <MESSAGE value="banyan bot part 8" />
     <MESSAGE value="arcade p2p" />
     <MESSAGE value="pymata4" />
-    <option name="LAST_COMMIT_MESSAGE" value="pymata4" />
+    <MESSAGE value="pymata-express-updated" />
+    <MESSAGE value="Post about Stage." />
+    <MESSAGE value="Post about Page." />
+    <MESSAGE value="phase1 of telemetrix" />
+    <MESSAGE value="phase2 of telemetrix" />
+    <MESSAGE value="phase3 of telemetrix" />
+    <option name="LAST_COMMIT_MESSAGE" value="phase3 of telemetrix" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="663" y="358" width="625" height="397" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581975960536">
-      <screen x="42" y="27" width="1878" height="1053" />
+    <state x="608" y="355" width="738" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601308129143">
+      <screen x="44" y="27" width="1876" height="1053" />
     </state>
-    <state x="663" y="358" width="625" height="397" key="#com.intellij.fileTypes.FileTypeChooser/42.27.1878.1053@42.27.1878.1053" timestamp="1581975960536" />
-    <state x="546" y="148" width="860" height="818" key="CommitChangelistDialog2" timestamp="1585495619361">
-      <screen x="42" y="27" width="1878" height="1053" />
+    <state x="608" y="355" width="738" height="403" key="#com.intellij.fileTypes.FileTypeChooser/44.27.1876.1053@44.27.1876.1053" timestamp="1601308129143" />
+    <state x="521" y="99" width="912" height="915" key="CommitChangelistDialog2" timestamp="1602024154292">
+      <screen x="44" y="27" width="1876" height="1053" />
     </state>
-    <state x="546" y="148" width="860" height="818" key="CommitChangelistDialog2/42.27.1878.1053@42.27.1878.1053" timestamp="1585495619361" />
-    <state x="142" y="127" width="1678" height="853" key="DiffContextDialog" timestamp="1580669263593">
-      <screen x="42" y="27" width="1878" height="1053" />
+    <state x="521" y="99" width="912" height="915" key="CommitChangelistDialog2/44.27.1876.1053@44.27.1876.1053" timestamp="1602024154292" />
+    <state x="577" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1602024510801">
+      <screen x="44" y="27" width="1876" height="1053" />
     </state>
-    <state x="142" y="127" width="1678" height="853" key="DiffContextDialog/42.27.1878.1053@42.27.1878.1053" timestamp="1580669263593" />
-    <state x="740" y="265" width="472" height="583" key="RollbackChangesDialog" timestamp="1581520608946">
-      <screen x="42" y="27" width="1878" height="1053" />
-    </state>
-    <state x="740" y="265" width="472" height="583" key="RollbackChangesDialog/42.27.1878.1053@42.27.1878.1053" timestamp="1581520608946" />
-    <state x="470" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1581977407492">
-      <screen x="42" y="27" width="1878" height="1053" />
-    </state>
-    <state x="470" y="188" width="1022" height="737" key="SettingsEditor/42.27.1878.1053@42.27.1878.1053" timestamp="1581977407492" />
-    <state x="576" y="277" width="800" height="559" key="Vcs.Push.Dialog.v2" timestamp="1585495621303">
-      <screen x="42" y="27" width="1878" height="1053" />
-    </state>
-    <state x="576" y="277" width="800" height="559" key="Vcs.Push.Dialog.v2/42.27.1878.1053@42.27.1878.1053" timestamp="1585495621303" />
-    <state x="749" y="473" width="454" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581806013317">
-      <screen x="42" y="27" width="1878" height="1053" />
-    </state>
-    <state x="749" y="473" width="454" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/42.27.1878.1053@42.27.1878.1053" timestamp="1581806013317" />
+    <state x="577" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/44.27.1876.1053@44.27.1876.1053" timestamp="1602024510801" />
   </component>
 </project>
