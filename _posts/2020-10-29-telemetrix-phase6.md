@@ -1,0 +1,40 @@
+---
+layout: post
+title: "Telemetrix And Telemetrix-AIO Phase 6"
+date:  2020-10-29 10:00:39 -0500
+categories: arduino,telemetrix,stm32
+tags: arduino
+---
+
+I just published what I believe will be the last of the beta versions for both 
+[telemetrix](https://github.com/MrYsLab/telemetrix) and 
+[telemetrix-aio.](https://github.com/MrYsLab/telemetrix-aio)
+
+I have reversed my previous decision about support for the DHT and included minimalist support
+for the DHT 22 sensor. Implementing DHT support will permit me to use the DHT code as a use case on how 
+to add hardware support to both telemetrix and telemetrix-aio for devices of your choice.
+
+One of the main goals of telemetrix is to be friendly enough for users to feel 
+comfortable extending it to meet their own needs.
+
+# What Has Changed For This Release
+
+The features added are:
+
+* Minimal support for the DHT 22 sensor. Note: only the DHT22 is supported in this release.
+* A new command to allow you to set the scan interval for analog inputs.
+* The facility to set a differential threshold when setting the pin mode for analog inputs. If you have a sensor
+that oscillates between a range of values, and you wish to ignore these oscillations, 
+you may do so using this feature. 
+* Upon shutdown, a message is sent to Telemetrix4Arduino to stop all reports from being generated. 
+Doing so helps to alleviate "junk" data being received when an application is restarted.
+* Also, some code cleanup and reorganization were performed.
+
+# What Is Next
+
+I will be writing the documentation for both packages. When that is complete, I will publish version 1
+of both packages. Also, Telemetrix4Arduino will be published to the Arduino package manager so that
+the Telemetrix4Arduino library may be loaded using the Arduino IDE.
+
+Stay safe, stay well, and stay tuned.
+
