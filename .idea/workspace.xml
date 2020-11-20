@@ -2,78 +2,100 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="phase4 of telemetrix">
-      <change afterPath="$PROJECT_DIR$/phase1/arduino-telemetrix/arduino-telemetrix.ino" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase1/examples/analog_input.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase1/examples/blink.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase1/examples/digital_input.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase1/examples/digital_input_pullup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase1/examples/fade.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase1/examples/loop_back.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase1/setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase1/telemetrix/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase1/telemetrix/private_constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase1/telemetrix/telemetrix.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/keywords.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/library.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase2/api/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase2/setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase2/telemetrix/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase2/telemetrix/private_constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase2/telemetrix/telemetrix.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/keywords.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/library.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/api/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/api/index.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/telemetrix/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/telemetrix/private_constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/telemetrix/telemetrix.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase3/telemetrix4arduino.ino" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/keywords.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/library.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase4/setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase4/telemetrix/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase4/telemetrix/private_constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase4/telemetrix/telemetrix.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/keywords.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/library.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase5/setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase5/telemetrix/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase5/telemetrix/private_constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase5/telemetrix/telemetrix.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/keywords.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/library.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase6/setup.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase6/telemetrix/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase6/telemetrix/private_constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phase6/telemetrix/telemetrix.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/arduino_json_evaluation/deserialize/arduino_ino_files/json_encoding.ino" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/arduino_json_evaluation/deserialize/arduino_ino_files/msgpack_encoding.ino" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/arduino_json_evaluation/deserialize/arduino_ino_files/no_json_encoding.ino" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/arduino_json_evaluation/deserialize/arduino_ino_files/no_json_encoding_with_count.ino" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/arduino_json_evaluation/deserialize/deserialize_json.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/arduino_json_evaluation/deserialize/deserialize_msgpack.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/arduino_json_evaluation/deserialize/deserialize_no_json.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/arduino_json_evaluation/deserialize/deserialize_no_json_count.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase1/telemetrix/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase2/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase2/build/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase2/build/lib/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase2/telemetrix/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase3/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase3/telemetrix/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase4/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase4/telemetrix/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase5/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase5/build/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase5/build/lib/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase5/telemetrix/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase6/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/telemetrix/phase6/telemetrix/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase1/arduino-telemetrix/arduino-telemetrix.ino" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/arduino-telemetrix/arduino-telemetrix.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase1/examples/analog_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/examples/analog_input.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase1/examples/blink.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/examples/blink.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase1/examples/digital_input.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/examples/digital_input.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase1/examples/digital_input_pullup.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/examples/digital_input_pullup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase1/examples/fade.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/examples/fade.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase1/examples/loop_back.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/examples/loop_back.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase1/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase1/telemetrix/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase1/telemetrix/private_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/telemetrix/private_constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase1/telemetrix/telemetrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/telemetrix/telemetrix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase2/Telemetrix4Arduino.zip" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase2/Telemetrix4Arduino.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase2/Telemetrix4Arduino/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/Telemetrix4Arduino.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase2/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/Telemetrix4Arduino.h" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase2/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase2/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/keywords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase2/Telemetrix4Arduino/keywords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/library.properties" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase2/Telemetrix4Arduino/library.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase2/api/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase2/api/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase2/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase2/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase2/telemetrix/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/arduino_json_evaluation/deserialize/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase2/telemetrix/private_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase2/telemetrix/private_constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase2/telemetrix/telemetrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase2/telemetrix/telemetrix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/Telemetrix4Arduino.zip" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase3/Telemetrix4Arduino.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase3/Telemetrix4Arduino/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/Telemetrix4Arduino.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase3/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/Telemetrix4Arduino.h" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase3/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase3/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/keywords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase3/Telemetrix4Arduino/keywords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/library.properties" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase3/Telemetrix4Arduino/library.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/api/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase3/api/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/api/index.zip" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase3/api/index.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase3/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/telemetrix/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/telemetrix/private_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase3/telemetrix/private_constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/telemetrix/telemetrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase3/telemetrix/telemetrix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase3/telemetrix4arduino.ino" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase3/telemetrix4arduino.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase4/Telemetrix4Arduino.zip" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase4/Telemetrix4Arduino.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase4/Telemetrix4Arduino/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/Telemetrix4Arduino.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase4/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/Telemetrix4Arduino.h" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase4/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase4/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/keywords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase4/Telemetrix4Arduino/keywords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/library.properties" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase4/Telemetrix4Arduino/library.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase4/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase4/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase4/telemetrix/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/build/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase4/telemetrix/private_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase4/telemetrix/private_constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase4/telemetrix/telemetrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase4/telemetrix/telemetrix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase5/Telemetrix4Arduino.zip" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase5/Telemetrix4Arduino.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase5/Telemetrix4Arduino/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/Telemetrix4Arduino.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase5/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/Telemetrix4Arduino.h" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase5/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase5/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/keywords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase5/Telemetrix4Arduino/keywords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/library.properties" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase5/Telemetrix4Arduino/library.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase5/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase5/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase5/telemetrix/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/build/lib/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase5/telemetrix/private_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase5/telemetrix/private_constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase5/telemetrix/telemetrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase5/telemetrix/telemetrix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase6/Telemetrix4Arduino.zip" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase6/Telemetrix4Arduino.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase6/Telemetrix4Arduino/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/Telemetrix4Arduino.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase6/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/Telemetrix4Arduino.h" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase6/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase6/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/keywords.txt" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase6/Telemetrix4Arduino/keywords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/library.properties" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase6/Telemetrix4Arduino/library.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase6/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase6/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase6/telemetrix/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase1/examples/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase6/telemetrix/private_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase6/telemetrix/private_constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phase6/telemetrix/telemetrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/telemetrix/phase6/telemetrix/telemetrix.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +115,13 @@
     </option>
     <expand />
     <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -118,7 +147,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/telemetrix" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -132,16 +161,18 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/_posts/2019-09-08-banyan-bot-blue-too.md" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/_posts" />
-      <recent name="$PROJECT_DIR$/images/s3onegpio" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/telemetrix" />
       <recent name="$PROJECT_DIR$/images/s3onegpio" />
       <recent name="$PROJECT_DIR$/_posts" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/images/banyan-bot-blue-1/android-gui" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/telemetrix" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/_posts" />
+      <recent name="$PROJECT_DIR$/images/s3onegpio" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
