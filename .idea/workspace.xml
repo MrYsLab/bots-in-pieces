@@ -1,11 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_posts/2020-10-08-phase4-sonar.md" afterDir="false" />
+    <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="phase4 of telemetrix">
+      <change afterPath="$PROJECT_DIR$/phase1/arduino-telemetrix/arduino-telemetrix.ino" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase1/examples/analog_input.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase1/examples/blink.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase1/examples/digital_input.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase1/examples/digital_input_pullup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase1/examples/fade.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase1/examples/loop_back.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase1/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase1/telemetrix/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase1/telemetrix/private_constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase1/telemetrix/telemetrix.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/keywords.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase2/Telemetrix4Arduino/library.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase2/api/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase2/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase2/telemetrix/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase2/telemetrix/private_constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase2/telemetrix/telemetrix.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/keywords.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/Telemetrix4Arduino/library.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/api/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/api/index.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/telemetrix/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/telemetrix/private_constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/telemetrix/telemetrix.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase3/telemetrix4arduino.ino" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/keywords.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase4/Telemetrix4Arduino/library.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase4/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase4/telemetrix/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase4/telemetrix/private_constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase4/telemetrix/telemetrix.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/keywords.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase5/Telemetrix4Arduino/library.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase5/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase5/telemetrix/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase5/telemetrix/private_constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase5/telemetrix/telemetrix.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/Telemetrix4Arduino.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/Telemetrix4Arduino.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/examples/Telemetrix4Arduino/Telemetrix4Arduino.ino" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/keywords.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase6/Telemetrix4Arduino/library.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase6/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase6/telemetrix/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase6/telemetrix/private_constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/phase6/telemetrix/telemetrix.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2020-20-06-telemetrix-phase3-i2c.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2020-10-06-telemetrix-phase3-i2c.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,12 +95,12 @@
     <select />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="gh-pages" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="JupyterTrust" id="1f94149f-8940-436a-8c2d-1f3f2832e209" />
   <component name="ProjectId" id="1OYy9TNiZhFdCcq3kHvA8e918ZA" />
@@ -50,7 +118,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/_posts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -336,42 +404,20 @@
       <workItem from="1602196958801" duration="4000" />
       <workItem from="1602200593708" duration="217000" />
       <workItem from="1602275168523" duration="12000" />
-      <workItem from="1602342487140" duration="2680000" />
-    </task>
-    <task id="LOCAL-00007" summary="initial commit">
-      <created>1560029023166</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1560029023166</updated>
-    </task>
-    <task id="LOCAL-00008" summary="initial commit">
-      <created>1560029213870</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1560029213870</updated>
-    </task>
-    <task id="LOCAL-00009" summary="initial commit">
-      <created>1560029522053</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1560029522053</updated>
-    </task>
-    <task id="LOCAL-00010" summary="initial commit">
-      <created>1560029575915</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1560029575915</updated>
-    </task>
-    <task id="LOCAL-00011" summary="initial commit">
-      <created>1560029652276</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1560029652276</updated>
+      <workItem from="1602342487140" duration="3166000" />
+      <workItem from="1602508903153" duration="10833000" />
+      <workItem from="1602547386685" duration="6075000" />
+      <workItem from="1602594877165" duration="5129000" />
+      <workItem from="1603310348280" duration="571000" />
+      <workItem from="1603310948436" duration="19000" />
+      <workItem from="1603388367186" duration="2240000" />
+      <workItem from="1603401376244" duration="8000" />
+      <workItem from="1603547314380" duration="2976000" />
+      <workItem from="1604006278422" duration="2134000" />
+      <workItem from="1604940387392" duration="691000" />
+      <workItem from="1604941133457" duration="180000" />
+      <workItem from="1605010340229" duration="17000" />
+      <workItem from="1605882647357" duration="321000" />
     </task>
     <task id="LOCAL-00012" summary="initial commit">
       <created>1560029855859</created>
@@ -681,7 +727,42 @@
       <option name="project" value="LOCAL" />
       <updated>1602024154372</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="phase4 of telemetrix">
+      <created>1602345334027</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1602345334027</updated>
+    </task>
+    <task id="LOCAL-00057" summary="ArduioJson Evaluation">
+      <created>1602602073975</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1602602073975</updated>
+    </task>
+    <task id="LOCAL-00058" summary="phase5 of telemetrix">
+      <created>1603549678762</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1603549678763</updated>
+    </task>
+    <task id="LOCAL-00059" summary="phase6 of telemetrix">
+      <created>1604008392640</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1604008392640</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Telemtrix released">
+      <created>1604941068407</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1604941068407</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TodoView">
@@ -727,20 +808,41 @@
     <MESSAGE value="phase1 of telemetrix" />
     <MESSAGE value="phase2 of telemetrix" />
     <MESSAGE value="phase3 of telemetrix" />
-    <option name="LAST_COMMIT_MESSAGE" value="phase3 of telemetrix" />
+    <MESSAGE value="phase4 of telemetrix" />
+    <MESSAGE value="ArduioJson Evaluation" />
+    <MESSAGE value="phase5 of telemetrix" />
+    <MESSAGE value="phase6 of telemetrix" />
+    <MESSAGE value="Telemtrix released" />
+    <option name="LAST_COMMIT_MESSAGE" value="Telemtrix released" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="608" y="355" width="738" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601308129143">
+    <state x="608" y="355" width="756" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602508942527">
       <screen x="44" y="27" width="1876" height="1053" />
     </state>
-    <state x="608" y="355" width="738" height="403" key="#com.intellij.fileTypes.FileTypeChooser/44.27.1876.1053@44.27.1876.1053" timestamp="1601308129143" />
-    <state x="521" y="99" width="912" height="915" key="CommitChangelistDialog2" timestamp="1602024154292">
+    <state x="608" y="355" width="756" height="403" key="#com.intellij.fileTypes.FileTypeChooser/44.27.1876.1053@44.27.1876.1053" timestamp="1602508942527" />
+    <state x="521" y="99" width="912" height="915" key="CommitChangelistDialog2" timestamp="1604941068338">
       <screen x="44" y="27" width="1876" height="1053" />
     </state>
-    <state x="521" y="99" width="912" height="915" key="CommitChangelistDialog2/44.27.1876.1053@44.27.1876.1053" timestamp="1602024154292" />
-    <state x="577" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1602024510801">
+    <state x="521" y="99" width="912" height="915" key="CommitChangelistDialog2/44.27.1876.1053@44.27.1876.1053" timestamp="1604941068338" />
+    <state x="144" y="127" width="1676" height="853" key="DiffContextDialog" timestamp="1602345653073">
       <screen x="44" y="27" width="1876" height="1053" />
     </state>
-    <state x="577" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/44.27.1876.1053@44.27.1876.1053" timestamp="1602024510801" />
+    <state x="144" y="127" width="1676" height="853" key="DiffContextDialog/44.27.1876.1053@44.27.1876.1053" timestamp="1602345653073" />
+    <state x="577" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1604941143680">
+      <screen x="44" y="27" width="1876" height="1053" />
+    </state>
+    <state x="577" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/44.27.1876.1053@44.27.1876.1053" timestamp="1604941143680" />
+    <state x="144" y="127" width="1676" height="853" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602345653073">
+      <screen x="44" y="27" width="1876" height="1053" />
+    </state>
+    <state x="144" y="127" width="1676" height="853" key="com.intellij.history.integration.ui.views.FileHistoryDialog/44.27.1876.1053@44.27.1876.1053" timestamp="1602345653073" />
+    <state x="707" y="247" width="539" height="619" key="git4idea.branch.GitSmartOperationDialog" timestamp="1604941207670">
+      <screen x="44" y="27" width="1876" height="1053" />
+    </state>
+    <state x="707" y="247" width="539" height="619" key="git4idea.branch.GitSmartOperationDialog/44.27.1876.1053@44.27.1876.1053" timestamp="1604941207670" />
+    <state x="645" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1602516414814">
+      <screen x="44" y="27" width="1876" height="1053" />
+    </state>
+    <state x="645" y="259" width="672" height="678" key="search.everywhere.popup/44.27.1876.1053@44.27.1876.1053" timestamp="1602516414814" />
   </component>
 </project>
