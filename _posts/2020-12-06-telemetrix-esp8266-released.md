@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Telemetrix4Esp8266 Released"
-date:  2020-11-09 10:00:39 -0500
+date:  2020-12-06 10:00:39 -0500
 categories: arduino,telemetrix,esp8266
 tags: arduino
 ---
