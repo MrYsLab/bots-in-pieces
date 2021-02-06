@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_posts/2020-10-08-phase4-sonar.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2020-20-06-telemetrix-phase3-i2c.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2020-10-06-telemetrix-phase3-i2c.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +49,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/_posts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -60,7 +59,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/_posts/2019-09-08-banyan-bot-blue-too.md" />
   </component>
   <component name="RecentsManager">
@@ -337,55 +336,20 @@
       <workItem from="1602200593708" duration="217000" />
       <workItem from="1602275168523" duration="12000" />
       <workItem from="1602342487140" duration="2680000" />
-    </task>
-    <task id="LOCAL-00007" summary="initial commit">
-      <created>1560029023166</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1560029023166</updated>
-    </task>
-    <task id="LOCAL-00008" summary="initial commit">
-      <created>1560029213870</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1560029213870</updated>
-    </task>
-    <task id="LOCAL-00009" summary="initial commit">
-      <created>1560029522053</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1560029522053</updated>
-    </task>
-    <task id="LOCAL-00010" summary="initial commit">
-      <created>1560029575915</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1560029575915</updated>
-    </task>
-    <task id="LOCAL-00011" summary="initial commit">
-      <created>1560029652276</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1560029652276</updated>
-    </task>
-    <task id="LOCAL-00012" summary="initial commit">
-      <created>1560029855859</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1560029855859</updated>
-    </task>
-    <task id="LOCAL-00013" summary="initial commit">
-      <created>1560030028696</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1560030028696</updated>
+      <workItem from="1605904863466" duration="85000" />
+      <workItem from="1605911027349" duration="3000" />
+      <workItem from="1605911473846" duration="626000" />
+      <workItem from="1606316573613" duration="5274000" />
+      <workItem from="1606335407755" duration="894000" />
+      <workItem from="1607287978650" duration="2040000" />
+      <workItem from="1608832809385" duration="3137000" />
+      <workItem from="1611854125934" duration="9263000" />
+      <workItem from="1611947698826" duration="13000" />
+      <workItem from="1612365809111" duration="226000" />
+      <workItem from="1612367618135" duration="5113000" />
+      <workItem from="1612537777263" duration="5642000" />
+      <workItem from="1612568856368" duration="1277000" />
+      <workItem from="1612629191128" duration="912000" />
     </task>
     <task id="LOCAL-00014" summary="initial commit">
       <created>1560207818387</created>
@@ -681,7 +645,56 @@
       <option name="project" value="LOCAL" />
       <updated>1602024154372</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="esp8266 server">
+      <created>1607289176908</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1607289176909</updated>
+    </task>
+    <task id="LOCAL-00057" summary="esp8266 server">
+      <created>1607289775384</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1607289775384</updated>
+    </task>
+    <task id="LOCAL-00058" summary="esp32 efforts">
+      <created>1608835343906</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1608835343907</updated>
+    </task>
+    <task id="LOCAL-00059" summary="RP2040">
+      <created>1611858017821</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1611858017822</updated>
+    </task>
+    <task id="LOCAL-00060" summary="RP2040">
+      <created>1611879970309</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1611879970309</updated>
+    </task>
+    <task id="LOCAL-00061" summary="RP2040-2">
+      <created>1612544042481</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1612544042481</updated>
+    </task>
+    <task id="LOCAL-00062" summary="RP2040-2">
+      <created>1612629445039</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1612629445039</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TodoView">
@@ -727,20 +740,10 @@
     <MESSAGE value="phase1 of telemetrix" />
     <MESSAGE value="phase2 of telemetrix" />
     <MESSAGE value="phase3 of telemetrix" />
-    <option name="LAST_COMMIT_MESSAGE" value="phase3 of telemetrix" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="608" y="355" width="738" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601308129143">
-      <screen x="44" y="27" width="1876" height="1053" />
-    </state>
-    <state x="608" y="355" width="738" height="403" key="#com.intellij.fileTypes.FileTypeChooser/44.27.1876.1053@44.27.1876.1053" timestamp="1601308129143" />
-    <state x="521" y="99" width="912" height="915" key="CommitChangelistDialog2" timestamp="1602024154292">
-      <screen x="44" y="27" width="1876" height="1053" />
-    </state>
-    <state x="521" y="99" width="912" height="915" key="CommitChangelistDialog2/44.27.1876.1053@44.27.1876.1053" timestamp="1602024154292" />
-    <state x="577" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2" timestamp="1602024510801">
-      <screen x="44" y="27" width="1876" height="1053" />
-    </state>
-    <state x="577" y="275" width="800" height="563" key="Vcs.Push.Dialog.v2/44.27.1876.1053@44.27.1876.1053" timestamp="1602024510801" />
+    <MESSAGE value="esp8266 server" />
+    <MESSAGE value="esp32 efforts" />
+    <MESSAGE value="RP2040" />
+    <MESSAGE value="RP2040-2" />
+    <option name="LAST_COMMIT_MESSAGE" value="RP2040-2" />
   </component>
 </project>
