@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "An Act Of Random Kindness"
 date:  2021-02-03 10:00:39 -0500
 categories: Raspberry Pi Pico

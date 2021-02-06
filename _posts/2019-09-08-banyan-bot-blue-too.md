@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Bayan Bot Blue 2 - Explorer Edition"
 date:  2019-09-08 11:00:39 -0500
 categories: banyan-components robot-control

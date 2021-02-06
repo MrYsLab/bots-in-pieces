@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Evaluating ArduinoJson"
 date:  2020-10-10 10:00:39 -0500
 categories: arduino,telemetrix,arduinojson

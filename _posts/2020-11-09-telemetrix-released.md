@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Telemetrix And Telemetrix-AIO Have Been Officially Released"
 date:  2020-11-09 10:00:39 -0500
 categories: arduino,telemetrix,stm32

@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Banyan Bot Blue Part 7"
 date:  2019-08-15 18:24:39 -0400
 categories: banyan-components cricket-hardware-gateway

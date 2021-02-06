@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Phase 2 - Server And Client Details"
 date:  2020-10-03 10:00:39 -0500
 categories: arduino,telemetrix,servo

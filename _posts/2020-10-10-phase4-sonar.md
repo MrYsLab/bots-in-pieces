@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Telemetrix Phase 4 - HC-SRO4 Sonar Distance Sensor Support"
 date:  2020-10-10 10:00:39 -0500
 categories: arduino,telemetrix,hc-sr04,sonar

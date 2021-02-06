@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Creating GUIs With Page"
 date:  2020-08-23 11:00:39 -0500
 categories: GUI tkinter pymata-rh

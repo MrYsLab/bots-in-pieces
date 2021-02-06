@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Banyan Bot Blue: Part 1"
 date:  2019-06-10 16:24:39 -0400
 categories: Banyan-Bot-Blue python-banyan

@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "I've Got The Bluetooth Blues"
 date:  2021-01-28 11:00:39 -0500
 categories: bluetooth

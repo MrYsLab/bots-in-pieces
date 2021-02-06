@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Banyan Bot Blue Part 2"
 date:  2019-06-15 07:55:39 -0400
 categories: Banyan-Bot-Blue Bluetooth Bluetooth-test-server

@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Pymata-Express Updated"
 date:  2020-04-05 11:00:39 -0500
 categories: pymata arduino

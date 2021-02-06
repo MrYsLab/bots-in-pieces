@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Telemetrix And Telemetrix-AIO"
 date:  2020-10-23 10:00:39 -0500
 categories: arduino,telemetrix,stm32

@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Banyan Bot Blue Part 6"
 date:  2019-07-19 08:24:39 -0400
 categories: banyan-components bluetooth-gateway

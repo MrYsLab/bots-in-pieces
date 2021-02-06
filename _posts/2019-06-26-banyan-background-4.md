@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Banyan Bot Blue Part 4"
 date:  2019-06-26 17:24:39 -0400
 categories: banyan-framework

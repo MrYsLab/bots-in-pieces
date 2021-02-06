@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Adding ESP32 To The Telemetrix Family"
 date:  2020-12-24 10:00:39 -0500
 categories: arduino,telemetrix,esp32

@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Banyan Bot Blue Part 3"
 date:  2019-06-16 07:24:39 -0400
 categories: Banyan-Bot-Blue Android Bluetooth

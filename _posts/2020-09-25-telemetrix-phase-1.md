@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Introducing The Telemetrix Project"
 date:  2020-09-20 11:00:39 -0500
 categories: arduino,stm32,firmata

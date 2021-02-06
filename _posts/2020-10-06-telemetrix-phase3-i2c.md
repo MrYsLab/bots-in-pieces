@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Phase 3 - I2C Support"
 date:  2020-10-06 10:00:39 -0500
 categories: arduino,telemetrix,i2c

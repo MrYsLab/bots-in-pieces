@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Welcome to Bots in Pieces"
 date:  2019-06-08 08:40:39 -0400
 ---

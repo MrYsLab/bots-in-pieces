@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Banyan Bot Blue Part 8"
 date:  2019-08-22 14:24:39 -0500
 categories: banyan-components robot-control

@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Telemetrix And Telemetrix-AIO Phase 6"
 date:  2020-10-29 10:00:39 -0500
 categories: arduino,telemetrix,stm32
