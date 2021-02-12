@@ -131,7 +131,9 @@ converter to support serial communication.
 
 So, for now, a MicroPython version of Telemetrix for the Pico is on hold. I first want
 to try using the USB-to-TTL converter with a modified version of the uart_modified.c
-example provided with the C SDK. If there is no appreciable performance between that and
+example provided with the C SDK. If there is no appreciable performance gain
+between 
+that and
 the stdio version, I will then abandon my hopes for using MicroPython. However, if 
 there is
 a noticeable performance gain, I will then implement a MicroPython script using the UART
