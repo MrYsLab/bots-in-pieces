@@ -1,6 +1,6 @@
 ---
 layout: post
-comments: false
+comments: true
 title: "Adventures With The Raspberry Pi Pico - Part 1"
 date:  2021-02-12 10:00:39 -0500
 categories: Raspberry Pi Pico
