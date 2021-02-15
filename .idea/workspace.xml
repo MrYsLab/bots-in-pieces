@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_posts/2021-02-12-pico-adventures-part1.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/pico_starting.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/2021-02-12-pico-adventures-part2.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/ttl_converter.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_posts/2021-07-03-act-of-random-kindness.md" beforeDir="false" afterPath="$PROJECT_DIR$/_posts/2021-02-03-act-of-random-kindness.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -353,28 +352,10 @@
       <workItem from="1612629191128" duration="1749000" />
       <workItem from="1612639528121" duration="38000" />
       <workItem from="1613146114654" duration="5774000" />
-      <workItem from="1613153816756" duration="2845000" />
-    </task>
-    <task id="LOCAL-00015" summary="initial commit">
-      <created>1560208098472</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1560208098472</updated>
-    </task>
-    <task id="LOCAL-00016" summary="initial commit">
-      <created>1560208116793</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1560208116793</updated>
-    </task>
-    <task id="LOCAL-00017" summary="initial commit">
-      <created>1560208442892</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1560208442892</updated>
+      <workItem from="1613153816756" duration="3450000" />
+      <workItem from="1613160303156" duration="121000" />
+      <workItem from="1613226199118" duration="622000" />
+      <workItem from="1613416140389" duration="6115000" />
     </task>
     <task id="LOCAL-00018" summary="initial commit">
       <created>1560210193956</created>
@@ -698,7 +679,28 @@
       <option name="project" value="LOCAL" />
       <updated>1612631105991</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="pico1">
+      <created>1613156816745</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1613156816745</updated>
+    </task>
+    <task id="LOCAL-00065" summary="pico1">
+      <created>1613156839396</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1613156839396</updated>
+    </task>
+    <task id="LOCAL-00066" summary="pico1">
+      <created>1613160413799</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1613160413799</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TodoView">
@@ -748,6 +750,7 @@
     <MESSAGE value="esp32 efforts" />
     <MESSAGE value="RP2040" />
     <MESSAGE value="RP2040-2" />
-    <option name="LAST_COMMIT_MESSAGE" value="RP2040-2" />
+    <MESSAGE value="pico1" />
+    <option name="LAST_COMMIT_MESSAGE" value="pico1" />
   </component>
 </project>
