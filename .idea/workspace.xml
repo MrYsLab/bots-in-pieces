@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_posts/2021-02-16-pico-adventures-part3.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/first_run.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_posts/2021-03-04-pico-adventures-part4.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/adxl_callback.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +50,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/_posts" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -360,6 +361,9 @@
       <workItem from="1613591405922" duration="14000" />
       <workItem from="1614026517411" duration="821000" />
       <workItem from="1614092108557" duration="2014000" />
+      <workItem from="1614719079876" duration="2612000" />
+      <workItem from="1614780594324" duration="4478000" />
+      <workItem from="1614865610206" duration="8702000" />
     </task>
     <task id="LOCAL-00019" summary="initial commit">
       <created>1560599797226</created>
