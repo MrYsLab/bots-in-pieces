@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_posts/2021-04-05-pico-adventures-part8.md" afterDir="false" />
+    <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="servo discussion.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -368,21 +367,11 @@
       <workItem from="1616964957287" duration="1931000" />
       <workItem from="1616971251801" duration="3174000" />
       <workItem from="1617126566453" duration="11000" />
-      <workItem from="1617653422598" duration="1387000" />
-    </task>
-    <task id="LOCAL-00023" summary="initial commit">
-      <created>1560699845368</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1560699845368</updated>
-    </task>
-    <task id="LOCAL-00024" summary="initial commit">
-      <created>1560706521917</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1560706521917</updated>
+      <workItem from="1617653422598" duration="1512000" />
+      <workItem from="1617715089284" duration="16000" />
+      <workItem from="1619215399199" duration="792000" />
+      <workItem from="1619733186169" duration="5338000" />
+      <workItem from="1619791437301" duration="5614000" />
     </task>
     <task id="LOCAL-00025" summary="initial commit">
       <created>1560774416184</created>
@@ -713,7 +702,21 @@
       <option name="project" value="LOCAL" />
       <updated>1616974325991</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="servo discussion.">
+      <created>1617654820495</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1617654820496</updated>
+    </task>
+    <task id="LOCAL-00073" summary="release 1.0">
+      <created>1619734492241</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1619734492241</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TodoView">
@@ -741,7 +744,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix search" />
     <MESSAGE value="banyan bot part5" />
     <MESSAGE value="banyan bot part 6" />
     <MESSAGE value="banyan bot part 7" />
@@ -766,6 +768,7 @@
     <MESSAGE value="pico neopixels" />
     <MESSAGE value="User's Guide" />
     <MESSAGE value="servo discussion." />
-    <option name="LAST_COMMIT_MESSAGE" value="servo discussion." />
+    <MESSAGE value="release 1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="release 1.0" />
   </component>
 </project>
