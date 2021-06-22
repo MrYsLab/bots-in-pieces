@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="servo discussion.">
+    <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="v1.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -371,14 +371,10 @@
       <workItem from="1617715089284" duration="16000" />
       <workItem from="1619215399199" duration="792000" />
       <workItem from="1619733186169" duration="5338000" />
-      <workItem from="1619791437301" duration="5614000" />
-    </task>
-    <task id="LOCAL-00025" summary="initial commit">
-      <created>1560774416184</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1560774416184</updated>
+      <workItem from="1619791437301" duration="6450000" />
+      <workItem from="1619816593093" duration="129000" />
+      <workItem from="1621202847594" duration="83000" />
+      <workItem from="1624382275672" duration="541000" />
     </task>
     <task id="LOCAL-00026" summary="initial commit">
       <created>1561415537179</created>
@@ -716,7 +712,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619734492241</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="v1.0">
+      <created>1619797262903</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1619797262904</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TodoView">
@@ -744,7 +747,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="banyan bot part5" />
     <MESSAGE value="banyan bot part 6" />
     <MESSAGE value="banyan bot part 7" />
     <MESSAGE value="banyan bot blue concluding article" />
@@ -769,6 +771,7 @@
     <MESSAGE value="User's Guide" />
     <MESSAGE value="servo discussion." />
     <MESSAGE value="release 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="release 1.0" />
+    <MESSAGE value="v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.0" />
   </component>
 </project>
