@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="v1.0">
+    <list default="true" id="75bb7fb9-3813-43a4-bae3-f99725aeff03" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/_posts/2021-06-22-rp2040-connect-second-impressions.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -374,14 +375,8 @@
       <workItem from="1619791437301" duration="6450000" />
       <workItem from="1619816593093" duration="129000" />
       <workItem from="1621202847594" duration="83000" />
-      <workItem from="1624382275672" duration="541000" />
-    </task>
-    <task id="LOCAL-00026" summary="initial commit">
-      <created>1561415537179</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1561415537179</updated>
+      <workItem from="1624382275672" duration="861000" />
+      <workItem from="1624391495579" duration="712000" />
     </task>
     <task id="LOCAL-00027" summary="June 26 Posting">
       <created>1561586307525</created>
@@ -719,7 +714,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619797262904</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="v1.0">
+      <created>1624382859958</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1624382859958</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TodoView">
