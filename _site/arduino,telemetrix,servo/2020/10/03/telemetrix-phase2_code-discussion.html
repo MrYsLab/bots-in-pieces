@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    <title>Phase 2 - Server And Client Details</title>
+    <meta name="description" content="In this posting, we will discuss the phase 2 release.">
+    <link rel="canonical" href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/arduino,telemetrix,servo/2020/10/03/telemetrix-phase2_code-discussion.html">
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/main.css">
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/skins/default.css">
+  <link rel="alternate" type="application/atom+xml" title="Bots In Pieces" href="/bots-in-pieces/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  phase-2-server-and-client-details">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/bots-in-pieces/">Home</a></li><li><a href="/bots-in-pieces/posts/">Posts</a></li><li><a href="/bots-in-pieces/categories/">Categories</a></li><li><a href="/bots-in-pieces/tags/">Tags</a></li><li><a href="/bots-in-pieces/search/">Search</a></li><li><a href="/bots-in-pieces/about/">Commenting Policy</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/bots-in-pieces/" class="site-logo" rel="home" title="Bots In Pieces">
+        <img src="/bots-in-pieces/images/logo.png" class="site-logo-img animated fadeInDown" alt="Bots In Pieces">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/bots-in-pieces/">Bots In Pieces</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Physical Computing (And Other Topics) In Easy To Digest "Byte-Size" Morsels</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Phase 2 - Server And Client Details
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/bots-in-pieces/images/MrYsLab.png" class="author-avatar u-photo" alt="Alan Yorinks"><div class="author-info"><div class="author-name">
+        <span class="p-name">Alan Yorinks</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-lg" title="Twitter"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li></ul>
+
+<span class="read-time">12 min read</span>
+
+    <time class="page-date dt-published" datetime="2020-10-03T11:00:39-04:00"><a class="u-url" href="">October 3, 2020</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">arduino,telemetrix,servo</li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">arduino,servo</li>
+  </ul>
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>In this posting, we will discuss the phase 2 release.</p>
+
+<p>This release incorporates support for servos and refactors some of the Arduino code.
+Here is what will be covered today:</p>
+<ul>
+  <li>Installation of the phase2 server and client code.</li>
+  <li>A short discussion of what was changed in phase 2.</li>
+  <li>A quick look at possible future changes.</li>
+  <li>A discussion of the steps used in adding the servo support. This discussion
+will include a partially detailed code description, and when appropriate, a “discussion detour” to
+explain some concepts not directly part of the topic at hand.</li>
+</ul>
+
+<p>Support for servos is now available in the 
+<a href="https://github.com/MrYsLab/telemetrix/tree/master/phase2">phase 2 directory of the telemetrix repository.</a></p>
+
+<p>An API is available at <a href="https://htmlpreview.github.com/?https://github.com/MrYsLab/telemetrix/blob/master/phase2/api/index.html">this link.</a></p>
+
+<p>There have been some significant changes made to the phase 1 code, and these will be discussed in a moment.</p>
+
+<p>For those who wish to try things out, here is what you need to do to install phase 2.</p>
+
+<ol>
+  <li>
+    <p>Go to the <a href="https://github.com/MrYsLab/telemetrix">telemetrix repository</a> and click on the green 
+code button to download the .zip file.</p>
+  </li>
+  <li>
+    <p>Extract the files into a directory of your choice. A directory, called telemetrix-master, will be created, and
+it will contain all the necessary files.</p>
+  </li>
+  <li>
+    <p>Install the latest Arduino code by opening the Arduino IDE. From the main menu, go to <em>Sketch</em>, 
+select <em>Include Library</em>, and then select <em>Add .ZIP Library</em>. Select the Telemetrix4Arduino.zip file in the 
+telemetrix-master/phase2 directory. Finally, click on <em>File</em> from the IDE main menu and select <em>Examples</em> and then
+select Telemetrix4Arduino and upload the code to your device.</p>
+  </li>
+  <li>
+    <p>To install the phase2 Python code, cd to telemetrix-master/phase2, and then type:</p>
+  </li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># For Windows:
+
+python setup.py install
+
+
+# Or for macOS and Linux:
+
+
+sudo python3 setup.py install
+</code></pre></div></div>
+<p>You are now ready to try out the examples in the telemtrix-master/examples directory using phase 2 code. 
+Note that you may need to change pin numbers in the examples to match your
+hardware setup. All of the examples require the use of Python 3.</p>
+
+<h1 id="what-has-changed-in-phase-2">What Has Changed In Phase 2</h1>
+
+<ul>
+  <li>The Arduino code has been placed in an Arduino Library directory structure.
+    <ul>
+      <li>At some future time, the Arduino Library Manager may be used to install the code into the IDE. 
+ Currently, you need to install using
+the .zip file, as shown above, since this library has yet to be published to be included in the Library Manager. All the code 
+is maintained in a single file to help simplify adding features.</li>
+    </ul>
+  </li>
+  <li>The Arduino code was renamed Telemetrix4Arduino.
+    <ul>
+      <li>The renaming was done to assure that there is no violation of the Arduino trademark.</li>
+    </ul>
+  </li>
+  <li>A bug was fixed in processing incoming commands. The command handler was being called multiple times, and now, correctly,
+it is called once.</li>
+  <li>Arduino code was reorganized to make it easier to expand and add functionality.</li>
+</ul>
+
+<h1 id="what-might-change-for-a-future-release">What Might Change For A Future Release</h1>
+<p>Besides adding new features, I am considering using two additional Arduino libraries
+to make the code easier to understand and maintain.</p>
+
+<p>The first library is <a href="https://arduinojson.org/">ArduinoJson.</a> Currently, 
+both command and report data is treated as an array of bytes. Indices into the array are used to create
+and parse these arrays. By using ArduinoJson, the data will be able to parsed using names instead of indices.
+Also, I intend to use the MessagePack feature of ArduinoJson to minimize the size of the messages being sent across
+the serial link.</p>
+
+<p>The second library is the <a href="https://www.etlcpp.com/">Embedded Template Library(ETL).</a> 
+ETL will allow the creation of more cohesive 
+data structures to make the code easier to understand and maintain.</p>
+
+<p>When evaluating these libraries, the gating factors are the amount of memory space they will use 
+and the impact on the speed of data transfers
+ because the number of bytes for a given command or report will be somewhat larger than using the current array of bytes scheme.</p>
+
+<p>If these libraries are viable for Telemetrix4Arduino, it is not certain as of yet in which phase
+they will be included. My current thinking is for phase 4 after I have implemented i2c support.</p>
+
+<h1 id="the-steps-used-to-add-servo-support-to-the-arduino-code">The Steps Used To Add Servo Support To The Arduino Code</h1>
+<p>Instead of going through all the code line by line, it is more beneficial to describe the steps
+used in adding servo support. The code involved in each step will be both shown and discussed. 
+If you are going through the code in detail and have any questions or comments, please post them below.</p>
+
+<h2 id="step-1-decide-which-library-functions-you-wish-to-support">Step 1: Decide Which Library Functions You Wish To Support</h2>
+<p>I decided to expose the <em>attach</em>, <em>write</em>, and <em>detach</em> methods for client access via command messages for the 
+<a href="https://www.arduino.cc/reference/en/libraries/servo/">servo library</a>. Internally, the <em>attached</em> method is used
+but not exposed directly to the client.</p>
+
+<h2 id="step-2-decide-on-method-names-to-support-the-new-commands-and-expose-them-as-externs">Step 2: Decide On Method Names To Support The New Commands And Expose Them As <em>externs</em></h2>
+<p>By defining the command functions using extern, the compiler will support forward referencing, and we
+don’t need to worry about where the actual commands are defined within the file.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// We first define the command functions here to provide a forward reference.
+// If you add a new command, you must add the command handler
+// here as well.
+
+// Phase 1 commands
+extern void serial_loopback();
+
+extern void set_pin_mode();
+
+extern void digital_write();
+
+extern void analog_write();
+
+extern void modify_reporting();
+
+extern void get_firmware_version();
+
+extern void are_you_there();
+
+// Phase 2 commands - supporting the servo library
+extern void servo_attach();
+
+extern void servo_write();
+
+extern void servo_detach();
+</code></pre></div></div>
+<h2 id="step-3-add-defines-for-the-new-command-values-and-reports">Step 3: Add #defines For The New Command Values And Reports</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// Commands -received by this sketch
+// Add commands retaining the sequential numbering.
+// The order of commands here must be maintained in the command_table.
+#define SERIAL_LOOP_BACK 0
+#define SET_PIN_MODE 1
+#define DIGITAL_WRITE 2
+#define ANALOG_WRITE 3
+#define MODIFY_REPORTING 4 // mode(all, analog, or digital), pin, enable or disable
+#define GET_FIRMWARE_VERSION 5
+#define ARE_U_THERE  6
+#define SERVO_ATTACH 7
+#define SERVO_WRITE 8
+#define SERVO_DETACH 9
+
+// Reports - sent from this sketch
+#define DIGITAL_REPORT DIGITAL_WRITE
+#define ANALOG_REPORT ANALOG_WRITE
+#define FIRMWARE_REPORT 5
+#define I_AM_HERE 6
+#define SERVO_UNAVAILABLE 7
+#define DEBUG_PRINT 99
+</code></pre></div></div>
+<p>The SERVO_UNAVAILABLE report is sent to the client if a servo_attach fails because
+there are no available servos.</p>
+
+<h2 id="step-4-add-entries-into-the-command_table-for-the-new-commands">Step 4: Add Entries Into The command_table For The New Commands</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// When adding a new command update the command_table.
+// The command length is the number of bytes that follow
+// the command byte itself, and does not include the command
+// byte in its length.
+// The command_func is a pointer the command's function.
+typedef struct command_descriptor {
+    byte command_length;
+    void (*command_func)(void);
+};
+command_descriptor command_table[10] =
+
+        {
+                {1, &amp;serial_loopback},
+                {4, &amp;set_pin_mode},
+                {2, &amp;digital_write},
+                {2, &amp;analog_write},
+                {1, &amp;modify_reporting},
+                {0, &amp;get_firmware_version},
+                {0, &amp;are_you_there},
+                {5, &amp;servo_attach},
+                {2, &amp;servo_write},
+                {1, &amp;servo_detach},
+        };
+</code></pre></div></div>
+<p>The command_table is an array of command_descriptors. The command value is used as an index into the array,
+so the command position in the table must match the command values defined in step 3.</p>
+
+<p>Make sure to increase the size of the table with each added command.</p>
+
+<p>A command_descriptor consists of two values. The first is the number of bytes of
+data that need to be retrieved after the command byte is received.
+ The second is the address of the function that performs the processing of the command.</p>
+
+<p><strong>DETOUR</strong>: The command function addresses are stored in the <em>command table</em> so that we can 
+avoid having to use a large switch statement or a long list of if/else
+statements to de-reference a command.
+Instead, <em>find_next_command</em> uses the C language function pointer
+syntax to call the command function using the address in the table.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void get_next_command() {
+    byte command;
+    int command_buffer_index = 0;
+    command_descriptor command_entry;
+
+    for (int i = 0; i &lt; MAX_COMMAND_LENGTH; i++) {
+        command_buffer[i] = 0;
+    }
+    if (Serial.available()) {
+        // get the command byte
+        command = (byte) Serial.read();
+        // uncomment the next line to see the command byte value
+        //send_debug_info(75, command);
+        command_entry = command_table[command];
+        //send_debug_info(command, command_entry.command_length);
+        // get the data for that command
+        if (command_entry.command_length &gt; 0) {
+            for (int i = 0; i &lt; command_entry.command_length; i++) {
+                // need this delay or data read is not correct
+                delay(1);
+                if (Serial.available()) {
+                    command_buffer[command_buffer_index++] = (byte) Serial.read();
+                    // uncomment out to see each of the bytes followning the command
+                    //send_debug_info(3, (int) command_buffer[command_buffer_index - 1]);
+                }
+            }
+        }
+        (command_entry.command_func());
+    }
+
+}
+</code></pre></div></div>
+
+<h2 id="step-5-allocate-any-global-storage-that-the-library-requires">Step 5: Allocate Any Global Storage That The Library Requires</h2>
+<p>There is a fixed maximum number of servos that the library supports. 
+Here we create an array of Servo objects. The servo library defines the MAX_SERVOS value.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// servo management
+Servo servos[MAX_SERVOS];
+</code></pre></div></div>
+<p>When a <em>servo attach</em> command is received, we need to determine if there 
+are any servo objects available for use. To do this, we create
+an array of bytes that will aid in finding the first available servo object
+that we may use. If an available servo is found, then
+the pin number is entered in the pin_to_servo_index_map array, using the index returned by  the
+<em>find_servo</em> function described below.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+byte pin_to_servo_index_map[MAX_SERVOS];
+
+</code></pre></div></div>
+<h2 id="step-6-implement-the-command-functions">Step 6: Implement The Command Functions</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/***************************************************
+ * Servo Commands
+ **************************************************/
+
+// Find the first servo that is not attached to a pin
+int find_servo() {
+    int index = -1;
+    for (int i = 0; i &lt; MAX_SERVOS; i++) {
+        if (servos[i].attached() == false) {
+            index = i;
+            break;
+        }
+    }
+    return index;
+}
+</code></pre></div></div>
+<p>The <em>find_servo</em> function is a helper function that iterates through the servos array
+to find the first available servo for use. It sequentially checks to see if a servo 
+is currently attached. If not, it returns the index in the servo array. If there are
+no servos available, it returns a -1.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void servo_attach() {
+
+    byte pin = command_buffer[0];
+    int servo_found = -1;
+
+    int minpulse = (command_buffer[1] &lt;&lt; 8) + command_buffer[2];
+    int maxpulse = (command_buffer[3] &lt;&lt; 8) + command_buffer[4];
+
+    // find the first avalable open servo
+    servo_found = find_servo();
+    if (servo_found != -1) {
+        pin_to_servo_index_map[servo_found] = pin;
+        servos[servo_found].attach(pin, minpulse, maxpulse);
+    } else {
+        // no open servos available, send a report back to client
+        byte report_message[2] = {SERVO_UNAVAILABLE, pin};
+        Serial.write(report_message, 2);
+    }
+}
+</code></pre></div></div>
+<p>The <em>servo_attach</em> function is called by the <em>get_next_command</em> function when de-referencing an incoming
+<em>SERVO_ATTACH</em> command.</p>
+
+<p>Five additional bytes, in addition to the command byte, are required to process the <em>servo_attach</em> command.
+The first byte is the pin number. The next 2 bytes contain the high and low-value bytes
+for the minimum pulse width to be used. These bytes are combined to form an integer.
+The last 2 bytes contain the high and low-value bytes for the maximum pulse width. These
+2 bytes are also combined to form an integer value.</p>
+
+<p>The <em>servo_attach</em> function calls <em>find_servo</em>. If a servo is available, the pin
+number is associated with the servo in the <em>pin_to_servo_index_map</em> array.
+If there are no available servos, a SERVO_UNAVAILABLE report is formed and sent across the serial link.</p>
+
+<p><strong>DETOUR</strong>: In order to send values that are larger than a byte (ints, floats, etc.), the larger value needs 
+to be broken down into byte-size chunks. By convention, we send the high order byte first, followed by the low order bytes.
+ The receiver then reconstructs the actual value by combining the individual bytes in their proper order
+to re-form the original value. Hopefully, ArduinoJson will preclude having to assemble and disassemble data
+values greater than a byte in length.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+// set a servo to a given angle
+void servo_write() {
+    byte pin = command_buffer[0];
+    int angle = command_buffer[1];
+    servos[0].write(angle);
+    // find the servo object for the pin
+    for (int i = 0; i &lt; MAX_SERVOS; i++) {
+        if (pin_to_servo_index_map[i] == pin) {
+            servos[i].write(angle);
+            return;
+        }
+    }
+}
+</code></pre></div></div>
+<p>The <em>servo_write</em> command associates the supplied pin number with its associated 
+servo instance, and then writes the supplied angle to the servo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+// detach a servo and make it available for future use
+void servo_detach() {
+    byte pin = command_buffer[0];
+
+    // find the servo object for the pin
+    for (int i = 0; i &lt; MAX_SERVOS; i++) {
+        if (pin_to_servo_index_map[i] == pin) {
+
+            pin_to_servo_index_map[i] = -1;
+            servos[i].detach();
+        }
+    }
+}
+</code></pre></div></div>
+<p>The <em>servo_detach</em> command disassociates the servo instance from the pin and makes
+the servo instance available for reuse.</p>
+
+<h1 id="the-steps-used-to-add-servo-support-to-the-python-client-code">The Steps Used To Add Servo Support To The Python Client Code</h1>
+
+<h2 id="step-1-update-private_constantspy">Step 1: Update <em>private_constants.py</em></h2>
+<p>First, add the new commands and reports to private_constants.py. These values must match
+their counterparts defined in the server.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># commands
+# send a loop back request - for debugging communications
+LOOP_COMMAND = 0
+SET_PIN_MODE = 1  # set a pin to INPUT/OUTPUT/PWM/etc
+DIGITAL_WRITE = 2  # set a single digital pin value instead of entire port
+ANALOG_WRITE = 3
+MODIFY_REPORTING = 4
+GET_FIRMWARE_VERSION = 5
+ARE_U_THERE = 6  # Arduino ID query for auto-detect of telemetrix connected boards
+SERVO_ATTACH = 7
+SERVO_WRITE = 8
+SERVO_DETACH = 9
+
+# reports
+# debug data from Arduino
+DIGITAL_REPORT = DIGITAL_WRITE
+ANALOG_REPORT = ANALOG_WRITE
+FIRMWARE_REPORT = GET_FIRMWARE_VERSION
+I_AM_HERE_REPORT = ARE_U_THERE
+SERVO_UNAVAILABLE = SERVO_ATTACH
+DEBUG_PRINT = 99
+</code></pre></div></div>
+<p><strong>DETOUR</strong>: The ARE_U_THERE command and I_AM_HERE report are used to allow the client
+to perform autodiscovery of a specific board plugged into your computer. The value
+returned by the I_AM_HERE report must match the expected Arduino ID value.
+You may change the Arduino ID values to accommodate multiple boards by setting the ID 
+in the Telemetrix4Arduino sketch and using a matching value when instantiating the Telemetrix 
+class.</p>
+
+<h2 id="step-2-for-new-reports-update-the-report_dispatch-dictionary">Step 2: For New Reports Update The report_dispatch Dictionary</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># The report_dispatch dictionary is used to process
+# incoming report messages by looking up the report message
+# and executing its associated processing method.
+# The value following the method is the number of bytes to
+# retrieve from the deque to process the report (not including report id).
+self.report_dispatch = {}
+
+# To add a command to the command dispatch table, append here.
+self.report_dispatch.update({PrivateConstants.LOOP_COMMAND: [self._report_loop_data, 1]})
+self.report_dispatch.update({PrivateConstants.DEBUG_PRINT: [self._report_debug_data, 3]})
+self.report_dispatch.update({PrivateConstants.DIGITAL_REPORT: [self._digital_message, 2]})
+self.report_dispatch.update({PrivateConstants.ANALOG_REPORT: [self._analog_message, 3]})
+self.report_dispatch.update({PrivateConstants.FIRMWARE_REPORT: [self._firmware_message, 2]})
+self.report_dispatch.update({PrivateConstants.I_AM_HERE_REPORT: [self._i_am_here, 1]})
+self.report_dispatch.update({PrivateConstants.SERVO_UNAVAILABLE: [self._servo_unavailable, 1]})
+</code></pre></div></div>
+<p>By adding the name of the method to this dictionary, the callback for the report is invoked
+in a similar fashion to using a function pointer in C++.</p>
+
+<h2 id="step-3-implement-the-callback-method-for-the-report">Step 3: Implement The Callback Method For The Report</h2>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    def _servo_unavailable(self, report):
+        """
+        Message if no servos are available for use.
+        :param report: pin number
+        """
+        raise RuntimeError(f'Servo Attach For Pin {report[0]} Failed: No Available Servos')
+</code></pre></div></div>
+<p>A RuntimeError is raised if no servos were available.</p>
+
+<h2 id="step-4-implement-the-command-methods">Step 4: Implement The Command Methods</h2>
+
+<h3 id="set_pin_mode_servo">set_pin_mode_servo</h3>
+
+<p>The <em>set_pin_mode_servo</em> method is used to request a pin to be
+attached to a servo.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    def set_pin_mode_servo(self, pin_number, min_pulse=544, max_pulse=2400):
+        """
+        Attach a pin to a servo motor
+        :param pin_number: pin
+        :param min_pulse: minimum pulse width
+        :param max_pulse: maximum pulse width
+        """
+        minv = (min_pulse).to_bytes(2, byteorder="big")
+        maxv = (max_pulse).to_bytes(2, byteorder="big")
+
+        command = [PrivateConstants.SERVO_ATTACH, pin_number,
+                   minv[0], minv[1], maxv[0], maxv[1]]
+        self._send_command(command)
+</code></pre></div></div>
+
+<h3 id="servo_write">servo_write</h3>
+
+<p>The servo_write method is used to move the servo to an angle between 0 and 
+180 degrees.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   def servo_write(self, pin_number, angle):
+        """
+        Set a servo attached to a pin to a given angle
+        :param pin_number: pin
+        :param angle: angle (0-180)
+        """
+        command = [PrivateConstants.SERVO_WRITE, pin_number, angle]
+        self._send_command(command)
+</code></pre></div></div>
+
+<h3 id="servo_detach">servo_detach</h3>
+
+<p>To free-up a servo for reuse, servo_detach is called.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    def servo_detach(self, pin_number):
+        """
+        Detach a servo for reuse
+        :param pin_number: attached pin
+        """
+        command = [PrivateConstants.SERVO_DETACH, pin_number]
+        self._send_command(command)
+</code></pre></div></div>
+
+<h1 id="concluding-remarks">Concluding Remarks</h1>
+<p>Adding support for a new library is accomplished by following the steps outlined above. 
+We will be using a similar methodology as telemetrix functionality is expanded.</p>
+
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Ctelemetrix%2Cservo%2F2020%2F10%2F03%2Ftelemetrix-phase2_code-discussion.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Phase+2+-+Server+And+Client+Details%20https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Ctelemetrix%2Cservo%2F2020%2F10%2F03%2Ftelemetrix-phase2_code-discussion.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Ctelemetrix%2Cservo%2F2020%2F10%2F03%2Ftelemetrix-phase2_code-discussion.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Phase+2+-+Server+And+Client+Details&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Ctelemetrix%2Cservo%2F2020%2F10%2F03%2Ftelemetrix-phase2_code-discussion.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/bots-in-pieces/arduino,stm32,firmata/2020/09/27/telemetrix-update1.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Telemetrix Update 1
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/bots-in-pieces/arduino,telemetrix,i2c/2020/10/06/telemetrix-phase3-i2c.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Phase 3 - I2C Support
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="/bots-in-pieces/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>Copyright (C) 2019-2021 Alan Yorinks. All Rights Reserved.</p>
+
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/bots-in-pieces/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>

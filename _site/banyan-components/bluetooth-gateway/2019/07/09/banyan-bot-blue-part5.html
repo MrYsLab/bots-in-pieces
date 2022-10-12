@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    <title>Banyan Bot Blue Part 5</title>
+    <meta name="description" content="The Bluetooth Gateway A Peek Under The Hood">
+    <link rel="canonical" href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/banyan-components/bluetooth-gateway/2019/07/09/banyan-bot-blue-part5.html">
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/main.css">
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/skins/default.css">
+  <link rel="alternate" type="application/atom+xml" title="Bots In Pieces" href="/bots-in-pieces/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  banyan-bot-blue-part-5">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/bots-in-pieces/">Home</a></li><li><a href="/bots-in-pieces/posts/">Posts</a></li><li><a href="/bots-in-pieces/categories/">Categories</a></li><li><a href="/bots-in-pieces/tags/">Tags</a></li><li><a href="/bots-in-pieces/search/">Search</a></li><li><a href="/bots-in-pieces/about/">Commenting Policy</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/bots-in-pieces/" class="site-logo" rel="home" title="Bots In Pieces">
+        <img src="/bots-in-pieces/images/logo.png" class="site-logo-img animated fadeInDown" alt="Bots In Pieces">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/bots-in-pieces/">Bots In Pieces</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Physical Computing (And Other Topics) In Easy To Digest "Byte-Size" Morsels</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Banyan Bot Blue Part 5
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/bots-in-pieces/images/MrYsLab.png" class="author-avatar u-photo" alt="Alan Yorinks"><div class="author-info"><div class="author-name">
+        <span class="p-name">Alan Yorinks</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-lg" title="Twitter"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li></ul>
+
+<span class="read-time">11 min read</span>
+
+    <time class="page-date dt-published" datetime="2019-07-09T19:24:39-04:00"><a class="u-url" href="">July 9, 2019</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">banyan-components</li><li class="page-taxonomy">bluetooth-gateway</li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">threading</li><li class="page-taxonomy">banyan</li><li class="page-taxonomy">coding-convention</li>
+  </ul>
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p style="float:left; "><img src="/bots-in-pieces/images/banyan-bot-blue-1/car.jpg" alt="" /></p>
+<h1 style="color:blue;  " id="the-bluetooth-gateway">The Bluetooth Gateway</h1>
+<h1 style="color:blue;  " id="a-peek-under-the-hood"><em>A Peek Under The Hood</em></h1>
+
+<p><br /> 
+<br /></p>
+
+<h1 id="in-this-edition-of-bots-in-pieces-we-will">In this edition of <em>Bots In Pieces</em>, we will:</h1>
+<ul>
+  <li>Discuss the Banyan Bluetooth Gateway (<strong>BTG</strong>) component:
+    <ul>
+      <li>Its purpose.</li>
+      <li>A peek at the code:
+        <ul>
+          <li>What’s inside.</li>
+          <li>Adding threading.Thread to a Banyan component.</li>
+          <li>Transforming a Banyan component into a command-line executable.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="what-is-the-bluetooth-gateway">What Is The Bluetooth Gateway?</h1>
+
+<p>The BTG is a Banyan <em>Protocol Gateway</em> that supports seamless bidirectional
+data transfer between a Bluetooth device and the Banyan network. It re-formats Bluetooth data received from a Bluetooth
+device into Banyan protocol messages, 
+while simultaneously receiving Banyan messages and reformatting that data to a format
+ that can be sent over the RFCOMM link to the Bluetooth device.</p>
+
+<p>By default, the BTG acts as
+a Bluetooth RFCOMM <em>server.</em></p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/bluetooth_gateway.png" alt="" /></p>
+
+<p>The Bluetooth Gateway was designed to be as general-purpose as possible in order to support
+a variety of application scenarios without the need to recode the component. 
+It accomplishes this goal by offering a set of command-line 
+options available to the user at launch time to affect the BTG’s behavior.</p>
+
+<h2 id="the-bluetooth-gateway-command-line-options">The Bluetooth Gateway Command-Line Options</h2>
+
+<p>Here is a list of all the command-line options
+ that the BTG supports:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>          <span class="nt">-a</span> SERVER_BT_ADDRESS  Bluetooth MAC Address of Bluetooth Gateway
+          <span class="nt">-b</span> BACK_PLANE_IP_ADDRESS
+                                None or IP address used by Back Plane
+          <span class="nt">-g</span> GATEWAY_TYPE       Type of Gateway: server or client
+          <span class="nt">-j</span> JSON_DATA          Bluetooth packets json encoded True or False
+          <span class="nt">-l</span> PUBLISH_TOPIC      Banyan publisher topic
+          <span class="nt">-m</span> SUBSCRIBER_LIST <span class="o">[</span>SUBSCRIBER_LIST ...]
+                                Banyan topics space delimited: topic1 topic2 topic3
+          <span class="nt">-n</span> PROCESS_NAME       Set process name <span class="k">in </span>banner
+          <span class="nt">-p</span> PUBLISHER_PORT     Publisher IP port
+          <span class="nt">-s</span> SUBSCRIBER_PORT    Subscriber IP port
+          <span class="nt">-t</span> LOOP_TIME          Event Loop Timer <span class="k">in </span>seconds
+          <span class="nt">-u</span> UUID               Bluetooth UUID
+
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>SERVER_BT_ADDRESS - if you configure the gateway as an RFCOMM <em>client</em>, 
+you will need to specify its Bluetooth MAC address. By default, the BTG is configured
+as a Bluetooth <em>server,</em> and for server mode, the address does not need to be specified.
+The default value for this option is <em>None.</em></p>
+  </li>
+  <li>
+    <p>BACK_PLANE_IP_ADDRESS - this is a common option for all Banyan components. Banyan allows you to 
+<a href="https://mryslab.github.io/python_banyan/#example3/"><em>distribute components across multiple computers.</em></a>
+This option allows you to explicitly specify the IP address of the computer that is
+hosting the backplane. The default is <em>None,</em> which automatically sets
+ the backplane IP address to the IP address of the local computer.</p>
+  </li>
+  <li>
+    <p>GATEWAY_TYPE - select either server or client. Default is server.</p>
+  </li>
+  <li>
+    <p>JSON_DATA - The BTG can be configured to treat data over the Bluetooth RFCOMM
+link
+as either JSON or string data. Setting this option to True enables
+JSON encoding, and False enables string encoding. The 
+default option value is <em>False</em> for string encoding.</p>
+  </li>
+  <li>
+    <p>PUBLISH_TOPIC - the topic string used when the BTG publishes Banyan messages
+containing Bluetooth data. The default is <em>from_bt_gateway.</em></p>
+  </li>
+  <li>
+    <p>SUBSCRIBER_LIST - a space-delimited list of BTG subscription topics.
+ Default is a single topic of
+<em>to_bt_gateway.</em></p>
+  </li>
+  <li>
+    <p>PROCESS_NAME - The name of the component that will be displayed in the console header
+when the gateway is launched. Default is
+<em>BanyanBluetoothServer.</em> If you’ve selected a GATEWAY_TYPE of <em>client</em>, the process_name 
+will be <em>BanyanBluetoothClient.</em></p>
+  </li>
+  <li>
+    <p>PUBLISHER_PORT -  This option specifies the IP port used when publishing Banyan messages. 
+The default is <em>43124.</em> You may choose a different port number if this
+port is already in use, 
+ or if you have configured the Banyan network as a 
+<a href="https://mryslab.github.io/python_banyan/#example9/"><em>multi-backplane network.</em></a></p>
+  </li>
+  <li>
+    <p>SUBSCRIBER_PORT - This option specifies the IP port used for receiving Banyan messages. 
+The default is <em>43125.</em> You may choose a different port number if this
+port is already in use, 
+ or if you have configured the Banyan network as a 
+<a href="https://mryslab.github.io/python_banyan/#example9/"><em>multi-backplane network.</em></a></p>
+  </li>
+  <li>
+    <p>LOOP_TIME - the time period that the Banyan receive loop remains idle before 
+checking to see if the next received message
+is available for processing. This option allows you to tune the component for 
+performance and 
+CPU utilization. The default value is <em>0.01 seconds.</em></p>
+  </li>
+  <li>
+    <p>UUID - A Unique Bluetooth service identifier. 
+Default is: <br />
+<em>e35d6386-1802-414f-b2b9-375c92fa23e0.</em></p>
+  </li>
+</ul>
+
+<h2 id="the-code">The Code</h2>
+
+<p>In this section, we will be examining selected portions of the code.
+You can view the code in its entirety
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/banyan_assets/bluetooth_gateway.py"><em>here.</em></a></p>
+
+<blockquote>
+  <p>If you have any questions about the code, please leave a comment at the bottom of this page.</p>
+</blockquote>
+
+<p>As explained in a 
+<a href="http://0.0.0.0:4000/banyan-framework/2019/06/26/banyan-background-4.html"><em>previous posting,</em></a>
+ in general, to create a Banyan component the programmer:</p>
+
+<ul>
+  <li>Creates a class that inherits from the Python Banyan base class.</li>
+  <li>Overwrites the __init__ method.</li>
+  <li>Calls the parent class __init__ method.</li>
+  <li>Overwrites the incoming_message_processing method to handle Banyan messages.</li>
+</ul>
+
+<h2 id="discussing-the-code">Discussing The Code</h2>
+<p>For code discussions, first, a section of the source will be shown, 
+followed by a discussion of that section.</p>
+
+<h3 id="the-imports">The Imports</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+
+<span class="kn">from</span> <span class="nn">bluetooth</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="kn">from</span> <span class="nn">boltons.socketutils</span> <span class="kn">import</span> <span class="n">BufferedSocket</span>
+
+<span class="kn">from</span> <span class="nn">python_banyan.banyan_base</span> <span class="kn">import</span> <span class="n">BanyanBase</span>
+
+</code></pre></div></div>
+
+<p>At the top of the file, as is typical, all of the modules required by the Bluetooth Gateway are imported.</p>
+
+<p>If you followed the previous postings, any libraries required to be installed have
+ already be installed.</p>
+
+<blockquote>
+  <p><strong>Note</strong>: When importing the Banyan base class, use the syntax shown above.</p>
+</blockquote>
+
+<h3 id="declaring-the-bluetoothgateway-class">Declaring The BluetoothGateway Class</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BlueToothGateway</span><span class="p">(</span><span class="n">BanyanBase</span><span class="p">,</span> <span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">):</span>
+</code></pre></div></div>
+<p>All Banyan components inherit from the <em>BanyanBase</em> base class.
+In order to support bidirectional
+data transmission over the RFCOMM link, the BTG also needs to inherit from
+<em>threading.Thread.</em> A separate thread handles Bluetooth data reception. Thread creation and execution is accomplished in the
+standard manner.</p>
+
+<h3 id="the-__init__-method">The __init__ Method</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">back_plane_ip_address</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">subscriber_port</span><span class="o">=</span><span class="s">'43125'</span><span class="p">,</span>
+                 <span class="n">publisher_port</span><span class="o">=</span><span class="s">'43124'</span><span class="p">,</span> <span class="n">process_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">loop_time</span><span class="o">=</span><span class="p">.</span><span class="mi">001</span><span class="p">,</span>
+                 <span class="n">gateway_type</span><span class="o">=</span><span class="n">BTG_SERVER</span><span class="p">,</span> <span class="n">publish_topic</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">uuid</span><span class="o">=</span><span class="s">'e35d6386-1802-414f-b2b9-375c92fa23e0'</span><span class="p">,</span>
+                 <span class="n">server_bt_address</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">subscriber_list</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                 <span class="n">json_data</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+</code></pre></div></div>
+<p>Here we see all of the parameters that the class accepts. We could have used 
+ <em>*kwargs here, but I think it is clearer to list everything out. All parameters are
+ *key-word</em> parameters, so all have a default value.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="s">"""
+        This method initializes the class for operation
+        """</span>
+        <span class="c1"># save input parameters as instance attributes
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">back_plane_ip_address</span> <span class="o">=</span> <span class="n">back_plane_ip_address</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">subscriber_port</span> <span class="o">=</span> <span class="n">subscriber_port</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">publisher_port</span> <span class="o">=</span> <span class="n">publisher_port</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">loop_time</span> <span class="o">=</span> <span class="n">loop_time</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">gateway_type</span> <span class="o">=</span> <span class="n">gateway_type</span>
+
+        <span class="c1"># set the name for the banner depending upon client or server
+</span>        <span class="k">if</span> <span class="n">process_name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">gateway_type</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">BTG_CLIENT</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">process_name</span> <span class="o">=</span> <span class="s">'BanyanBluetoothClient'</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">process_name</span> <span class="o">=</span> <span class="s">'BanyanBluetoothServer'</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">process_name</span> <span class="o">=</span> <span class="n">process_name</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">publish_topic</span> <span class="o">=</span> <span class="n">publish_topic</span>
+
+        <span class="bp">self</span><span class="p">.</span><span class="n">uuid</span> <span class="o">=</span> <span class="n">uuid</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">server_bt_address</span> <span class="o">=</span> <span class="n">server_bt_address</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">json_data</span> <span class="o">=</span> <span class="n">json_data</span>
+        
+</code></pre></div></div>
+
+<p>In the section above we save the input parameters as instance attributes so that they
+are available to be used anywhere within the class.</p>
+
+<p>One of the parameters, <em>gateway_type</em> is used to define the process name that will 
+be displayed when the Bluetooth Gateway is invoked.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+        <span class="c1"># initialize the parent
+</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">BlueToothGateway</span><span class="p">,</span> <span class="bp">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">(</span>
+            <span class="n">back_plane_ip_address</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">back_plane_ip_address</span><span class="p">,</span>
+            <span class="n">subscriber_port</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">subscriber_port</span><span class="p">,</span>
+            <span class="n">publisher_port</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">publisher_port</span><span class="p">,</span>
+            <span class="n">process_name</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">process_name</span><span class="p">,</span>
+            <span class="n">loop_time</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">loop_time</span><span class="p">)</span>
+
+</code></pre></div></div>
+<p>Above we call <em>super</em> to initialize the BanyanBase parent.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="bp">self</span><span class="p">.</span><span class="n">subscriber_list</span> <span class="o">=</span> <span class="n">subscriber_list</span>
+        
+                <span class="k">for</span> <span class="n">topic</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">.</span><span class="n">subscriber_list</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">set_subscriber_topic</span><span class="p">(</span><span class="n">topic</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">'Subscribed to: '</span><span class="p">,</span> <span class="n">topic</span><span class="p">)</span>
+        
+        <span class="k">print</span><span class="p">(</span><span class="s">'Publish to   : '</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">publish_topic</span><span class="p">)</span>
+</code></pre></div></div>
+<p>In the code above we subscribe to the topics specified by calling <em>set_subscriber_topic</em> 
+for each topic,
+and printing
+each <em>subscription topic</em> to the console. The specified <em>publishing topic</em> is also printed to the console.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">mac</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">find_local_mac_address</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">mac</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Local Bluetooth MAC Address: '</span><span class="p">,</span> <span class="n">mac</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'No Bluetooth Interface Found - Exiting'</span><span class="p">)</span>
+            <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Here we self-discover the MAC address of the local Bluetooth interface and print it to the console.</p>
+
+<p>The <a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/04b6adace07f3449bfacc6dd3f045c5bd8199ec0/banyan-bot-blue/banyan_assets/bluetooth_gateway.py#L2020"><em>find_local_mac_address</em></a>
+ method utilizes <em>subprocess.Popen</em> to execute an <em>hcitool</em> command to 
+retrieve the MAC address.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">gateway_type</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">BTG_SERVER</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">server_sock</span> <span class="o">=</span> <span class="n">BluetoothSocket</span><span class="p">(</span><span class="n">RFCOMM</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">server_sock</span><span class="p">.</span><span class="n">bind</span><span class="p">((</span><span class="s">""</span><span class="p">,</span> <span class="n">PORT_ANY</span><span class="p">))</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">server_sock</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">port</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">server_sock</span><span class="p">.</span><span class="n">getsockname</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">advertise_service</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">server_sock</span><span class="p">,</span> <span class="s">"BanyanBlueToothServer"</span><span class="p">,</span>
+                              <span class="n">service_id</span><span class="o">=</span><span class="n">uuid</span><span class="p">,</span>
+                              <span class="n">service_classes</span><span class="o">=</span><span class="p">[</span><span class="n">uuid</span><span class="p">,</span> <span class="n">SERIAL_PORT_CLASS</span><span class="p">],</span>
+                              <span class="n">profiles</span><span class="o">=</span><span class="p">[</span><span class="n">SERIAL_PORT_PROFILE</span><span class="p">],</span>
+                              <span class="p">)</span>
+
+            <span class="k">print</span><span class="p">(</span><span class="s">"Waiting for connection on RFCOMM channel %d"</span> <span class="o">%</span> <span class="n">port</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">client_sock</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">client_info</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">server_sock</span><span class="p">.</span><span class="n">accept</span><span class="p">()</span>
+            <span class="k">except</span> <span class="nb">KeyboardInterrupt</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">clean_up</span><span class="p">()</span>
+                <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+            <span class="k">print</span><span class="p">(</span><span class="s">"Accepted connection from "</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">client_info</span><span class="p">)</span>
+ 
+</code></pre></div></div>
+
+<p>In the section of code above, we create a BluetoothServer and then wait for an incoming
+connection.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       <span class="k">else</span><span class="p">:</span>
+            <span class="n">service_matches</span> <span class="o">=</span> <span class="n">find_service</span><span class="p">(</span><span class="n">uuid</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">uuid</span><span class="p">,</span>
+                                           <span class="n">address</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">server_bt_address</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">service_matches</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">"Could not find the remote Bluetooth server - exiting"</span><span class="p">)</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">clean_up</span><span class="p">()</span>
+                <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+
+            <span class="n">first_match</span> <span class="o">=</span> <span class="n">service_matches</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">port</span> <span class="o">=</span> <span class="n">first_match</span><span class="p">[</span><span class="s">"port"</span><span class="p">]</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">first_match</span><span class="p">[</span><span class="s">"name"</span><span class="p">]</span>
+            <span class="n">host</span> <span class="o">=</span> <span class="n">first_match</span><span class="p">[</span><span class="s">"host"</span><span class="p">]</span>
+
+            <span class="k">print</span><span class="p">(</span><span class="s">"connecting to </span><span class="se">\"</span><span class="s">%s</span><span class="se">\"</span><span class="s"> on %s"</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">host</span><span class="p">))</span>
+
+            <span class="c1"># Create the client socket
+</span>            <span class="bp">self</span><span class="p">.</span><span class="n">client_sock</span> <span class="o">=</span> <span class="n">BluetoothSocket</span><span class="p">(</span><span class="n">RFCOMM</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">client_sock</span><span class="p">.</span><span class="n">connect</span><span class="p">((</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<p>Above, if the Bluetooth Gateway was configured to be a client, the <em>else</em> path is taken.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="c1"># wrap the socket for both client and server
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">bsock</span> <span class="o">=</span> <span class="n">BufferedSocket</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">client_sock</span><span class="p">)</span>
+
+        <span class="c1"># create a thread to handle receipt of bluetooth data
+</span>        <span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">daemon</span> <span class="o">=</span> <span class="bp">True</span>
+
+        <span class="c1"># start the thread
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+
+        <span class="c1"># this will keep the program running forever
+</span>        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">receive_loop</span><span class="p">()</span>
+        <span class="k">except</span> <span class="nb">KeyboardInterrupt</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">clean_up</span><span class="p">()</span>
+            <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And in the last section of __init__ shown above, we wrap the socket with a 
+<a href="https://boltons.readthedocs.io/en/latest/socketutils.html#bufferedsocket"><em>Bolton BufferedSocket.</em></a></p>
+
+<p>We do this to simplify parsing JSON data if the BTG was configured for JSON
+encoding/decoding.</p>
+
+<p>We then initialize the parent Thread class and then start the thread to 
+receive data from the Bluetooth connected device.</p>
+
+<p>Next, we start
+the banyan <em>receive_loop</em> that keeps the program running while processing
+any incoming Banyan protocol messages.</p>
+
+<h3 id="the-incoming_message_processing-method">The incoming_message_processing Method</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">incoming_message_processing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">payload</span><span class="p">):</span>
+        <span class="s">"""
+        Process the incoming Banyan message to
+        be sent to the Bluetooth network
+        :param topic: topic string
+        :param payload: payload data
+        """</span>
+
+        <span class="c1"># if the bluetooth device requires json encoding
+</span>        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">json_data</span><span class="p">:</span>
+            <span class="n">data_out</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+            <span class="n">data_out</span> <span class="o">=</span> <span class="n">data_out</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">bsock</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">data_out</span><span class="p">)</span>
+            <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">clean_up</span><span class="p">()</span>
+                <span class="k">raise</span> <span class="nb">RuntimeError</span><span class="p">(</span><span class="s">'Write Error'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># convert the payload to a string
+</span>            <span class="n">data_out</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">payload</span><span class="p">[</span><span class="s">'report'</span><span class="p">])</span>
+            <span class="n">data_out</span> <span class="o">=</span> <span class="n">data_out</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">client_sock</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">data_out</span><span class="p">)</span>
+</code></pre></div></div>
+<p>The code above is the entirety of this method. It is automatically called 
+by the base class when an incoming Banyan protocol message
+is received. If the hardware interface component detects a status change on a GPIO
+pin, it may generate a Banyan message containing that change. The BTG can register
+to receive status change messages and pass the change data to the Bluetooth device.</p>
+
+<p>The method checks to see if the JSON data option is enabled and if so, the data is JSON encoded
+and sent across the RFCOMM link.</p>
+
+<p>If JSON is not enabled, the <em>report</em> value is extracted, converted to a string, 
+ encoded
+and sent across the RFCOMM link.</p>
+
+<h3 id="the-run-method">The run Method</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">"""
+        This is thread that receives packets from the bluetooth interface
+        :return:
+        """</span>
+
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="c1"># if json encoding look for termination character
+</span>            <span class="c1"># used for a dictionary
+</span>            <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">json_data</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">bsock</span><span class="p">.</span><span class="n">recv_until</span><span class="p">(</span><span class="sa">b</span><span class="s">'}'</span><span class="p">,</span>
+                                                 <span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                                 <span class="n">with_delimiter</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                <span class="k">except</span> <span class="nb">KeyboardInterrupt</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">clean_up</span><span class="p">()</span>
+                    <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="k">continue</span>
+
+                <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">decode</span><span class="p">()</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="p">.</span><span class="n">publish_payload</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">publish_topic</span><span class="p">)</span>
+
+            <span class="c1"># data is not json encoded
+</span>            <span class="k">else</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">client_sock</span><span class="p">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1</span><span class="p">)).</span><span class="n">decode</span><span class="p">()</span>
+                <span class="k">except</span> <span class="nb">KeyboardInterrupt</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="p">.</span><span class="n">clean_up</span><span class="p">()</span>
+                    <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">'command'</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">publish_payload</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">publish_topic</span><span class="p">)</span>
+
+</code></pre></div></div>
+<p>Bluetooth data is received and processed by the thread implementation shown above.
+The data is either treated as JSON data or as string data depending upon the JSON
+command line option selected. 
+ In either case, a Banyan protocol message is created containing
+the data and then published to the Banyan network.</p>
+
+<h3 id="capturing-user-specified-command-line-options-and-starting-the-component">Capturing User Specified Command-Line Options And Starting The Component</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">bluetooth_gateway</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-a"</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"server_bt_address"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">"None"</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">"Bluetooth MAC Address of Bluetooth Gateway"</span><span class="p">),</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-b"</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"back_plane_ip_address"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">"None"</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">"None or IP address used by Back Plane"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-g"</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"gateway_type"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">"server"</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">"Type of Gateway : server or client"</span><span class="p">),</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-j"</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"json_data"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">"False"</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">"Bluetooth packets json encoded true or false"</span><span class="p">),</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-l"</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"publish_topic"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">"from_bt_gateway"</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">"Banyan publisher topic"</span><span class="p">),</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-m"</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"subscriber_list"</span><span class="p">,</span>
+                        <span class="n">default</span><span class="o">=</span><span class="p">[</span><span class="s">"None"</span><span class="p">],</span> <span class="n">nargs</span><span class="o">=</span><span class="s">"+"</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">"Banyan topics space delimited: topic1 topic2 "</span>
+                             <span class="s">"topic3"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-n"</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"process_name"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">"None"</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">"Set process name in banner"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-p"</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"publisher_port"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">'43124'</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">"Publisher IP port"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-s"</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"subscriber_port"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">'43125'</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">"Subscriber IP port"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-t"</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"loop_time"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">".01"</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">"Event Loop Timer in seconds"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-u"</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"uuid"</span><span class="p">,</span>
+                        <span class="n">default</span><span class="o">=</span><span class="s">"e35d6386-1802-414f-b2b9-375c92fa23e0"</span><span class="p">,</span>
+                        <span class="n">help</span><span class="o">=</span><span class="s">"Bluetooth UUID"</span><span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">back_plane_ip_address</span> <span class="o">==</span> <span class="s">'None'</span><span class="p">:</span>
+        <span class="n">args</span><span class="p">.</span><span class="n">back_plane_ip_address</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">server_bt_address</span> <span class="o">==</span> <span class="s">'None'</span><span class="p">:</span>
+        <span class="n">args</span><span class="p">.</span><span class="n">backplane_ip_address</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">gateway_type</span> <span class="o">==</span> <span class="s">'server'</span><span class="p">:</span>
+        <span class="n">args</span><span class="p">.</span><span class="n">gateway_type</span> <span class="o">=</span> <span class="n">BlueToothGateway</span><span class="p">.</span><span class="n">BTG_SERVER</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">args</span><span class="p">.</span><span class="n">gateway_type</span> <span class="o">=</span> <span class="n">BlueToothGateway</span><span class="p">.</span><span class="n">BTG_CLIENT</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">server_bt_address</span> <span class="o">==</span> <span class="s">'None'</span><span class="p">:</span>
+        <span class="n">args</span><span class="p">.</span><span class="n">server_bt_address</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">process_name</span> <span class="o">==</span> <span class="s">'None'</span><span class="p">:</span>
+        <span class="n">args</span><span class="p">.</span><span class="n">process_name</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">subscriber_list</span> <span class="o">==</span> <span class="p">[</span><span class="s">'None'</span><span class="p">]:</span>
+        <span class="n">args</span><span class="p">.</span><span class="n">subscriber_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">'to_bt_gateway'</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">json_data</span> <span class="o">==</span> <span class="s">'False'</span> <span class="ow">or</span> <span class="n">args</span><span class="p">.</span><span class="n">json_data</span> <span class="o">==</span> <span class="s">'false'</span><span class="p">:</span>
+        <span class="n">args</span><span class="p">.</span><span class="n">json_data</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">args</span><span class="p">.</span><span class="n">json_data</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="n">kw_options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">'back_plane_ip_address'</span><span class="p">:</span> <span class="n">args</span><span class="p">.</span><span class="n">back_plane_ip_address</span><span class="p">,</span>
+        <span class="s">'publisher_port'</span><span class="p">:</span> <span class="n">args</span><span class="p">.</span><span class="n">publisher_port</span><span class="p">,</span>
+        <span class="s">'subscriber_port'</span><span class="p">:</span> <span class="n">args</span><span class="p">.</span><span class="n">subscriber_port</span><span class="p">,</span>
+        <span class="s">'process_name'</span><span class="p">:</span> <span class="n">args</span><span class="p">.</span><span class="n">process_name</span><span class="p">,</span>
+        <span class="s">'json_data'</span><span class="p">:</span> <span class="n">args</span><span class="p">.</span><span class="n">json_data</span><span class="p">,</span>
+        <span class="s">'loop_time'</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">loop_time</span><span class="p">),</span>
+        <span class="s">'publish_topic'</span><span class="p">:</span> <span class="n">args</span><span class="p">.</span><span class="n">publish_topic</span><span class="p">,</span>
+        <span class="s">'gateway_type'</span><span class="p">:</span> <span class="n">args</span><span class="p">.</span><span class="n">gateway_type</span><span class="p">,</span>
+        <span class="s">'uuid'</span><span class="p">:</span> <span class="n">args</span><span class="p">.</span><span class="n">uuid</span><span class="p">,</span>
+        <span class="s">'server_bt_address'</span><span class="p">:</span> <span class="n">args</span><span class="p">.</span><span class="n">server_bt_address</span><span class="p">,</span>
+        <span class="s">'subscriber_list'</span><span class="p">:</span> <span class="n">args</span><span class="p">.</span><span class="n">subscriber_list</span>
+    <span class="p">}</span>
+
+    <span class="n">BlueToothGateway</span><span class="p">(</span><span class="o">**</span><span class="n">kw_options</span><span class="p">)</span>
+    
+
+<span class="c1"># signal handler function called when Control-C occurs
+# noinspection PyShadowingNames,PyUnusedLocal,PyUnusedLocal
+</span><span class="k">def</span> <span class="nf">signal_handler</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Exiting Through Signal Handler'</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="nb">KeyboardInterrupt</span>
+
+
+<span class="c1"># listen for SIGINT
+</span><span class="n">signal</span><span class="p">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="p">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal_handler</span><span class="p">)</span>
+<span class="n">signal</span><span class="p">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="p">.</span><span class="n">SIGTERM</span><span class="p">,</span> <span class="n">signal_handler</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">bluetooth_gateway</span><span class="p">()</span>
+
+</code></pre></div></div>
+
+<p>Python Banyan Components typically allow a user to <em>tune</em> the component by specifying
+command-line options when invoking the component. This is accomplished within the
+<em>blue_tooth_gateway</em> function, using the 
+<a href="https://docs.python.org/3.7/howto/argparse.html"><em>argparse</em></a>
+module.</p>
+
+<p>In addition to handling command-line options, the BluetoothGateway class is also 
+instantiated
+within this function.</p>
+
+<p>Notice that this function and everything below it is outside of the definition of the 
+BluetoothGateway class.</p>
+
+<p>Below the <em>blue_tooth_gateway</em> function, there is a signal handler to trap Control-C presses, 
+SIGTERM and SIGINT signals.</p>
+
+<p>And the very last line calls the bluetooth_gateway function to instantiate the gateway.</p>
+
+<blockquote>
+  <p><strong>Installing a component as a command-line executable:</strong>
+The code below the BluetoothGateway class definition is written using a specific
+ stylized structure and is common in many of the Banyan components. This allows one to 
+ easily
+  <a href="https://mryslab.github.io/python_banyan/#example7/"><em>transform a component 
+into a command-line executable.</em></a></p>
+</blockquote>
+
+<p>Keeping in line with the Banyan design philosophy, the BluetoothGateway is a component
+that is very limited in scope. In total it has less than 150 executable statements.
+As a result, testing is simplified, and the possibility of reuse increased.
+As we look at other examples of Banyan components in future posts, we will see
+a lot of similarity in file structure. Using common Banyan coding patterns when 
+developing
+Banyan components aids in the rapid development of quality code.</p>
+
+<h2 id="next-time">Next Time</h2>
+
+<p>Next time, we will test the Bluetooth Gateway and learn about BlackBox and WhiteBox
+testing. We will learn how to use the Banyan <em>monitor</em> to view Banyan messages
+as they are published, and how to use the Banyan launcher to launch several
+components and tools from a single command line, making testing simple and
+reproducible.</p>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-components%2Fbluetooth-gateway%2F2019%2F07%2F09%2Fbanyan-bot-blue-part5.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Banyan+Bot+Blue+Part+5%20https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-components%2Fbluetooth-gateway%2F2019%2F07%2F09%2Fbanyan-bot-blue-part5.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-components%2Fbluetooth-gateway%2F2019%2F07%2F09%2Fbanyan-bot-blue-part5.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Banyan+Bot+Blue+Part+5&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-components%2Fbluetooth-gateway%2F2019%2F07%2F09%2Fbanyan-bot-blue-part5.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/bots-in-pieces/banyan-framework/2019/06/26/banyan-background-4.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Banyan Bot Blue Part 4
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/bots-in-pieces/banyan-components/bluetooth-gateway/2019/07/19/banyan-bot-blue-part6.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Banyan Bot Blue Part 6
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="/bots-in-pieces/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>Copyright (C) 2019-2021 Alan Yorinks. All Rights Reserved.</p>
+
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/bots-in-pieces/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>

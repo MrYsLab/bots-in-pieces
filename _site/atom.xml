@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/atom.xml" rel="self" type="application/atom+xml" /><link href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/" rel="alternate" type="text/html" /><updated>2022-10-12T18:49:12-04:00</updated><id>https://mryslab.github.io/bots-in-pieces/bots-in-pieces/atom.xml</id><title type="html">Bots In Pieces</title><subtitle>Physical Computing (And Other Topics) In Easy To Digest &quot;Byte-Size&quot; Morsels</subtitle><author><name>Alan Yorinks</name><email>MisterYsLab@gmail.com</email></author><entry><title type="html">Second Impressions Of The Arduino Nano RP2040 Connect</title><link href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/arduino/rp2040/2021/06/22/rp2040-connect-second-impressions.html" rel="alternate" type="text/html" title="Second Impressions Of The Arduino Nano RP2040 Connect" /><published>2021-06-22T13:00:39-04:00</published><updated>2021-06-22T13:00:39-04:00</updated><id>https://mryslab.github.io/bots-in-pieces/bots-in-pieces/arduino/rp2040/2021/06/22/rp2040-connect-second-impressions</id><content type="html" xml:base="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/arduino/rp2040/2021/06/22/rp2040-connect-second-impressions.html"><![CDATA[<p><img src="/bots-in-pieces/images/nano_2040.jpg" alt="" /></p>
+
+<p>I was really bummed about my initial interaction with the Arduino 
+Nano RP2040 Connect. However, once over the initial hurdle of setting 
+things up for development, I was able to port 
+Telemetrix to this board and blinked the board LED all 
+within about an hour. I am indeed impressed and thrilled to say that Arduino did not repeat the Yun disaster.</p>
+
+<p>Way to go, Arduino!</p>
+
+<p>I had to remove DHT support since the DHTStable library 
+does not seem to work for the RP2040. I will be testing all the
+0ther Telemetrix interfaces and hope to publish a fully
+working client and server for 
+this board soon.</p>]]></content><author><name>Alan Yorinks</name><email>MisterYsLab@gmail.com</email></author><category term="Arduino" /><category term="RP2040" /><category term="MCU" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">First Impressions Of The Arduino Nano RP2040 Connect</title><link href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/arduino/rp2040/2021/06/22/rp2040-connect-first-impressions.html" rel="alternate" type="text/html" title="First Impressions Of The Arduino Nano RP2040 Connect" /><published>2021-06-22T11:00:39-04:00</published><updated>2021-06-22T11:00:39-04:00</updated><id>https://mryslab.github.io/bots-in-pieces/bots-in-pieces/arduino/rp2040/2021/06/22/rp2040-connect-first-impressions</id><content type="html" xml:base="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/arduino/rp2040/2021/06/22/rp2040-connect-first-impressions.html"><![CDATA[<p><img src="/bots-in-pieces/images/nano_2040.jpg" alt="" /></p>
+
+<p>I just received my Arduino Connect RP2040 board, and I am sorry to say that getting this thing up and running has been somewhat of a nightmare. It kind of reminds me of using the now-discontinued Arduino Yun</p>
+
+<p>Using the Arduino IDE 1.8.15, the quick-install instructions tell you to install the <strong>Arduino Mbed OS Nano Boards</strong> library using the boards’ manager. Simple enough. I then selected the <strong>Arduino Nano RP2040 Connect</strong> from the boards’ selection menu and set the correct COM port. Then I loaded the blink script and did a test compile. So far, all is well. However, when I tried to upload, I got a non-descript loading error message. I turned on all warnings and errors in the IDE, which did not offer any additional clues.</p>
+
+<p>So, I turned to the Arduino forum to find a solution. I found several postings about first putting the board into program mode by pressing the on-board switch two times. I did so but did it help? Absolutely not. So I searched the forum again and found a posting that said that a post-install script needed to be run in Arduino IDE. This shell script is:</p>
+
+<p>~/.arduino15/packages/arduino/hardware/mbed_rp2040/1.5.2/post_install.sh</p>
+
+<p>So when I went to run this script, it was not there. It turns out you need to load yet another (unmentioned) library, that is, Arduino Mbed OS RP2040 Boards. Again, not mentioned in the documentation. Once this board’s library is loaded, you can then run the post-install script.</p>
+
+<p>Finally, I could upload the blink example script. Lots of fun!</p>
+
+<p>Now on to try out WiFi. Wish me luck!</p>]]></content><author><name>Alan Yorinks</name><email>MisterYsLab@gmail.com</email></author><category term="Arduino" /><category term="RP2040" /><category term="MCU" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">Adventures With The Raspberry Pi Pico - Part 9</title><link href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/04/23/pico-adventures-part9.html" rel="alternate" type="text/html" title="Adventures With The Raspberry Pi Pico - Part 9" /><published>2021-04-23T11:00:39-04:00</published><updated>2021-04-23T11:00:39-04:00</updated><id>https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/04/23/pico-adventures-part9</id><content type="html" xml:base="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/04/23/pico-adventures-part9.html"><![CDATA[<h1 id="alan-in-telemetrixland">Alan In TelemetrixLand</h1>
+<h2 id="where-i-fall-into-a-rabbit--hole-of-my-own-making--and-finally-emerge-three-weeks-later-with-a-production-release-in-hand">Where I fall into a rabbit  hole of my own making  and finally emerge three weeks later with a production release in hand.</h2>
+
+<p><img src="/bots-in-pieces/images/rabbit.png" alt="" /></p>
+
+<p>Approximately three weeks ago, I started work on supporting two additional sensors for 
+<a href="https://mryslab.github.io/telemetrix-rpi-pico/">Telemetrix-Rpi-Pico.</a> 
+Namely, the HC-SR04 type SONAR distance sensor and the DHT Humidity/Temperature sensor.</p>
+
+<p>Since I wanted to understand more about using the PIO features of the RP2040, I 
+thought the HC-SR04 would be a good candidate for controlling and monitoring the 
+device while I learn about coding the PIO. However, before I started to tackle the PIO 
+code, I came across a
+<a href="https://github.com/GitJer/Some_RPI-Pico_stuff/tree/main/HCSR04">PIO solution</a> on 
+GitHub, and much to my pleasure, it worked excellently.</p>
+
+<h2 id="about-that-rabbit-hole">About That Rabbit Hole</h2>
+<p>The discovered PIO solution requires using separate echo and trigger pins. I wanted to 
+modify the 
+code to work using a single pin connected to both echo and trigger. So I set about 
+trying to figure out how to change GPIO pin direction using PIO code. To help monitor things, 
+I connected a USB logic analyzer to the sensor using the original unmodified code.
+I was able to see the activation of the trigger pin and the subsequent 
+echo pin outputting varying periods depending upon the distance measured. So far, so good.
+However, when I tried using a single pin and reversing direction, the trigger pulse 
+was never generated.</p>
+
+<p>Typically, when I try working with something that I do not have a great deal of familiarity with, 
+I model a solution using a tried and true method. In this case, it would be 
+simply toggling the pin to generate a trigger pulse, changing GPIO pin direction, and 
+then 
+observing the generated echo.</p>
+
+<p>However, I violated my own  tried and true development rules and jumped into PIO 
+coding. After spending nearly a week playing with PIO code and continuously failing to 
+see a trigger pulse, I reverted to  the tried and true. Guess what? My failure 
+had nothing to do with PIO. To test, I used a US-100 device which is a 3-volt compatible 
+version of the HC-SR04. When testing with simple GPIO pulses, 
+it was clear the device itself was the cause of my issue and had nothing to do with my 
+understanding of PIO coding.</p>
+
+<p>Perhaps if I used a pull-up resistor, I could’ve gotten 
+things to work. However, since I want this library to be simple to use in the 
+classroom without any additional components, I decided to abandon my one pin solution 
+and reverted to using separate trigger and echo pins.,</p>
+
+<p>There was an additional complication that I needed to solve before integrating the PIO 
+solution into my code.
+The 
+original code was written in C++. 
+Using 
+CMAKE 
+and 
+integrating C and C++ files in a single project does not seem to be a trivial effort, 
+so I 
+needed to take the time to convert the original HC-SR04 code to C. Not a huge effort, 
+but it did eat up some additional time.</p>
+
+<p>What was the cost for all this stubbornness? Close to 2 weeks with very little to show 
+for 
+my wasted efforts. The good news? HC-SR04 is now in place.</p>
+
+<h2 id="adding-dht-support">Adding DHT Support</h2>
+<p>I decided to use this <a href="https://github.com/raspberrypi/pico-examples/tree/master/gpio/dht_sensor">Pico example</a> to support the device.</p>
+
+<p>I compiled the code, hooked up my trusty DHT22, and it didn’t work. I have used the 
+same device for other projects and never had to use a pull-up resistor. Nevertheless, I
+added the 
+resistor, and the same result - a no-go. Now I tried a DHT11, and the same result.</p>
+
+<p>I compared the code with an Arduino library, and it was very similar. There were some 
+magic values in the code that I did not fully understand. So after 2 or 3 days
+of head-scratching, I checked the GitHub 
+repository against the open issues. Low and behold, there was an open issue matching 
+mine. 
+One of the user’s solutions was to change one of the magic values, and when I tried that solution, 
+all started working without connecting a pull-up resistor.  The author of
+the original code, for some reason, has not incorporated this fix even though several users, 
+including myself, verified that the solution worked.</p>
+
+<h2 id="supporting-the-long-delays-required-by-dht-devices">Supporting The Long Delays Required By DHT Devices</h2>
+<p>DHT devices require about 2 seconds to collect data to return to the user after being 
+commanded to get a reading. The original code had incorporated a two-second sleep. Using a delay 
+works fine for the example, but Telemetrix-Rpi-Pico can’t afford to block 
+2 seconds since it continually monitors other inputs. In addition, I 
+wanted to support more than one DHT device.</p>
+
+<p>When working with Arduino Firmata, I had to devise a rather complex strategy not to 
+block the main loop yet wait for two seconds to pass. I could have implemented a 
+similar scheme for the Pico, but the Pico SDK incorporates some rather excellent 
+timer/alarm support.  With just a few lines of code and none of the Firmata 
+complexity, I was able to perform a non-blocking wait using a  repeating timer.</p>
+
+<h2 id="out-of-the-rabbit-hole---some-final-thoughts">Out Of The Rabbit Hole - Some Final Thoughts</h2>
+<p>So, now version 1.0 of Telemetrix-Rpi-Pico is complete, I want to reflect on whether 
+using the C SDK was worth doing or should I have gone to an Arduino compatible 
+core library 
+ <a href="https://github.com/arduino/ArduinoCore-mbed">recently released</a> or an 
+unofficial version of <a href="https://github.com/earlephilhower/arduino-pico">a Pico  Arduino core.</a></p>
+
+<h2 id="sticking-with-the-c-sdk">Sticking With The C SDK</h2>
+<p>I decided to stay with the C SDK. It offers some features that the Arduino core does 
+not, namely direct PIO support and features such as the repeating timer.</p>
+
+<p>A potential 
+advantage of the Arduino core over the C SDK is the possibility of reusing Arduino 
+libraries, but there is a 50/50 chance the library may not work with the RP2040.  Also, 
+there is the 
+familiarity of the Arduino API. Mixing C and C++ code within the Arduino ecosystem is 
+easily done, so that is an advantage. However,
+I intend to solve the mystery of doing something similar for the CMAKE world of the C SDK soon.</p>
+
+<p>All in all, I am very impressed with the C SDK and the overall quality of its 
+documentation. Also, the fact I can easily use the SDK with either VS Code or CLion (my 
+IDE 
+of choice) is  a big plus. I am not a fan of the Arduino IDE.</p>
+
+<h2 id="whats-next">What’s Next?</h2>
+<p>I will implement a Python asyncio version of the client and then adapt that into a
+<a href="https://mryslab.github.io/python_banyan/gpio_intro/">OneGPIO Gateway</a>
+for the Pico.</p>
+
+<p>In addition, I still want to  create an i2c example for the PCA9685 servo controller.</p>
+
+<p>As always, stay tuned!</p>]]></content><author><name>Alan Yorinks</name><email>MisterYsLab@gmail.com</email></author><category term="Raspberry" /><category term="Pi" /><category term="Pico" /><category term="MCU" /><summary type="html"><![CDATA[Alan In TelemetrixLand Where I fall into a rabbit hole of my own making and finally emerge three weeks later with a production release in hand.]]></summary></entry><entry><title type="html">Adventures With The Raspberry Pi Pico - Part 8</title><link href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/04/05/pico-adventures-part8.html" rel="alternate" type="text/html" title="Adventures With The Raspberry Pi Pico - Part 8" /><published>2021-04-05T11:00:39-04:00</published><updated>2021-04-05T11:00:39-04:00</updated><id>https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/04/05/pico-adventures-part8</id><content type="html" xml:base="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/04/05/pico-adventures-part8.html"><![CDATA[<h1 id="improved-pwm-and-servo-support-added">Improved PWM and Servo Support Added</h1>
+
+<h2 id="pwm-support">PWM Support</h2>
+<p>I have modified the API. The duty-cycle may be specified either as a percentage of 
+0-99 or in a range of 0-19990 microseconds.</p>
+
+<h2 id="servo-support">Servo Support</h2>
+<p>I was able to implement servo support using standard PICO hardware_pwm SDK methods. 
+When setting a pin mode to servo mode, you can specify the minimum and maximum duty cycle 
+values to allow you to tune where the 0 and 180 positions are for your servo. You may 
+individually tune each servo.</p>
+
+<h2 id="whats-next">What’s Next</h2>
+<p>I am going to try my hand at implementing PIO support for the HC-SR04 Sonar distance 
+sensor.</p>
+
+<p>Stay tuned!</p>]]></content><author><name>Alan Yorinks</name><email>MisterYsLab@gmail.com</email></author><category term="Raspberry" /><category term="Pi" /><category term="Pico" /><category term="MCU" /><summary type="html"><![CDATA[Improved PWM and Servo Support Added]]></summary></entry><entry><title type="html">Adventures With The Raspberry Pi Pico - Part 7</title><link href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/03/28/pico-adventures-part7.html" rel="alternate" type="text/html" title="Adventures With The Raspberry Pi Pico - Part 7" /><published>2021-03-28T11:00:39-04:00</published><updated>2021-03-28T11:00:39-04:00</updated><id>https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/03/28/pico-adventures-part7</id><content type="html" xml:base="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/03/28/pico-adventures-part7.html"><![CDATA[<h1 id="implementing-servo-support">Implementing Servo Support</h1>
+
+<p>My original intent for servo motor support was to use a PCA9685 based
+i2c controller and provide the implementation as an example that users
+could expand upon to create a full application.</p>
+
+<p>I intend to still provide support for the PCA9685 in the future but as an 
+installable library. Getting the PCA9685 to work with the existing i2c support should 
+be reasonably simple to get going, 
+so I would see if there is some way to create libraries for device support and have 
+the ability to “optionally install” them at compile time. Creating installable 
+library support will take some thought and experimentation, so I am putting that
+on the back-burner for the moment.</p>
+
+<p>Instead, I am currently experimenting with providing direct PWM support for servo motors. 
+Servo motors require a frequency of 50 Hz. That is to say, that a pulse is generated 
+every 20 ms, sometimes expressed as a period of 20ms. To vary the servo’s position 
+between 0 and 180 degrees, the pulse is set to between 1ms and 2 ms.</p>
+
+<p>Modifying the code on 
+<a href="https://www.raspberrypi.org/forums/viewtopic.php?t=303116">this Raspberry Pi Forum posting,</a>
+I generated the 20ms period without writing any PIO code. However, I have 
+not been able to get the resolution for generating the 180 different pulse lengths for 
+servo control. I will be spending a few days on this, but I am not very hopeful for 
+success on this front.</p>
+
+<p>So, what is plan B? I recently read about an 
+<a href="https://github.com/earlephilhower/arduino-pico">Arduino-Core compatible library</a> being 
+released. I am considering reusing the PIO code in the 
+<a href="https://github.com/earlephilhower/arduino-pico/tree/master/libraries/Servo">servo library.</a></p>
+
+<p>If I do so, I will give the original author full attribution, as so richly deserved.</p>
+
+<p>The original intent of the Telemetrix project was to repurpose Arduino-Core libraries 
+to run on the various Telemetrix supported MCU boards. Using a board-specific 
+Arduino-Core makes porting from one board type to another quick and 
+straightforward.</p>
+
+<p>When I started this project, the Arduino-Core was not available, so I decided to 
+use the Pico C-SDK directly. Part of the fun, for me at least, in doing these types 
+of projects is expanding my knowledge, even when it can be slow going and sometimes 
+frustrating. So, why not use the now available Arduino-Core if porting is likely to be 
+quick? The reason is that many of the available Arduino libraries have yet to be 
+ported to the Pico, so if I want to support some additional devices, such as an 
+HC-SRO4 distance sensor, I would have to generate the PIO code anyway. By keeping 
+control over device support, I do not have to contend with libraries that might break 
+future releases.</p>
+
+<p>Because I am treading where I have limited expertise, things may progress at a 
+somewhat slower pace. I ask for patience since I believe it will result in a 
+better overall user experience in the end.</p>
+
+<p>As always, stay tuned.</p>]]></content><author><name>Alan Yorinks</name><email>MisterYsLab@gmail.com</email></author><category term="Raspberry" /><category term="Pi" /><category term="Pico" /><category term="MCU" /><summary type="html"><![CDATA[Implementing Servo Support]]></summary></entry><entry><title type="html">Adventures With The Raspberry Pi Pico - Part 6</title><link href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/03/21/pico-adventures-part6.html" rel="alternate" type="text/html" title="Adventures With The Raspberry Pi Pico - Part 6" /><published>2021-03-21T11:00:39-04:00</published><updated>2021-03-21T11:00:39-04:00</updated><id>https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/03/21/pico-adventures-part6</id><content type="html" xml:base="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/03/21/pico-adventures-part6.html"><![CDATA[<p><a href="https://mryslab.github.io/telemetrix-rpi-pico/">The User’s Guide</a> 
+has been released for the Telemetrix-Rpi-Pico.</p>
+
+<p>I am now moving on to support for Servo motors. I am beginning with attempting 
+to use PWM support. I am not sure if I will need to actually implement a custom
+PIO version or if the PWM support is flexible enough to provide the timing needed.</p>
+
+<p>Stay tuned.</p>]]></content><author><name>Alan Yorinks</name><email>MisterYsLab@gmail.com</email></author><category term="Raspberry" /><category term="Pi" /><category term="Pico" /><category term="MCU" /><summary type="html"><![CDATA[The User’s Guide has been released for the Telemetrix-Rpi-Pico.]]></summary></entry><entry><title type="html">Adventures With The Raspberry Pi Pico - Part 5</title><link href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/03/13/pico-adventures-part5.html" rel="alternate" type="text/html" title="Adventures With The Raspberry Pi Pico - Part 5" /><published>2021-03-13T10:00:39-05:00</published><updated>2021-03-13T10:00:39-05:00</updated><id>https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/03/13/pico-adventures-part5</id><content type="html" xml:base="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/03/13/pico-adventures-part5.html"><![CDATA[<h1 id="neopixel-support-has-been-released">NeoPixel Support Has Been Released</h1>
+
+<p>I have just released NeoPixel support for the 
+<a href="https://github.com/MrYsLab/telemetrix-rpi-pico">Pico using Telemetrix.</a></p>
+
+<p>Here are the steps to control a NeoPixel strip.</p>
+
+<ol>
+  <li>
+    <p>First, you must set the pin mode using the
+<a href="https://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.set_pin_mode_neopixel">set_pin_mode_neopixel</a>
+API method. Here you specify the GPIO pin number that the NeoPixel strip is 
+controlled with, the number of NeoPixels in your strip (up to a length of 150 is 
+supported), and RGB fill values.
+<strong>NOTE:</strong> You must call this method before using any 
+of the following control methods</p>
+  </li>
+  <li>
+    <p>To set the colors for a given pixel within your strip, use the 
+<a href="https://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.neo_pixel_set_value">neo_pixel_set_value</a>
+method. Here, you specify the pixel number in the strip, the RGB values, 
+and whether you wish to show the changes immediately or wait until the
+<a href="https://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.neopixel_show">neopixel_show</a>
+method is called.</p>
+  </li>
+  <li>
+    <p>You can turn all the pixels off by using the 
+<a href="https://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.neopixel_clear">neopixel_clear</a>
+method. Here you have the choice to affect the changes immediately or not.</p>
+  </li>
+  <li>
+    <p>The final method is
+<a href="https://htmlpreview.github.io/?https://github.
+com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.neopixel_fill">neopixel_fill,</a>
+where you may set all the pixels to the same color. Again, you may set the colors
+immediately or wait until you call neopixel_show.</p>
+  </li>
+</ol>
+
+<p>Here is the code for a <a href="https://github.
+com/MrYsLab/telemetrix-rpi-pico/blob/master/examples/neopixels2.py">demo</a> 
+using these methods.</p>
+
+<p><img src="/bots-in-pieces/images/np_demo.png" alt="" /></p>
+
+<p>Watch a YouTube video of the demo <a href="https://youtu.be/IUSMdDpditc">here.</a></p>
+
+<h1 id="what-is-coming-next">What Is Coming Next</h1>
+
+<p>I am going to take a break from coding to write the User’s Guide.</p>
+
+<p>Once that is complete, I will be working on support for servo motors using a PCC9625 i2c 
+servo motor board similar to the one shown below.
+<img src="/bots-in-pieces/images/PCA9685.png" alt="" /></p>]]></content><author><name>Alan Yorinks</name><email>MisterYsLab@gmail.com</email></author><category term="Raspberry" /><category term="Pi" /><category term="Pico" /><category term="MCU" /><summary type="html"><![CDATA[NeoPixel Support Has Been Released]]></summary></entry><entry><title type="html">Adventures With The Raspberry Pi Pico - Part 4</title><link href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/03/04/pico-adventures-part4.html" rel="alternate" type="text/html" title="Adventures With The Raspberry Pi Pico - Part 4" /><published>2021-03-04T10:00:39-05:00</published><updated>2021-03-04T10:00:39-05:00</updated><id>https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/03/04/pico-adventures-part4</id><content type="html" xml:base="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/03/04/pico-adventures-part4.html"><![CDATA[<h1 id="second-beta-release---i2c-support">Second Beta Release - I2C Support</h1>
+<p>I’ve released the 
+<a href="https://github.com/MrYsLab/telemetrix-rpi-pico">second beta</a>
+of Telemetrix for the Raspberry Pi Pico.
+This release incorporates support for monitoring and controlling i2c devices.
+The Pico supports two i2c ports, and Telemetrix supports both.</p>
+
+<p>There are three API methods supporting i2c.</p>
+
+<p>The first, <a href="https://htmlpreview.github.io/?https://github.
+com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.set_pin_mode_i2c">set_pin_mode_i2c,</a> 
+allows you to  select which of the two i2c 
+ports the device is attached to and the GPIO pins you assign as SDA 
+and SCL.</p>
+
+<p><strong>Note:</strong> This method must be called before using the next two i2c methods.</p>
+
+<p>The second API method, 
+<a href="https://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.i2c_write">i2c_write,</a>
+allows you to write a variable number of bytes to the i2c device on the specified
+i2c port. In 
+addition, you may
+specify if the master retains control of the bus at the end of the transfer. Being 
+able to do so is
+required for some i2c devices.</p>
+
+<p>The last API method,
+<a href="https://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.i2c_read">i2c_read,</a>
+provides a way to retrieve data from an i2c device on the specified i2c port. You 
+specify the number of bytes to return, and 
+you may optionally provide an i2c register used for the read. It also allows you to 
+specify if 
+the master retains control of the bus at the end of the transfer.
+You must also specify a callback function that receives the data reported by the Pico.</p>
+
+<p>To summarize, the i2c support is a generalized view for controlling and monitoring i2c devices. 
+In order to support a specific i2c device, the i2c methods listed above are used to 
+implement control and
+monitoring as described in the device’s spec sheet.</p>
+
+<p>Let’s take a quick look at a
+<a href="https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/examples/i2c_adxl345_accelerometer.py">working example</a> 
+provided for interacting with the ADXL345 3-axis accelerometer.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1"># setup adxl345
+</span>
+    <span class="c1"># device address = 83
+</span>    <span class="n">my_board</span><span class="p">.</span><span class="n">set_pin_mode_i2c</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># time.sleep(.2)
+</span>
+    <span class="c1"># set up power and control register
+</span>    <span class="n">my_board</span><span class="p">.</span><span class="n">i2c_write</span><span class="p">(</span><span class="mi">83</span><span class="p">,</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="c1"># time.sleep(.2)
+</span>    <span class="n">my_board</span><span class="p">.</span><span class="n">i2c_write</span><span class="p">(</span><span class="mi">83</span><span class="p">,</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+    <span class="c1"># time.sleep(.2)
+</span>
+    <span class="c1"># set up the data format register
+</span>    <span class="n">my_board</span><span class="p">.</span><span class="n">i2c_write</span><span class="p">(</span><span class="mi">83</span><span class="p">,</span> <span class="p">[</span><span class="mi">49</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+    <span class="c1"># time.sleep(.5)
+</span>    <span class="n">my_board</span><span class="p">.</span><span class="n">i2c_write</span><span class="p">(</span><span class="mi">83</span><span class="p">,</span> <span class="p">[</span><span class="mi">49</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+    <span class="c1"># time.sleep(.1)
+</span></code></pre></div></div>
+<p>Here we initialize the chip. If you notice, the sleeps are commented out. With 
+Telemetrix, you can run at full speed without having to introduce additional delays. 
+The PICO C-SDK handles things very nicely.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="c1"># read 6 bytes from the data register
+</span>        <span class="k">try</span><span class="p">:</span>
+            <span class="n">my_board</span><span class="p">.</span><span class="n">i2c_read</span><span class="p">(</span><span class="mi">83</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">the_callback</span><span class="p">)</span>
+            <span class="c1"># time.sleep(.3)
+</span>        <span class="k">except</span> <span class="p">(</span><span class="nb">KeyboardInterrupt</span><span class="p">,</span> <span class="nb">RuntimeError</span><span class="p">):</span>
+            <span class="n">my_board</span><span class="p">.</span><span class="n">shutdown</span><span class="p">()</span>
+            <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+</code></pre></div></div>
+<p>The code above is the main loop of the program. It requests 6 bytes, which comprise
+the upper and lower values for the x, y, and z axes.</p>
+
+<p>Consistent with the Telemetrix philosophy, i2c reports are made available to the 
+application via a 
+user-supplied callback 
+function. Callbacks are used because the application is notified as fast as 
+possible of detected data changes on the Pico.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">the_callback</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="s">"""
+    Data is supplied by the library.
+    :param data: [report_type, i2c port, Device address, device read register,
+    number of bytes returned, x data pair, y data pair, z data pair
+    time_stamp]
+    """</span>
+
+    <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'%Y-%m-%d %H:%M:%S'</span><span class="p">,</span> <span class="n">time</span><span class="p">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time_stamp</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'Raw Data:  </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'ADXL345 Report On: </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s">: '</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'</span><span class="se">\t\t</span><span class="s">i2c_port=</span><span class="si">{</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s"> x-pair=</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s">, '</span>
+          <span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="si">}</span><span class="s">  y-pair=</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="si">}</span><span class="s">, '</span>
+          <span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="si">}</span><span class="s"> z-pair=</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="si">}</span><span class="s">, '</span>
+          <span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>The user-provided callback function must supply a single function parameter, called 
+<em>data</em>, in the example above.
+When Telemetrix calls your callback function, it provides a list describing the report 
+from the Pico. A time-stamp is included for every callback to indicate the time that the 
+event occurred.</p>
+
+<p>The elements in the list are described in the API for each callback type. For i2c_read,
+the last line of the method description contains the description of the items in the 
+callback list.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">i2c_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">register</span><span class="p">,</span> <span class="n">number_of_bytes</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">i2c_port</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">no_stop</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+    <span class="n">Read</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">number</span> <span class="n">of</span> <span class="nb">bytes</span> <span class="k">from</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">register</span> <span class="k">for</span> <span class="n">the</span> <span class="n">i2c</span> <span class="n">device</span><span class="p">.</span>
+
+    <span class="p">:</span><span class="n">param</span> <span class="n">address</span><span class="p">:</span> <span class="n">i2c</span> <span class="n">device</span> <span class="n">address</span>
+
+    <span class="p">:</span><span class="n">param</span> <span class="n">register</span><span class="p">:</span> <span class="n">i2c</span> <span class="n">register</span> <span class="p">(</span><span class="ow">or</span> <span class="bp">None</span> <span class="k">if</span> <span class="n">no</span> <span class="n">register</span> <span class="n">selection</span> <span class="ow">is</span> <span class="n">needed</span><span class="p">)</span>
+
+    <span class="p">:</span><span class="n">param</span> <span class="n">number_of_bytes</span><span class="p">:</span> <span class="n">number</span> <span class="n">of</span> <span class="nb">bytes</span> <span class="n">to</span> <span class="n">be</span> <span class="n">read</span>
+
+    <span class="p">:</span><span class="n">param</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Required</span> <span class="n">callback</span> <span class="n">function</span> <span class="n">to</span> <span class="n">report</span> <span class="n">i2c</span> <span class="n">data</span> <span class="k">as</span> <span class="n">a</span> <span class="n">result</span> <span class="n">of</span> <span class="n">read</span> <span class="n">command</span>
+
+    <span class="p">:</span><span class="n">param</span> <span class="n">i2c_port</span><span class="p">:</span> <span class="mi">0</span> <span class="o">=</span> <span class="n">port</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">port</span> <span class="mi">1</span>
+
+    <span class="p">:</span><span class="n">param</span> <span class="n">no_stop</span><span class="p">:</span> <span class="n">If</span> <span class="n">true</span><span class="p">,</span> <span class="n">master</span> <span class="n">retains</span> <span class="n">control</span> <span class="n">of</span> <span class="n">the</span> <span class="n">bus</span> <span class="n">at</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">transfer</span> <span class="p">(</span><span class="n">no</span> <span class="n">Stop</span> <span class="ow">is</span> <span class="n">issued</span><span class="p">),</span> <span class="ow">and</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">transfer</span> <span class="n">will</span> <span class="n">begin</span> <span class="k">with</span> <span class="n">a</span> <span class="n">Restart</span> <span class="n">rather</span> <span class="n">than</span> <span class="n">a</span> <span class="n">Start</span><span class="p">.</span>
+
+    <span class="n">callback</span> <span class="n">returns</span> <span class="n">a</span> <span class="n">data</span> <span class="nb">list</span><span class="p">:</span> <span class="p">[</span><span class="n">I2C_READ_REPORT</span><span class="p">,</span> <span class="n">i2c_port</span><span class="p">,</span> <span class="n">i2c_device_address</span><span class="p">,</span> <span class="n">count</span> <span class="n">of</span> <span class="n">data</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">data</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">time</span><span class="o">-</span><span class="n">stamp</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Here is sample output for the ADXL345 example. Both raw and “cooked” data are presented.</p>
+
+<p><img src="/bots-in-pieces/images/adxl_callback.png" alt="" /></p>
+
+<h1 id="some-thoughts-on-working-with-the-pico-c-sdk-versus-the-arduino-core">Some Thoughts On Working With The Pico C-SDK Versus The Arduino-Core</h1>
+
+<p>An Arduino-Core version is coming for the RP2040 chip, but no release date has been 
+announced. That is why I am using the RP2040 native SDK.</p>
+
+<p>Using an Arduino-Core is a familiar API if you have developed Arduino sketches. That 
+may appear to be an advantage. However, things are not always consistent between 
+implementations for the various processors. One advantage of using an Arduino-Core 
+is that you may be able to reuse an existing Arduino library, such as support for a
+specific sensor or actuator. Currently, few support libraries are available for the 
+RP2040, but that is most likely to change over time. It is not clear yet if the 
+Arduino-Core for RP2040 will include PIO support, but I rather doubt it. Assuming I 
+can master programming the PIO, not having access to it would be a major setback.</p>
+
+<p>A major advantage of using the RP2040 C-SDK is that its documentation is excellent. 
+Between the documentation and extensive set of Pico examples, understanding the SDK is 
+very straightforward. And if you run into something where you need some additional 
+help, the Raspberry Pi Forum is a wonderful resource.</p>
+
+<p>I will admit that there is somewhat of a learning curve, but it is not excessively steep.
+I have yet to master the syntax of cmake files but have avoided having to do that by 
+using the existing 
+files provided with the examples.</p>
+
+<p>All in all, I am pleased with the C-SDK, and when the Arduino-Core finally 
+becomes available, I will probably continue using the C-SDK. 
+Time will tell which becomes the predominant development paradigm.</p>
+
+<h1 id="what-comes-next">What Comes Next</h1>
+
+<p>I am currently reading up on the PIO of the RP2040 to provide support for NeoPixels.
+NeoPixels are the next feature. 
+I know that there are examples in existence that I probably can reuse as-is. 
+Still, I want to understand the “magic” of the PIO processors that are an integral part
+of the RP2040, all in preparation for implementing my PIO libraries for devices 
+such as the HC-SR04 distance sensor.</p>
+
+<p>I am also doing some code cleanup. I am eliminating literal values and replacing 
+them with #defines to make the code easier to read and maintain. 
+Also, buffer storage will be defined as global so that it does not use valuable 
+stack space. Finally, I am splitting the .c file into a .c and .h (header) file.
+Again this makes things simpler to understand and maintain and is aligned with 
+standard C coding practices.</p>
+
+<p>So stay tuned!</p>]]></content><author><name>Alan Yorinks</name><email>MisterYsLab@gmail.com</email></author><category term="Raspberry" /><category term="Pi" /><category term="Pico" /><category term="MCU" /><summary type="html"><![CDATA[Second Beta Release - I2C Support I’ve released the second beta of Telemetrix for the Raspberry Pi Pico. This release incorporates support for monitoring and controlling i2c devices. The Pico supports two i2c ports, and Telemetrix supports both.]]></summary></entry><entry><title type="html">Adventures With The Raspberry Pi Pico - Part 3</title><link href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/02/22/pico-adventures-part3.html" rel="alternate" type="text/html" title="Adventures With The Raspberry Pi Pico - Part 3" /><published>2021-02-22T10:00:39-05:00</published><updated>2021-02-22T10:00:39-05:00</updated><id>https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/02/22/pico-adventures-part3</id><content type="html" xml:base="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/02/22/pico-adventures-part3.html"><![CDATA[<h1 id="first-beta-release">First Beta Release</h1>
+
+<p>I’ve completed the code for the first beta release. This release includes support for:</p>
+
+<ul>
+  <li>Digital Output</li>
+  <li>PWM Output</li>
+  <li>Digital Input</li>
+  <li>Analog Input</li>
+  <li>Auto-detection and connection of a single Pico board.</li>
+  <li>Loopback (for serial connection debugging)</li>
+</ul>
+
+<p>I am in the process of documenting a full User’s Guide, but for those
+who wish to give things a try:</p>
+
+<h2 id="to-install-the-client-library">To install The Client Library:</h2>
+
+<p><strong>Linux/macOS:</strong></p>
+
+<p>sudo pip3 install telemetrix-rpi-pico</p>
+
+<p><strong>Windows:</strong></p>
+
+<p>pip install telemetrix-rpi-pico</p>
+
+<p>Here is a <a href="http://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html">link to the API</a>
+Note that not all methods are implemented yet. For the methods that are not 
+implemented, there is the following line on the first line of the method description:</p>
+
+<p><strong>NOT YET IMPLEMENTED!!!</strong></p>
+
+<h2 id="to-install-the-pico-server-application">To Install The Pico Server Application</h2>
+<ol>
+  <li><a href="https://github.com/MrYsLab/Telemetrix4RpiPico/raw/master/cmake-build-release/Telemetrix4RpiPico.uf2">Download</a> 
+and save the .uf2 file.</li>
+  <li>
+    <p>Place the Pico in file upload mode:</p>
+
+    <p>A. Press and hold the BOOTSEL button while applying power. 
+B. Release the BOOTSEL button.
+C. In your file explorer, you should see a new folder appear called: RPI-RP2.
+D. Drag the .uf2 file into this folder to upload the code.</p>
+  </li>
+  <li>
+    <p><a href="https://github.com/MrYsLab/telemetrix-rpi-pico/archive/master.zip">Download,</a> 
+save and uncompress the telemetrix-rpi-pico Github repository.</p>
+  </li>
+  <li>Open the <em>examples</em> directory and run any of the examples. You may
+modify them to suit your needs.</li>
+</ol>
+
+<p>I will be implementing i2c support next.</p>
+
+<p>Here is a screen-shot of running the 
+<a href="https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/examples/digital_input_pullup.py">digital_input_pullup.py example:</a></p>
+
+<p><img src="/bots-in-pieces/images/first_run.png" alt="" /></p>]]></content><author><name>Alan Yorinks</name><email>MisterYsLab@gmail.com</email></author><category term="Raspberry" /><category term="Pi" /><category term="Pico" /><category term="MCU" /><summary type="html"><![CDATA[First Beta Release]]></summary></entry><entry><title type="html">Adventures With The Raspberry Pi Pico - Part 2</title><link href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/02/15/pico-adventures-part2.html" rel="alternate" type="text/html" title="Adventures With The Raspberry Pi Pico - Part 2" /><published>2021-02-15T10:00:39-05:00</published><updated>2021-02-15T10:00:39-05:00</updated><id>https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/02/15/pico-adventures-part2</id><content type="html" xml:base="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/02/15/pico-adventures-part2.html"><![CDATA[<p>Before beginning this discussion, I thought I would take the opportunity to 
+thank Les Pounder for his Pico articles in Tom’s Hardware. If you scroll down to the 
+bottom of
+<a href="https://www.tomshardware.
+com/news/raspberry-pi-pico-tutorials-pinout-everything-you-need-to-know">this article</a>,
+Les provides links for some very beneficial information. I used his 
+<a href="https://www.tomshardware.com/how-to/raspberry-pi-pico-reset-button">reset button tutorial</a>
+that makes reprogramming quick and easy.</p>
+
+<p>Now on to the matter at hand. If you recall, my overall intention is to provide a
+<a href="https://mryslab.github.io/telemetrix/">Telemetrix</a> 
+interface so that the Pico may be programmed remotely using standard Python 3 from your 
+PC or Raspberry Pi.</p>
+
+<p>Telemetrix is wholly dependent on having a communications link between the PC and the 
+MCU. In the case of the Pico, currently, that link is a serial link running at 115200.</p>
+
+<p>In the last posting, I ran a quick and dirty test to loop back a short 
+data string that originated from a PC. The serial interface used was the USB connector on 
+the Pico, and the library for input and output was <em>stdio</em>. The intention was to time 
+how long a round trip would take for a single iteration of looping back the string.</p>
+
+<p>I was curious if there might be a speed advantage in using the Pico UART library over 
+the previous experiment. To use the UART library, one must connect a TTL-to-USB 
+converter module to the Pico.</p>
+
+<p><img src="/bots-in-pieces/images/ttl_converter.jpg" alt="" /></p>
+
+<p>I modified 
+<a href="https://github.com/raspberrypi/pico-examples/blob/master/uart/uart_advanced/uart_advanced.c">uart_advanced.c</a>
+that is provided in the Pico examples directory.</p>
+
+<p>I also modified the Python script I used in the previous posting to use the 
+communications port assigned to the converter. What I found was surprising. 
+A single round trip of 5 characters took over a second to perform. I am probably 
+missing something, but I could not find any delays within the example code. 
+Interestingly, if I subtract one second from each reported round trip sample, the time 
+is very close to that measured for the USB cable. Again this very 
+long delay that I saw is most likely ignorance on my part. I 
+<a href="https://www.raspberrypi.org/forums/viewtopic.php?f=145&amp;t=304169">documented the issue</a>
+and provided the code for both the modified Pico app and Python script in the Raspberry
+Pi forum. Hopefully, someone will explain the delay I am seeing.</p>
+
+<p>So, what does this mean?  If my assumption is correct about some hidden 1-second delay 
+and that the delay is removable, the performance between a straight USB cable 
+connection versus a TTL-to-USB converter is equivalent.</p>
+
+<p>Therefore, I am going to continue development using the USB cable solution.</p>
+
+<p>I also tried MicroPython using the Python <em>std</em> library to get a performance comparison. 
+Outputting using <em>std.write</em> or <em>print</em> works fine, but using <em>std.rea</em>d seems to confuse 
+the MicroPython REPL. As a result, I am abandoning my hope for a MicroPython solution 
+using a USB cable. I have not tried using the UART with MicroPython.</p>
+
+<p>Next, I will write the Telemetrix Python client and Pico server to control a 
+digital input pin, digital output pin, PWM output mode pin, and an analog input pin. 
+The API will be similar to that for the Arduino, which may be viewed 
+<a href="http://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix/blob/master/html/telemetrix/index.html">here.</a></p>
+
+<p>Once the client is completed, I intend to provide an asyncio version and a 
+Scratch 3 extension for the Pico.</p>
+
+<p>Stay tuned!</p>]]></content><author><name>Alan Yorinks</name><email>MisterYsLab@gmail.com</email></author><category term="Raspberry" /><category term="Pi" /><category term="Pico" /><category term="MCU" /><summary type="html"><![CDATA[Before beginning this discussion, I thought I would take the opportunity to thank Les Pounder for his Pico articles in Tom’s Hardware. If you scroll down to the bottom of this article, Les provides links for some very beneficial information. I used his reset button tutorial that makes reprogramming quick and easy.]]></summary></entry></feed>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    <title>Creating a Scratch3 Extension For GPIO Control - Part 1</title>
+    <meta name="description" content="First Steps">
+    <link rel="canonical" href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/scratch3/gpio/2019/09/15/scratch3-1.html">
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/main.css">
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/skins/default.css">
+  <link rel="alternate" type="application/atom+xml" title="Bots In Pieces" href="/bots-in-pieces/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  creating-a-scratch3-extension-for-gpio-control-part-1">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/bots-in-pieces/">Home</a></li><li><a href="/bots-in-pieces/posts/">Posts</a></li><li><a href="/bots-in-pieces/categories/">Categories</a></li><li><a href="/bots-in-pieces/tags/">Tags</a></li><li><a href="/bots-in-pieces/search/">Search</a></li><li><a href="/bots-in-pieces/about/">Commenting Policy</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/bots-in-pieces/" class="site-logo" rel="home" title="Bots In Pieces">
+        <img src="/bots-in-pieces/images/logo.png" class="site-logo-img animated fadeInDown" alt="Bots In Pieces">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/bots-in-pieces/">Bots In Pieces</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Physical Computing (And Other Topics) In Easy To Digest "Byte-Size" Morsels</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Creating a Scratch3 Extension For GPIO Control - Part 1
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/bots-in-pieces/images/MrYsLab.png" class="author-avatar u-photo" alt="Alan Yorinks"><div class="author-info"><div class="author-name">
+        <span class="p-name">Alan Yorinks</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-lg" title="Twitter"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li></ul>
+
+<span class="read-time">6 min read</span>
+
+    <time class="page-date dt-published" datetime="2019-09-15T09:00:39-04:00"><a class="u-url" href="">September 15, 2019</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">scratch3</li><li class="page-taxonomy">gpio</li>
+  </ul>
+
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h1 style="color:rgb(128,0,0); " id="first-steps">First Steps</h1>
+<p><img src="/bots-in-pieces/images/s3onegpio/extension.png" alt="" /></p>
+
+<p style="float:left;"><br /> <br /> <br /></p>
+
+<h1 id="a-little-background">A Little Background</h1>
+<p>These days, we don’t think twice about
+<a href="https://en.wikipedia.org/wiki/Visual_programming_language">visual programming languages, </a>
+but when <a href="https://scratch.mit.edu/">Scratch</a> came on the scene, it was
+truly radical. Since its inception, Scratch has brought the joys of
+programming and creative thinking to millions. It may look like a kids
+toy, but don’t let that fool you. It is a real programming language and
+programming environment that has captured the hearts of children and
+adults alike. Beware, if you haven’t played with Scratch before, you may
+become addicted.</p>
+
+<p><img src="/bots-in-pieces/images/s3onegpio/scratch-3.0.png" alt="" /></p>
+
+<p style="float:left;">After introducing Scratch 2, the first Web-based version of Scratch, the
+Scratch team provided a specification for
+<a href="https://en.scratch-wiki.info/wiki/Scratch_Extension">extending Scratch’s</a>
+functionality by allowing a user to add custom programming blocks to the
+block pallet.</p>
+
+<p>Shortly after the first Extension Specification For Scratch 2 was
+published, I created an extension that allowed a user to program,
+control, and monitor an <a href="https://www.arduino.cc/">Arduino</a> board using
+Scratch blocks. This program was called
+<a href="https://github.com/MrYsLab/S2A">s2a,</a> or <em>Scratch To Arduino.</em> The
+original protocol used to connect Scratch to an external application was
+a JSON messaging protocol. This scheme tended to be quite slow, so the
+Scratch team replaced JSON with HTTP providing a much-needed speed
+boost. I was there for that interface as well, with
+<a href="https://github.com/MrYsLab/s2a_fm">s2a_fm</a>, a
+<a href="https://github.com/firmata/arduino">Firmata</a> based interface, followed
+by its successor, <a href="https://github.com/MrYsLab/s2aio">s2aio</a>. The <em>aio</em>
+part of its name refers to the Python asyncio library of which s2aio
+takes advantage. Over the years I have developed Scratch extensions for
+the <a href="https://github.com/MrYsLab/s2m">micro:bit,</a> and even put together
+<a href="https://mryslab.github.io/s2-pi/">a tutorial</a> for those wanting to
+create their own Scratch 2 extensions for the Raspberry Pi.</p>
+
+<p><img src="/bots-in-pieces/images/s3onegpio/s2aio.png" alt="" /></p>
+
+<p style="float:left;">At the beginning of 2019, the Scratch team released Scratch 3.0 that
+includes many improvements over Scratch 2.0. Of course, I wanted to get
+in on the Scratch 3.0 action.</p>
+
+<h1 id="and-so-it-begins">And So It Begins</h1>
+<p>Building an extension for Scratch 2 was reasonably straight forward.
+When I went to explore the
+<a href="https://github.com/LLK/scratch-vm/blob/develop/docs/extensions.md">Scratch 3 Extension Specification,</a>
+I found it somewhat bewildering. It is early days for Scratch 3.0, so
+this is not unexpected.</p>
+
+<p>I tried following the instructions, and although I could build parts of
+the system, I was unsuccessful at adding custom blocks. That is
+until I found a brilliant article written by Hiro Osaki, entitled,
+<a href="https://medium.com/@hiroyuki.osaki/how-to-develop-your-own-block-for-scratch-3-0-1b5892026421">“How to Develop Your Own Block for Scratch 3.0”.</a></p>
+
+<p>Hiro explains the details of creating an extension, step by step.</p>
+
+<p>If you would like to understand the code structure I am using, read
+Hiro’s article. I replaced the files of his <em>newblocks</em> extension with
+my own named <em>onegpio</em>.</p>
+
+<p>I encountered some issues along the way, and when I contacted Hiro for
+some guidance, he was more than happy to try and help. In that spirit, I
+would like to pass on my experiences.</p>
+
+<h1 id="goals-of-the-extension">Goals Of The Extension</h1>
+<p>Continuing with my passion for connecting Scratch to physical computing
+devices, this extension, allows you to remotely program,
+control, and monitor an Arduino, ESP-8266, or Raspberry Pi. In previous
+posts, we used <a href="https://mryslab.github.io/bots-in-pieces/banyan-framework/2019/06/26/banyan-background-4.html">Python Banyan and its OneGPIO 
+components.</a>
+A thoroughly tested set of
+<a href="https://github.com/MrYsLab/s3onegpio/tree/master/onegpio">Python Banyan/OneGPIO components </a>
+is included with the
+<a href="https://github.com/MrYsLab/s3onegpio">s3onegpio GitHub distribution.</a></p>
+
+<h1 id="setting-up-a-development-environment">Setting Up A Development Environment</h1>
+<h2 id="what-you-will-need">What You Will Need:</h2>
+
+<ul>
+  <li>A computer running Linux (I use Ubuntu 19.04), Mac or Windows.
+    <ul>
+      <li>As an IDE, I use WebStorm, but a simple text editor will work as
+well.
+        <blockquote>
+          <p>Please note that I do not have access to a Mac so I have not
+personally tested things using a Mac. However, Hiro has, and so
+there should be a minimal risk if your development environment
+includes using a Mac.</p>
+        </blockquote>
+      </li>
+    </ul>
+  </li>
+  <li>For Windows,
+<a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">install the Windows Subsystem For Linux (WSL). </a>
+    <ul>
+      <li>I tried Cygwin, but it did not work in this application for
+  me.</li>
+      <li>All work is done within WSL.</li>
+      <li>You may use Visual Studio Code in conjunction with WSL, but that
+      is beyond the scope of this discussion.</li>
+    </ul>
+  </li>
+  <li>Nodejs and npm. Any version greater than version 8 for node.js is
+acceptable
+    <ul>
+      <li>
+        <p>To check to see if you have node installed, in a terminal window or
+WSL type:</p>
+
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>node <span class="nt">-v</span> 
+</code></pre></div>        </div>
+        <p>This displays the node version. If node is not found, installation
+instructions are located
+<a href="https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/">here. </a>
+For a Mac, the installation instructions are located
+<a href="https://medium.com/@itsromiljain/the-best-way-to-install-node-js-npm-and-yarn-on-mac-osx-4d8a8544987a">here.</a></p>
+      </li>
+    </ul>
+  </li>
+  <li>Yarn. Install instructions for yarn can be found
+<a href="https://phoenixnap.com/kb/how-to-install-yarn-ubuntu">here. </a> For the
+Mac, see the node link above.
+    <ul>
+      <li>The guidelines from the Scratch team say to use npm, but I’ve found
+that npm does not seem to work in the Scratch environment. Also,
+with yarn, you do not need to worry about when and where to invoke
+<em>sudo</em>.</li>
+    </ul>
+  </li>
+  <li>A copy of updated versions of scratch-vm and scratch-gui.
+    <ul>
+      <li>Download the 
+<a href="https://github.com/MrYsLab/s3onegpio">s3onegpio</a> 
+distribution by clicking on the green
+Download button and unzip into any directory you choose.</li>
+      <li>For Windows, do this in WSL.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Please note, both this extension and Scratch 3 are subject to code
+changes, so please be prepared for a bumpy ride. Hopefully, there will
+be limited churn. The s3onegpio distribution will most likely be
+changing over time, so at a minimum, it will need to be updated as I
+add features and fix bugs.</p>
+</blockquote>
+
+<h1 id="building-the-code">Building The Code</h1>
+<p>The instructions for building the code are taken directly from Hiro’s
+article. You do not need to git clone the code, you have already done
+that by downloading and unzipping. You need to:</p>
+<ol>
+  <li>Go to the scratch-vm directory and enter:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn <span class="nb">install</span>
+</code></pre></div>    </div>
+    <p>and then</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn <span class="nb">link</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Go to the scratch-gui directory and enter:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn <span class="nb">link </span>scratch-vm
+</code></pre></div>    </div>
+    <p>and then</p>
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn <span class="nb">install</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Next, within the scratch-gui directory, start the code by entering:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn start
+</code></pre></div>    </div>
+    <p>You will most likely see a lot of warning messages. You can ignore
+those. The start takes a few moments, and you should wait for a message
+that states, <em>“Compiled Successfully.”</em></p>
+  </li>
+  <li>Finally, open your Web browser to
+<a href="http://0.0.0.0:8601">http://0.0.0.0:8601.</a> Scratch 3 should open. If
+you click on the + “add extension button” at the bottom left of
+Scratch, the very last extension shown should be OneGPIO. If you
+click on that selection, the single “Connect To” block should appear.
+If you click on the drop-down, you will see a selector for the 3
+board types supported.</li>
+</ol>
+
+<p><img src="/bots-in-pieces/images/s3onegpio/connect_block.png" alt="" /></p>
+
+<h1 id="but-does-it-work">But Does It Work?</h1>
+<p>If you click on the <em>Connect To</em> block, you will see an alert telling
+you that the WebSocket Connection Closed. That is because we first need
+to start a WebSocket server, which is precisely what the <a href="https://mryslab.github.io/python_banyan/#additional_gateways/#websocket-gateway">Banyan
+WebSocket Gateway</a>
+is.</p>
+
+<h2 id="starting-the-python-banyan-websocket-gateway">Starting The Python Banyan WebSocket Gateway</h2>
+<p>Before starting the WebSocket Gateway, Python Banyan needs to be
+installed.
+<a href="http://0.0.0.0:4000/banyan-framework/2019/06/26/banyan-background-4.html">This post</a>
+has a quick explanation of what Python Banyan is and how to install it.
+For Windows, you will need to install using a standard Windows Command
+window, since WSL does not support networking, required by Python
+Banyan.</p>
+
+<p>You do not need to get into the details of Python Banyan unless you wish
+to. To start the WebSocket Gateway, in a Windows Command window or Linux
+or Mac terminal window, go to the
+<a href="https://github.com/MrYsLab/s3onegpio/tree/master/onegpio">onegpio directory</a>
+in your downloaded distribution of s3onegpio. Next, type the following
+command:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bls <span class="nt">-f</span> a.csv
+</code></pre></div></div>
+
+<p>This command instructs the Banyan Launch Server (bls) to start up all
+the necessary Banyan components we need.</p>
+
+<p>If you now go back to the Web browser and press the F12 key to open the
+console and click on the Connect To block, you should see something like
+this in the console:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>connect index.js:49
+Object <span class="o">{</span> mutation: undefined, TEXT: <span class="s2">"1"</span> <span class="o">}</span>
+index.js:50
+<span class="o">{</span><span class="s2">"id"</span>:<span class="s2">"to_arduino_gateway"</span><span class="o">}</span> index.js:73
+</code></pre></div></div>
+<p>This output indicates a successful connection to the WebSocket Servier.
+If you then kill the WebSocket Gateway, you will see a Web alert message
+telling you that the connection has closed.</p>
+
+<p>So now we conclude today’s post. In summary, we installed the code to
+build the s3onegpio Scratch extension, built and started the code,
+opened a Web browser to run Scratch with the new extension, invoked the
+Python Banyan WebSocket Gateway and connected to it using the Scratch
+connect block. What a great start!</p>
+
+<h1 id="in-the-next-post">In The Next Post</h1>
+<p>The goal for the next posting is to create additional Scratch blocks to
+set a digital pin to output mode, and to control the pin using both
+digital and PWM output. Wish me luck ;-).</p>
+
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fscratch3%2Fgpio%2F2019%2F09%2F15%2Fscratch3-1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Creating+a+Scratch3+Extension+For+GPIO+Control+-+Part+1%20https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fscratch3%2Fgpio%2F2019%2F09%2F15%2Fscratch3-1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fscratch3%2Fgpio%2F2019%2F09%2F15%2Fscratch3-1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Creating+a+Scratch3+Extension+For+GPIO+Control+-+Part+1&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fscratch3%2Fgpio%2F2019%2F09%2F15%2Fscratch3-1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/bots-in-pieces/banyan-components/robot-control/2019/09/08/banyan-bot-blue-too.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Bayan Bot Blue 2 - Explorer Edition
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/bots-in-pieces/scratch3/gpio/2019/09/16/scratch3-2.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Creating a Scratch3 Extension For GPIO Control - Part 2
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="/bots-in-pieces/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>Copyright (C) 2019-2021 Alan Yorinks. All Rights Reserved.</p>
+
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/bots-in-pieces/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    <title>Banyan Bot Blue Part 7</title>
+    <meta name="description" content="Direct Hardware Control">
+    <link rel="canonical" href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/banyan-components/cricket-hardware-gateway/2019/08/15/banyan-bot-blue-part7.html">
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/main.css">
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/skins/default.css">
+  <link rel="alternate" type="application/atom+xml" title="Bots In Pieces" href="/bots-in-pieces/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  banyan-bot-blue-part-7">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/bots-in-pieces/">Home</a></li><li><a href="/bots-in-pieces/posts/">Posts</a></li><li><a href="/bots-in-pieces/categories/">Categories</a></li><li><a href="/bots-in-pieces/tags/">Tags</a></li><li><a href="/bots-in-pieces/search/">Search</a></li><li><a href="/bots-in-pieces/about/">Commenting Policy</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/bots-in-pieces/" class="site-logo" rel="home" title="Bots In Pieces">
+        <img src="/bots-in-pieces/images/logo.png" class="site-logo-img animated fadeInDown" alt="Bots In Pieces">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/bots-in-pieces/">Bots In Pieces</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Physical Computing (And Other Topics) In Easy To Digest "Byte-Size" Morsels</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Banyan Bot Blue Part 7
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/bots-in-pieces/images/MrYsLab.png" class="author-avatar u-photo" alt="Alan Yorinks"><div class="author-info"><div class="author-name">
+        <span class="p-name">Alan Yorinks</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-lg" title="Twitter"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li></ul>
+
+<span class="read-time">6 min read</span>
+
+    <time class="page-date dt-published" datetime="2019-08-15T18:24:39-04:00"><a class="u-url" href="">August 15, 2019</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">banyan-components</li><li class="page-taxonomy">cricket-hardware-gateway</li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">tkinter-gui-testing-fixture</li>
+  </ul>
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h1 style="color:rgb(128,0,0); " id="direct-hardware-control">Direct Hardware Control</h1>
+<p style="float:left ; "><img src="/bots-in-pieces/images/banyan-bot-blue-1/motors2.jpg" alt="" /></p>
+
+<p><br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br /></p>
+
+<h1 id="in-this-edition-of-bots-in-pieces-we-will">In this edition of <em>Bots In Pieces</em>, we will:</h1>
+
+<ul>
+  <li>Discuss controlling motors and sensors using Python Banyan:
+    <ul>
+      <li>Create a Banyan OneGPIO Gateway that directly interacts with the
+hardware.</li>
+      <li>Create a Tkinter test fixture to test the gateway.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="hardware-monitoring-and-control">Hardware Monitoring And Control</h1>
+<p>When choosing a hardware interface to use, you may consider designing
+and building a custom interface using discrete components or, you might
+use a more integrated approach, such as a
+<a href="https://www.raspberrypi.org/blog/introducing-raspberry-pi-hats/">Raspberry Pi HAT.</a></p>
+
+<p>The custom approach allows the flexibility of choosing each of the
+components, but you are also responsible for both physical and
+electrical design.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/comp_robot.jpg" alt="" />
+          
+<img src="/bots-in-pieces/images/banyan-bot-blue-1/the_bot2.jpg" alt="" /> <em>Discrete
+Component Approach
+               Integrated
+Approach</em></p>
+
+<p>For the Banyan Bot Blue project, the integrated approach was chosen,
+taking advantage of the
+<a href="https://www.adafruit.com/product/3957">Adafruit Crickit HAT,</a> thereby 
+greatly simplifying physical and electrical design and construction.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/crickit_hat.jpg" alt="" /></p>
+
+<h1 id="the-banyan-onegpio-gateway-concept">The Banyan OneGPIO Gateway Concept</h1>
+<p>Now that we’ve selected a hardware interface, we need a Banyan component
+to control and monitor that interface. The function of this component is
+to translate Banyan messages to and from hardware-specific API calls.
+From the Banyan perspective, a standard messaging specification, called
+<a href="https://mryslab.github.io/python_banyan/#gpio_intro/">OneGPIO,</a> is used
+to describe all hardware interactions. Because all Banyan hardware
+interface components employ the OneGPIO message specification, we call
+this type of component a <em>Banyan OneGPIO Gateway</em>.</p>
+
+<p>A Banyan OneGPIO Gateway consists of 2 major parts, a consistent Banyan
+interface that all OneGPIO Gateways share, and a hardware-specific
+section that allows direct hardware monitoring and control.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/hardware_gateway.png" alt="" /></p>
+
+<p>All OneGPIO Gateways derive from a standard base class, called
+<a href="https://github.com/MrYsLab/python_banyan/blob/master/python_banyan/gateway_base/gateway_base.py">GatewayBase.</a>
+The GatewayBase class ensures that the Banyan 
+OneGPIO protocol messages are processed consistently. The OneGPIO messaging
+protocol is a hardware-independent abstraction of hardware and GPIO
+control and monitoring. The role of the OneGPIO Gateway is to convert
+this abstract view to direct hardware control for each supported
+hardware type.</p>
+
+<p>By using the Banyan OneGPIO Gateway approach, the actual hardware is
+loosely-coupled from the rest of the application. So, if you wish to go
+from one hardware platform to another, you need only swap out one Banyan
+OneGPIO Gateway for another, without having to recode any of the other
+components.</p>
+
+<p>There are OneGPIO Gateways available for the
+<a href="https://github.com/MrYsLab/python_banyan/blob/master/projects/OneGPIO/raspberry_pi/rpi_gateway.py">Raspberry Pi</a>
+that utilizes the <a href="http://abyz.me.uk/rpi/pigpio/">pigpio</a> API, for
+<a href="https://github.com/MrYsLab/python_banyan/blob/master/projects/OneGPIO/arduino_uno/arduino_gateway.py">Arduino microcontrollers,</a>
+that uses <a href="https://mryslab.github.io/pymata-express/">Pymata-Express,</a>
+and for the
+<a href="https://github.com/MrYsLab/python_banyan/blob/master/projects/OneGPIO/esp_8266/esp8266_gateway.py">ESP-8266</a>
+that makes use of a board resident
+<a href="https://github.com/MrYsLab/python_banyan/blob/master/projects/OneGPIO/esp_8266/esp_8266.py">micropython API. </a></p>
+
+<p>For this project, we create an additional OneGPIO Gateway, the Crickit
+HAT Gateway, that expands Banyan support for the Raspberry Pi. With this
+additional gateway, you now have the choice to use discrete components
+or the HAT approach for hardware design.</p>
+
+<h1 id="the-crickit-onegpio-gateway">The Crickit OneGPIO Gateway</h1>
+<p>Before getting into some of the details of coding the Crickit Hardware
+Gateway, let’s take a look at the Crickit’s capabilities.</p>
+
+<h2 id="crickit-hat-capabilities">Crickit HAT Capabilities</h2>
+<p>The Crickit HAT supports the following functionality:</p>
+<ul>
+  <li>8 Input/Output Channels
+    <ul>
+      <li>Each individually configurable for input as:
+        <ul>
+          <li>Digital Input</li>
+          <li>Digital Input/Pull Up</li>
+          <li>Analog Input</li>
+          <li>Digital Output</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>4 Touch Inputs</li>
+  <li>8 Digital Outputs</li>
+  <li>4 “Drive” Outputs
+    <ul>
+      <li>For controlling items, such as solenoids</li>
+      <li>Can be used for PWM output</li>
+    </ul>
+  </li>
+  <li>2 D.C. Motor Controllers</li>
+  <li>4 Servo Motor Controllers</li>
+  <li>2 Stepper Motor Controllers</li>
+  <li>1 Neopixel Controller</li>
+  <li>I2S Speaker Output</li>
+</ul>
+
+<blockquote>
+  <p>Note: The Cricket OneGPIO Gateway supports all of these capabilities,
+except for the I2S speaker output. The Adafruit web site warns of
+several caveats about Raspbian support for this feature. You may
+enable the I2S feature, but the OneGPIO Gateway does not directly
+support it.</p>
+</blockquote>
+
+<p>In reality, the Banyan Bot Blue has very modest needs compared to the
+Crickit HAT’s capabilities. We only need to control 2 motors, both for
+speed and direction and to monitor 2 bumper sensors, for when the robot
+bumps into something. So why create a OneGPIO Gateway for virtually all
+of the Crickit HAT’s capabilities when only a small subset is needed?
+The answer is simple. If all the features are supported, then in the
+future, if we need to use features over and beyond the needs of the
+Banyan Bot Blue, we do not need to go back into the code and potentially
+break something that is already working. The motto here is: “Write once,
+test once, and reuse many times.”</p>
+
+<h2 id="supporting-onegpio">Supporting OneGPIO</h2>
+<p>As mentioned earlier, all Banyan OneGPIO Gateways support a standardized
+protocol messaging specification known as OneGPIO. To accomplish this,
+and to make coding more straightforward, the GatewayBase class provides
+a coding template to enforce consistency across all Banyan Hardware
+Gateways.</p>
+
+<p>To better understand the
+ <a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/banyan_assets/crickit_gateway.py">CrickitGateway,</a>
+ it is essential to understand the inheritance hierarchy that all Banyan
+ OneGPIO Gateways employ. For more detail about the code, click on the
+ links below.</p>
+
+<h2 id="the-crickit-gateway-inheritance-hierarchy">The Crickit Gateway Inheritance Hierarchy</h2>
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/gateway_hierarchy.png" alt="" /></p>
+
+<p>At the top of the hierarchy is the
+<a href="https://mryslab.github.io/python_banyan/#examples_intro/#the-banyanbase-class">BanyanBase class.</a>
+Every Banyan component derives from this base class. The BanyanBase
+class is responsible for network connectivity, formatting and publishing
+Banyan protocol messages, and decoding received Banyan protocol
+messages.</p>
+
+<p>The
+<a href="https://mryslab.github.io/python_banyan/#banyan_gateways/#understanding-the-gatewaybase-class">GatewayBase class</a>
+is directly below and derived from the BanyanBase class. The GatewayBase
+class defines the standard programming interface for managing OneGPIO
+protocol messages. The GatewayBase Class maintains a
+<a href="https://github.com/MrYsLab/python_banyan/blob/9b1a6f0e5e1b996add83a66061fa6d4b97cc4fd7/python_banyan/gateway_base/gateway_base.py#L99">look-up dictionary</a>
+to route a OneGPIO message to its handler. The
+<a href="https://github.com/MrYsLab/python_banyan/blob/9b1a6f0e5e1b996add83a66061fa6d4b97cc4fd7/python_banyan/gateway_base/gateway_base.py#L180">handlers in the base class are empty and must
+be overwritten in the class implementing the OneGPIO Gateway.</a></p>
+
+<p>Below the GatewayBase class is the hardware-specific OneGPIO Gateway
+class. 
+In the case of the 
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/banyan_assets/crickit_gateway.py">Crickit Gateway,</a> 
+it translates the OneGPIO
+messages into method calls for the
+<a href="https://circuitpython.readthedocs.io/projects/crickit/en/latest/">Adafruit Cricket Library.</a></p>
+
+<p>Because it is impossible to know all future hardware messaging needs,
+the OneGPIO message specification was designed to be extensible. You can
+expand upon the OneGPIO message set by merely creating a new message.
+When a message is received by a OneGPIO Gateway that is not a member of
+the OneGPIO specification, that message is passed to 
+and processed by the derived message handler method called <em>additional_banyan_messages.</em></p>
+
+<p>Adding functionality to the OneGPIO specification is as simple as
+defining a new message, and processing that message in the additional_banyan_messages
+ method without having to modify the GatewayBase class.  For example, the Cricket Gateway handles
+message requests for D.C. and stepper motor control as well as neo-pixel
+support within its
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/7633182996b2f8b8578250f8b9973f3097575ce1/banyan-bot-blue/banyan_assets/crickit_gateway.py#L287">overwritten additional_banyan_messages method.</a></p>
+
+<p>The Adafruit Cricket Library, unfortunately, does not 
+provide for callback notifications when input values change. 
+Instead, one must poll the inputs for change. 
+The Crickit Gateway uses a separate thread to poll the 
+inputs and publishes a value change message if the value for a 
+given input changes from the previous poll. 
+It also provides a timestamp
+as to when the change occurred, this way cutting down redundant
+messaging.</p>
+
+<h1 id="testing-the-crickit-gateway">Testing The Crickit Gateway</h1>
+<p>To test <em>all</em> of the Cricket Gateway’s functionality, we employ a Banyan
+compatible
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/test_fixtures/crickit_gui.py">GUI test fixture.</a></p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/cr_gui_a.png" alt="" /></p>
+
+<h2 id="banyan-and-tkinter-coexistence">Banyan And Tkinter Coexistence</h2>
+<p>Both Banyan and Tkinter use dedicated event loops to process messages
+and events. We need to find a way for each of these loops to coexist
+without blocking one another.</p>
+
+<p>To solve this dilemma, we run the Tkinter event loop, but have
+it periodically call a method that performs the function of the
+<a href="https://github.com/MrYsLab/python_banyan/blob/9b1a6f0e5e1b996add83a66061fa6d4b97cc4fd7/python_banyan/banyan_base/banyan_base.py#L197">Banyan receive_loop.</a>
+The 
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/a096184518792de04b761f0c9411f8dfe6c57fe0/banyan-bot-blue/test_fixtures/crickit_gui.py#L152">get_message</a>
+method is added to the GUI application to emulate the Banyan receive
+loop.</p>
+
+<p>The <em>get_message</em> method is
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/a096184518792de04b761f0c9411f8dfe6c57fe0/banyan-bot-blue/test_fixtures/crickit_gui.py#L166">executed regularly</a>
+within the Tkinter <em>main_loop</em> by using the Tkinter
+<a href="https://www.oreilly.com/library/view/python-gui-programming/9781788835886/1fa714ff-7db5-466a-bd61-b6ad5921c8d7.xhtml">“after” method.</a></p>
+
+<h2 id="the-gui-selection-tabs">The GUI Selection Tabs</h2>
+<p>The GUI has 8 tabs, each one dedicated to a Crickit functional group.
+Above, we see the Signal Inputs tab selected and that for Signal 1 and
+2, the time that their respective values changes. The bumper switches
+connect to these signals.</p>
+
+<p>You can view screenshots for all eight tabs below.
+<img src="/bots-in-pieces/images/banyan-bot-blue-1/cr_gui1.png" alt="" /></p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/cr_gui2.png" alt="" /></p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/cr_gui3.png" alt="" /></p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/cr_gui4.png" alt="" /></p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/cr_gui5.png" alt="" /></p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/cr_gui6.png" alt="" /></p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/cr_gui7.png" alt="" /></p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/cr_gui8.png" alt="" /></p>
+
+<p>To launch all the test components, make sure that you have the latest
+version of bots-in-pieces-examples. 
+On your Raspberry Pi, open the browser and go to the
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples"><em>bots-in-pieces-examples GitHub page.</em></a>
+Click on the green <em>Clone or download</em> button on the page. Unzip the
+file into any directory you wish.</p>
+
+<p>To start the test files, open a new command window and go to:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bots-in-pieces-examples-master/banyan-bot-blue/tests/crickit_gateway
+</code></pre></div></div>
+
+<p>Next, run the <em>Banyan Launcher</em> using the -f option to specify the test
+specification file:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bls <span class="nt">-f</span> cr1.csv
+</code></pre></div></div>
+
+<p>To perform the tests, you interact with the
+GUI, observe the hardware’s behavior, and compare it to the expected
+behavior.</p>
+
+<p>You can create a coverage report using the command:</p>
+<pre><code class="language-base">coverage html -d coverage_html
+</code></pre>
+
+<h1 id="next-time">Next Time</h1>
+<p>Next time we cover the <em>robot component</em>, the <em>brains</em> of the application.</p>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-components%2Fcricket-hardware-gateway%2F2019%2F08%2F15%2Fbanyan-bot-blue-part7.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Banyan+Bot+Blue+Part+7%20https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-components%2Fcricket-hardware-gateway%2F2019%2F08%2F15%2Fbanyan-bot-blue-part7.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-components%2Fcricket-hardware-gateway%2F2019%2F08%2F15%2Fbanyan-bot-blue-part7.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Banyan+Bot+Blue+Part+7&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-components%2Fcricket-hardware-gateway%2F2019%2F08%2F15%2Fbanyan-bot-blue-part7.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/bots-in-pieces/banyan-components/bluetooth-gateway/2019/07/19/banyan-bot-blue-part6.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Banyan Bot Blue Part 6
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/bots-in-pieces/banyan-components/robot-control/2019/08/22/banyan-bot-blue-part8.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Banyan Bot Blue Part 8
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="/bots-in-pieces/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>Copyright (C) 2019-2021 Alan Yorinks. All Rights Reserved.</p>
+
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/bots-in-pieces/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>

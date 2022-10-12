@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    <title>Banyan Bot Blue: Part 1</title>
+    <meta name="description" content="Over the next several postings, we will be constructing the first generation Banyan Bot Robot. This version will be Raspberry Pi based and remotely controlle...">
+    <link rel="canonical" href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/banyan-bot-blue/python-banyan/2019/06/10/banyan-bot-blue-part-1.html">
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/main.css">
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/skins/default.css">
+  <link rel="alternate" type="application/atom+xml" title="Bots In Pieces" href="/bots-in-pieces/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  banyan-bot-blue-part-1">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/bots-in-pieces/">Home</a></li><li><a href="/bots-in-pieces/posts/">Posts</a></li><li><a href="/bots-in-pieces/categories/">Categories</a></li><li><a href="/bots-in-pieces/tags/">Tags</a></li><li><a href="/bots-in-pieces/search/">Search</a></li><li><a href="/bots-in-pieces/about/">Commenting Policy</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/bots-in-pieces/" class="site-logo" rel="home" title="Bots In Pieces">
+        <img src="/bots-in-pieces/images/logo.png" class="site-logo-img animated fadeInDown" alt="Bots In Pieces">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/bots-in-pieces/">Bots In Pieces</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Physical Computing (And Other Topics) In Easy To Digest "Byte-Size" Morsels</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Banyan Bot Blue: Part 1
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/bots-in-pieces/images/MrYsLab.png" class="author-avatar u-photo" alt="Alan Yorinks"><div class="author-info"><div class="author-name">
+        <span class="p-name">Alan Yorinks</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-lg" title="Twitter"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li></ul>
+
+<span class="read-time">4 min read</span>
+
+    <time class="page-date dt-published" datetime="2019-06-10T16:24:39-04:00"><a class="u-url" href="">June 10, 2019</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">Banyan-Bot-Blue</li><li class="page-taxonomy">python-banyan</li>
+  </ul>
+
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>Over the next several postings, we will be constructing the first generation
+Banyan Bot Robot. This version will be
+Raspberry Pi based and remotely controlled using an Android Bluetooth device.</p>
+
+<p>Yes I know, that has been
+done a million times before, but the robot is not my main motivation for this project.</p>
+
+<p>My main motivation is to demonstrate how to create reusable software components. That is software
+components that will act as off-the-shelf entities to be reused, without modification in future projects.</p>
+
+<p>So for example, if I wish to swap out the Raspberry Pi for an ESP-8266, 
+I should be able to reuse most of the components created for this project. Just plug them
+in and they should be good to go!</p>
+
+<p>To accomplish the goal of <em>reusablity</em>, we will be using a software
+framework called <a href="https://mryslab.github.io/python_banyan/#"><em>Python Banyan</em></a>. Python Banyan allows one to create small, targeted
+<em>components</em> that communicate with each other over a LAN based <em>software backplane</em>.
+And as the name implies, this framework is implemented in Python.</p>
+
+<blockquote>
+  <p><a href="https://github.com/MrYsLab/js-banyan"><em>JavaScript</em></a>, <a href="https://github.com/MrYsLab/rb_banyan"><em>Ruby</em></a>, and <a href="https://github.com/MrYsLab/javabanyan"><em>Java</em></a> Programmers:</p>
+
+  <p>Banyan is also available for these languages as well. 
+Any component written in any of the supported languages is compatible with
+components written in any of the other languages. So if Python is not your language of choice,
+anything presented here in Python is still available to you for reuse.</p>
+</blockquote>
+
+<h2 id="advantages-of-using-a-software-framework">Advantages Of Using A Software Framework</h2>
+
+<p>Software frameworks allow you to focus on the problem at hand by taking care of the low-level details. Banyan,
+ no matter the language implementation, handles all of the
+networking and inter-component communication details. In fact, when you first instantiate
+a Banyan component, it will automatically plug itself into the software backplane without you having
+to remember to manage that.</p>
+
+<h3 id="a-high-level-view-of-python-banyan">A High-Level View Of Python Banyan</h3>
+
+<p>Python Banyan implements and takes advantage of a software pattern known as 
+the <em>publish/subscribe</em> model. Banyan is built on top of the <a href="http://zeromq.org/"><em>ZMQ Messaging Library</em></a></p>
+
+<p>A Banyan component may at its option, publish, or transmit data over the LAN. Also, any component can elect to receive
+data by requesting to receive it. The data, known as a <em>payload</em>, is transmitted in the form of Python dictionary.
+When a payload is published, a <em>topic</em> is associated with the payload
+and published as well.
+To receive data, a component <em>subscribes</em> to one or more topics. The payloads, and only the
+requested payloads, 
+are placed on the subscriber’s receive queue to process.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/Banyan1.jpg" alt="" /></p>
+
+<p>All of the queuing and routing is handled by the framework, again freeing you from
+low-level details. The framework guarantees that messages will be received in 
+the order that they are sent and handles all encoding for transmission across the network.</p>
+
+<p>We will get into more detail about Python Banyan in a future post.</p>
+
+<h2 id="python-in-the-house">Python In The House</h2>
+<p>I have selected Python as the language of choice for this project (and probably those in the future 
+as well). So why Python? Well, one reason is that a <a href="https://www.zdnet.com/article/programming-languages-python-predicted-to-overtake-c-and-java-in-next-4-years/"><em>recent article</em></a>
+predicts that Python will overtake both Java and C in 4 years.</p>
+
+<p>When selecting a language for use, I like to consider the following:</p>
+
+<ol>
+  <li>The amount of quality code that can be written in a day.</li>
+  <li>The quality of its native library.</li>
+  <li>The availability of a large choice of additional open source libraries and frameworks.</li>
+  <li>The quality and ease of access to help.</li>
+  <li>The language’s portability across multiple computing platforms without the need for recompilation.</li>
+  <li>And most important to me,  “Do I have a smile on my face at the end of the day or a frustration
+frown?”</li>
+</ol>
+
+<p>For me, Python checks all the boxes.</p>
+
+<h2 id="hardware-components-used-in-this-project">Hardware Components Used In This Project</h2>
+
+<ul>
+  <li>An Android cell phone or tablet (Kindle Fire Tablets work nicely here).</li>
+  <li>Raspberry Pi 3B+</li>
+  <li><a href="https://www.adafruit.com/product/3957">Adafruit Crickit Hat</a> For The Raspberry Pi (motor control and sensor input).</li>
+  <li>A 2 motor, 5 Volt, robot chassis. Here are some links to examples of this type of chassis:
+    <ul>
+      <li><a href="https://smile.amazon.com/Emgreat%C2%AE-Chassis-Encoder-wheels-Battery/dp/B00GLO5SMY/ref=sr_1_17?keywords=robot+chassis&amp;qid=1560195956&amp;s=gateway&amp;sr=8-17_">From Amazon</a></li>
+      <li><a href="https://www.pololu.com/product/3500">From Pololu</a></li>
+      <li><a href="https://www.adafruit.com/product/3216">From Adafruit</a></li>
+      <li>I will be reusing <a href="https://www.sparkfun.com/products/12649">a chassis from a previous project</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="software-components">Software Components</h2>
+
+<p>Below is a Banyan component diagram for this project. With the exception of the cell phone app, all
+software components will be resident on the Raspberry Pi.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/bbb-data-flow.jpg" alt="" /></p>
+
+<p><strong>The Components:</strong></p>
+
+<ul>
+  <li>External (Non-Banyan) Components:
+    <ul>
+      <li>A Bluetooth Android app to control the rover’s motion and that has the ability to receive and report status information from 
+the rover.</li>
+    </ul>
+  </li>
+  <li>Banyan Components:
+    <ul>
+      <li>Bluetooth Gateway
+        <ul>
+          <li>Acts as a Bluetooth RFCOMM server for the Android device.</li>
+          <li>Converts data received from the Android device and publishes that data as a Banyan message.</li>
+          <li>Converts Banyan report messages into a form that the Android app can process and transmits those messages over the Bluetooth link.</li>
+        </ul>
+      </li>
+      <li>Robotics Gateway
+        <ul>
+          <li>Converts message data originated from the Android device and published by the Bluetooth Gateway into Banyan motion control messages.</li>
+          <li>Converts and relays Banyan messages from the Raspberry Pi to the Android device.</li>
+        </ul>
+      </li>
+      <li>Cricket Gateway
+        <ul>
+          <li>Receives Banyan motion messages from the Robotics Gateway and translates these into Cricket API commands.</li>
+          <li>Receives sensor updates from the Cricket and translates and publishes this data as Banyan messages.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Each component will be discussed in detail in future posts.</p>
+
+<h2 id="next-time-coding-the-android-app">Next Time: Coding the Android App</h2>
+
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-bot-blue%2Fpython-banyan%2F2019%2F06%2F10%2Fbanyan-bot-blue-part-1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Banyan+Bot+Blue%3A+Part+1%20https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-bot-blue%2Fpython-banyan%2F2019%2F06%2F10%2Fbanyan-bot-blue-part-1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-bot-blue%2Fpython-banyan%2F2019%2F06%2F10%2Fbanyan-bot-blue-part-1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Banyan+Bot+Blue%3A+Part+1&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-bot-blue%2Fpython-banyan%2F2019%2F06%2F10%2Fbanyan-bot-blue-part-1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/bots-in-pieces/2019/06/08/welcome-to-bots-in-pieces.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Welcome to Bots in Pieces
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/bots-in-pieces/banyan-bot-blue/bluetooth/bluetooth-test-server/2019/06/15/banyan-bot-blue-part-2.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Banyan Bot Blue Part 2
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="/bots-in-pieces/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>Copyright (C) 2019-2021 Alan Yorinks. All Rights Reserved.</p>
+
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/bots-in-pieces/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>

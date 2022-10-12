@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    <title>Adventures With The Raspberry Pi Pico - Part 1</title>
+    <meta name="description" content="The Pico arrived safely from across the pond. Simon Walters not only took the time to package it up but also pre-wired headers to the board. Well-done Simon!">
+    <link rel="canonical" href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/raspberry/pi/pico/2021/02/12/pico-adventures-part1.html">
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/main.css">
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/skins/default.css">
+  <link rel="alternate" type="application/atom+xml" title="Bots In Pieces" href="/bots-in-pieces/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  adventures-with-the-raspberry-pi-pico-part-1">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/bots-in-pieces/">Home</a></li><li><a href="/bots-in-pieces/posts/">Posts</a></li><li><a href="/bots-in-pieces/categories/">Categories</a></li><li><a href="/bots-in-pieces/tags/">Tags</a></li><li><a href="/bots-in-pieces/search/">Search</a></li><li><a href="/bots-in-pieces/about/">Commenting Policy</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/bots-in-pieces/" class="site-logo" rel="home" title="Bots In Pieces">
+        <img src="/bots-in-pieces/images/logo.png" class="site-logo-img animated fadeInDown" alt="Bots In Pieces">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/bots-in-pieces/">Bots In Pieces</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Physical Computing (And Other Topics) In Easy To Digest "Byte-Size" Morsels</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Adventures With The Raspberry Pi Pico - Part 1
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/bots-in-pieces/images/MrYsLab.png" class="author-avatar u-photo" alt="Alan Yorinks"><div class="author-info"><div class="author-name">
+        <span class="p-name">Alan Yorinks</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-lg" title="Twitter"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li></ul>
+
+<span class="read-time">3 min read</span>
+
+    <time class="page-date dt-published" datetime="2021-02-12T10:00:39-05:00"><a class="u-url" href="">February 12, 2021</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">Raspberry</li><li class="page-taxonomy">Pi</li><li class="page-taxonomy">Pico</li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">MCU</li>
+  </ul>
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <p>The Pico arrived safely from across the pond. Simon Walters not only took the
+time to package it up but also pre-wired headers to the board. Well-done Simon!</p>
+
+<p>So, like many things in life, the Pico had some surprises in store. I made some
+assumptions about the board which, turned out not to be entirely correct. You know the
+old
+saying about assuming, “Assuming makes an ass out of you and me.” If you are not a
+native English speaker, the expression is a play on the spelling of the word “assume.”</p>
+
+<p>Now, back to the board. I compiled a couple of the examples from the C SDK without issue,
+and
+when I went to flash the code, I encountered my first “problem.” The
+<a href="https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf">Getting Started Guide</a>
+ is somewhat ambiguous about how to put the board into “flash” mode. They say to press
+ the BOOTSEL button but do not explicitly mention to do so before applying power to the
+ Pico. There is now a
+ <a href="https://www.raspberrypi.org/documentation/pico/getting-started/">“quick start area”</a>
+ on the RPi Pico documentation page that clearly explains this. It even incorporates
+ an animated graphic. Just scroll down to the “Welcome to your Raspberry Pi Pico” section
+  of the page and click on “Getting started with C/C++.”</p>
+
+<p><img src="/bots-in-pieces/images/pico_starting.png" alt="" /></p>
+
+<p>I first uploaded the “blink” example and then the “hello_usb” example, and both worked
+without issue.</p>
+
+<p>My next self-assigned task was to create a super-simple example to send data across
+ the serial link and have it looped back using the USB connector on the Pico. It seemed 
+like a no-brainer since
+ “hello-usb” worked. I wanted to use the UART library to do so, but after reading the
+  SDK source code, the UART library uses 2 GPIO pins for data transfer. The SDK implies
+  that
+  one
+  would need to connect either an RPi or use a USB-to-TTL converter to use the UART
+   library. My original intent was to use a USB cable between the computer and
+   the Pico and have bidirectional binary data flowing between the two. If some type of
+    USB-to-TTL converter is necessary, there is an extra expense and added complication.
+    Something I hope to be able to avoid.</p>
+
+<p>So, what to do? The “hello_usb” example uses the stdio printf function to send data
+across the serial link. The low-level UART library is not available for a
+USB to USB connection.  After a little bit of head-scratching, it dawned on me (sometimes I am a
+ little slow on the uptake) to use other functions in the stdio library to send
+ and receive data on the Pico over a USB cable. This revelation was non-obvious because 
+the only
+ stdio
+ function mentioned in the C SDK documentation is printf. So I gave it a shot, and low and
+  behold, it worked.</p>
+
+<p>Here is code for the Pico side of the application. It is an adaptation of the “hello_usb”
+program:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;stdio.h&gt;
+#include "pico/stdlib.h"
+
+
+int main() {
+    char buffer[30];
+    stdio_init_all();
+    while (true) {
+        //printf("Hello, world!\n");
+        //putchar('z');
+        //sleep_ms(1000);
+        fgets(buffer, 5, stdin);
+        printf(buffer);
+    }
+    return 0;
+}
+</code></pre></div></div>
+
+<p>It performs a read using fgets, and then turns around and sends the same data back using
+printf.</p>
+
+<p>The Python script running on my PC is as follows:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import serial
+import time
+
+
+class TPutComp:
+    def __init__(self, runs):
+        self.serial_port = serial.Serial('/dev/ttyACM0', 115200,
+                                         timeout=1, writeTimeout=0)
+
+        start_time = time.time()
+        for i in range(runs):
+            self.serial_port.write('abcde\n'.encode())
+            data = self.serial_port.readline(7).decode()
+            if data != 'abcde\r\n':
+                raise RuntimeError
+        elapsed = time.time() - start_time
+        print(f'{i+1} Iterations elapsed time: {elapsed}')
+        print(f'Calculated single iteration: {elapsed / runs}')
+
+
+TPutComp(100)
+
+
+</code></pre></div></div>
+
+<p>This script uses the serial port to send out the string, “abcde” and waits until
+that string returns the same string. The termination characters are an artifact of using
+stdio on the Pico side. This sequence repeats for the number of iterations specified in
+the run parameter.</p>
+
+<p>Here is an output sample:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>100 Iterations elapsed time: 0.3622300624847412
+Calculated single iteration: 0.0036223006248474123
+
+Process finished with exit code 0
+</code></pre></div></div>
+
+<p>I hoped to create a MicroPython script to compare serial throughput between C and 
+MicroPython. However,
+the version of MicroPython supplied for the Pico requires a USB-to-TTL
+converter to support serial communication.</p>
+
+<p>So, for now, a MicroPython version of Telemetrix for the Pico is on hold. I first want
+to try using the USB-to-TTL converter with a modified version of the uart_modified.c
+example provided with the C SDK. If there is no appreciable performance gain
+between 
+that and
+the stdio version, I will then abandon my hopes for using MicroPython. However, if 
+there is
+a noticeable performance gain, I will then implement a MicroPython script using the UART
+ library and run a performance comparison between the C and Python SDKs.</p>
+
+<p>Stay tuned for the results.</p>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fraspberry%2Fpi%2Fpico%2F2021%2F02%2F12%2Fpico-adventures-part1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Adventures+With+The+Raspberry+Pi+Pico+-+Part+1%20https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fraspberry%2Fpi%2Fpico%2F2021%2F02%2F12%2Fpico-adventures-part1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fraspberry%2Fpi%2Fpico%2F2021%2F02%2F12%2Fpico-adventures-part1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Adventures+With+The+Raspberry+Pi+Pico+-+Part+1&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fraspberry%2Fpi%2Fpico%2F2021%2F02%2F12%2Fpico-adventures-part1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/bots-in-pieces/raspberry/pi/pico/2021/02/03/act-of-random-kindness.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> An Act Of Random Kindness
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/bots-in-pieces/raspberry/pi/pico/2021/02/15/pico-adventures-part2.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Adventures With The Raspberry Pi Pico - Part 2
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="/bots-in-pieces/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>Copyright (C) 2019-2021 Alan Yorinks. All Rights Reserved.</p>
+
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/bots-in-pieces/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>

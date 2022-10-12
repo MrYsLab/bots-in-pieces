@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    <title>Introducing The Telemetrix Project</title>
+    <meta name="description" content="So, What Is Telemetrix? Telemetrix is a play on the word “telemetry.” Telemetry collects data at remote points and automatically transmits the data to receiv...">
+    <link rel="canonical" href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/arduino,stm32,firmata/2020/09/20/telemetrix-phase-1.html">
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/main.css">
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/skins/default.css">
+  <link rel="alternate" type="application/atom+xml" title="Bots In Pieces" href="/bots-in-pieces/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  introducing-the-telemetrix-project">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/bots-in-pieces/">Home</a></li><li><a href="/bots-in-pieces/posts/">Posts</a></li><li><a href="/bots-in-pieces/categories/">Categories</a></li><li><a href="/bots-in-pieces/tags/">Tags</a></li><li><a href="/bots-in-pieces/search/">Search</a></li><li><a href="/bots-in-pieces/about/">Commenting Policy</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/bots-in-pieces/" class="site-logo" rel="home" title="Bots In Pieces">
+        <img src="/bots-in-pieces/images/logo.png" class="site-logo-img animated fadeInDown" alt="Bots In Pieces">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/bots-in-pieces/">Bots In Pieces</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Physical Computing (And Other Topics) In Easy To Digest "Byte-Size" Morsels</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Introducing The Telemetrix Project
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/bots-in-pieces/images/MrYsLab.png" class="author-avatar u-photo" alt="Alan Yorinks"><div class="author-info"><div class="author-name">
+        <span class="p-name">Alan Yorinks</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-lg" title="Twitter"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li></ul>
+
+<span class="read-time">3 min read</span>
+
+    <time class="page-date dt-published" datetime="2020-09-20T12:00:39-04:00"><a class="u-url" href="">September 20, 2020</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">arduino,stm32,firmata</li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">arduino</li>
+  </ul>
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h1 id="so-what-is-telemetrix">So, What Is Telemetrix?</h1>
+<p>Telemetrix is a play on the word “telemetry.” Telemetry collects data at remote points and automatically transmits the data to 
+receiving equipment (telecommunication) for monitoring. 
+The <a href="https://github.com/MrYsLab/telemetrix">telemetrix package</a> consists of 2 major
+components, the <a href="https://github.com/MrYsLab/telemetrix/blob/master/phase1/telemetrix/telemetrix.py">Python client</a> 
+and the <a href="https://github.com/MrYsLab/telemetrix/blob/master/phase1/arduino-telemetrix/arduino-telemetrix.ino">Arduino server</a>.</p>
+
+<p>If this sounds like a description of Firmata, it is no small coincidence. The telemetrix project intends to replace Arduino Firmata 
+with a more straightforward protocol and an eye toward allowing feature extensibility in a simple manner.</p>
+
+<h1 id="and-why-telemetrix">And, Why Telemetrix?</h1>
+<p>Creating a replacement for Firmata might seem strange from someone who has spent the better part of the last seven years creating both 
+Python Firmata clients 
+(pymata, pymata-aio, pymata4 pymata-express) 
+and two extended versions of StandardFirmata (FirmataPlus and FirmataExpress).</p>
+
+<p>What convinced me to develop telemetrix is this <a href="https://github.com/MrYsLab/pymata4/issues/17">issue</a> reported against pymata4. 
+ The issue is specific to STM32 processor boards and has to do with
+ analog input pins number designations being incorrectly mapped to their physical pins.</p>
+
+<p>If you read the issue, you will see my trials and tribulations trying to get an 
+ STM32 up and running. After finding a board that I could program, I could not 
+ establish serial communication between any pymata client and StandardFirmata. 
+ However, I created a simple native Arduino sketch that allowed me to send a 
+ character with the Arduino serial monitor and have it looped back, so I knew the board, 
+ and serial communication worked. What was the cause of Firmata’s inability to
+ communicate over the serial link for this STM32 board? This problem is challenging to debug since the only 
+ simple debug tool for Firmata is sending informational debug packets across the serial link. 
+ However, since there was no communication, to begin with, 
+ hunting down the exact cause would be a slow and painful process. Instead, I decided to design a replacement for Firmata.</p>
+
+<h1 id="design-requirements">Design Requirements</h1>
+<p>My first requirement was to try and simplify things. First, I would abandon the 7-bit bytes of 
+Firmata and the whole SysEx messaging scheme. All data going across the link would be 
+standard 8-bit bytes, and one messaging procedure would be used, not the 2 two used by Firmata.</p>
+
+<p>Next, telemetrix would use only the board descriptions built into the Arduino build infrastructure 
+to provide pin mapping. Firmata, on the other hand, redefines things in its Boards.h file. 
+When a new board is introduced, updating Boards.h can be very painful. 
+The information in Boards.h is redundant to that provided in the board-specific Arduino core files. 
+Telemetrix only uses board descriptions that are built into the board-specific Arduino core files.</p>
+
+<h1 id="releases-in-phases">Releases In Phases</h1>
+<p>Telemetrix will be released in the following phases.</p>
+
+<ul>
+  <li>Phase 1 Base Functionality
+    <ul>
+      <li>Debug capabilities
+        <ul>
+          <li>Serial loopback utility</li>
+          <li>Ability to send values from the sketch and print them on the client console.</li>
+        </ul>
+      </li>
+      <li>Auto-detection of serial ports, including detection, locating, and connecting to a specific device.</li>
+      <li>Digital input</li>
+      <li>Digital and PWM output.</li>
+      <li>Analog input.</li>
+      <li>All inputs provide immediate notification of data changes.</li>
+      <li>A set of working examples for each function. Tested at a minimum on an Arduino Uno.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Phase 2 Servo Functionality</p>
+  </li>
+  <li>
+    <p>Phase 3 I2C Functionality</p>
+  </li>
+  <li>
+    <p>Phase 4 HC-SRO4 Distance Sensor Functionality</p>
+  </li>
+  <li>Phase 5 DHT Functionality.</li>
+</ul>
+
+<h1 id="trying-out-phase-1-for-yourself">Trying Out Phase 1 For Yourself</h1>
+
+<p>Phase 1 is available now if you wish to examine the code and try the examples. 
+If you encounter any issues or have any questions, please enter an issue <a href="https://github.com/MrYsLab/telemetrix/issues">here.</a></p>
+
+<h2 id="step-1---download-the-distribution">Step 1 - Download the distribution.</h2>
+<p>Go to the <a href="https://github.com/MrYsLab/telemetrix">telemetrix repository.</a> Click on the green button to download the code and then
+unzip the file.</p>
+
+<h2 id="step-2---upload-arduino-telemetrix-on-your-arduino">Step 2 - Upload arduino-telemetrix on your Arduino</h2>
+<p>Go to the phase1/arduino-telemetrix directory to find arduino-telemetrix.ino. Upload this to
+your Arduino.</p>
+
+<h2 id="step-3---try-out-the-examples">Step 3 - Try out the examples.</h2>
+<p>Go to the phase1 directory. For Windows type:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 setup.py install
+</code></pre></div></div>
+
+<p>or for Linux and macOS</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo python3 setup.py install
+</code></pre></div></div>
+
+<p>With your Arduino connected to your computer, go to the phase1/examples directory
+and try the loopback utility:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 loop_back.py
+</code></pre></div></div>
+
+<p>You should see A, B, and Z sent and looped back. You can then select and try out any of the other examples.
+Please note that you may need to adjust the pin numbers for your specific hardware setup.</p>
+
+<h1 id="whats-next">What’s Next</h1>
+<p>In the next posting, I will be explaining the code on both the Python and Arduino sides in 
+some detail.</p>
+
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Cstm32%2Cfirmata%2F2020%2F09%2F20%2Ftelemetrix-phase-1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Introducing+The+Telemetrix+Project%20https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Cstm32%2Cfirmata%2F2020%2F09%2F20%2Ftelemetrix-phase-1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Cstm32%2Cfirmata%2F2020%2F09%2F20%2Ftelemetrix-phase-1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Introducing+The+Telemetrix+Project&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Cstm32%2Cfirmata%2F2020%2F09%2F20%2Ftelemetrix-phase-1.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/bots-in-pieces/gui/tkinter/pymata-rh/2020/08/23/using-stage.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Creating GUIs With Page
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/bots-in-pieces/arduino,stm32,firmata/2020/09/27/telemetrix-update1.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Telemetrix Update 1
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="/bots-in-pieces/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>Copyright (C) 2019-2021 Alan Yorinks. All Rights Reserved.</p>
+
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/bots-in-pieces/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>

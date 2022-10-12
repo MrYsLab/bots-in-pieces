@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    <title>Evaluating ArduinoJson</title>
+    <meta name="description" content="Why Am I Evaluating ArduinoJson? Currently, all data transferred between the Arduino Server and Python Client is in binary, positionally dependent form. When...">
+    <link rel="canonical" href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/arduino,telemetrix,arduinojson/2020/10/10/telemtrix-arduinojson.html">
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/main.css">
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/skins/default.css">
+  <link rel="alternate" type="application/atom+xml" title="Bots In Pieces" href="/bots-in-pieces/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  evaluating-arduinojson">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/bots-in-pieces/">Home</a></li><li><a href="/bots-in-pieces/posts/">Posts</a></li><li><a href="/bots-in-pieces/categories/">Categories</a></li><li><a href="/bots-in-pieces/tags/">Tags</a></li><li><a href="/bots-in-pieces/search/">Search</a></li><li><a href="/bots-in-pieces/about/">Commenting Policy</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/bots-in-pieces/" class="site-logo" rel="home" title="Bots In Pieces">
+        <img src="/bots-in-pieces/images/logo.png" class="site-logo-img animated fadeInDown" alt="Bots In Pieces">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/bots-in-pieces/">Bots In Pieces</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Physical Computing (And Other Topics) In Easy To Digest "Byte-Size" Morsels</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Evaluating ArduinoJson
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/bots-in-pieces/images/MrYsLab.png" class="author-avatar u-photo" alt="Alan Yorinks"><div class="author-info"><div class="author-name">
+        <span class="p-name">Alan Yorinks</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-lg" title="Twitter"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li></ul>
+
+<span class="read-time">5 min read</span>
+
+    <time class="page-date dt-published" datetime="2020-10-10T11:00:39-04:00"><a class="u-url" href="">October 10, 2020</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">arduino,telemetrix,arduinojson</li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">arduino,arduinojson</li>
+  </ul>
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h1 id="why-am-i-evaluating-arduinojson">Why Am I Evaluating ArduinoJson?</h1>
+<p>Currently, all data transferred between the Arduino Server and Python 
+Client is in binary, positionally dependent form. When receiving a serialized
+data packet, the receiver must associate the command or report descriptor with the
+number of bytes that comprise the packet.</p>
+
+<p>Suppose we look at the client-side report_dispatch dictionary shown below.
+For every expected report, the dictionary references a method that will process the report
+ and the number of bytes that follow the report identifier used to process it.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># The report_dispatch dictionary is used to process
+        # incoming report messages by looking up the report message
+        # and executing its associated processing method.
+        # The value following the method is the number of bytes to
+        # retrieve from the deque to process the report (not including report id).
+        self.report_dispatch = {}
+
+        # To add a command to the command dispatch table, append here.
+        self.report_dispatch.update({PrivateConstants.LOOP_COMMAND: [self._report_loop_data, 1]})
+        self.report_dispatch.update({PrivateConstants.DEBUG_PRINT: [self._report_debug_data, 3]})
+        self.report_dispatch.update({PrivateConstants.DIGITAL_REPORT: [self._digital_message, 2]})
+        self.report_dispatch.update({PrivateConstants.ANALOG_REPORT: [self._analog_message, 3]})
+        self.report_dispatch.update({PrivateConstants.FIRMWARE_REPORT: [self._firmware_message, 2]})
+        self.report_dispatch.update({PrivateConstants.I_AM_HERE_REPORT: [self._i_am_here, 1]})
+        self.report_dispatch.update({PrivateConstants.SERVO_UNAVAILABLE: [self._servo_unavailable, 1]})
+        self.report_dispatch.update({PrivateConstants.I2C_READ_REPORT: [self._i2c_read_report, 1]})
+        self.report_dispatch.update({PrivateConstants.I2C_TOO_FEW_BYTES_RCVD: [self._i2c_too_few, 1]})
+        self.report_dispatch.update({PrivateConstants.I2C_TOO_MANY_BYTES_RCVD: [self._i2c_too_many, 1]})
+        self.report_dispatch.update({PrivateConstants.SONAR_MAX_EXCEEDED: [self._sonar_max_exceeded, 0]})
+        self.report_dispatch.update({PrivateConstants.SONAR_DISTANCE: [self._sonar_distance_report, 3]})
+
+</code></pre></div></div>
+<p>Using the ANALOG_REPORT as an example, we see that there are three additional bytes needed 
+to be read from the serial
+port after receiving the ANALOG_REPORT identifier byte.</p>
+
+<p>The report as sent by the Arduino consists of the following bytes:</p>
+
+<ol>
+  <li>The ANALOG_REPORT identifier.</li>
+  <li>The pin number.</li>
+  <li>The high order byte of the reported value.</li>
+  <li>The low order bytes of the reported value.</li>
+</ol>
+
+<h2 id="advantages-of-the-current-serialization-scheme">Advantages Of the Current Serialization Scheme</h2>
+
+<ul>
+  <li>Small packet size.</li>
+  <li>Fast data transfer.</li>
+</ul>
+
+<h2 id="drawbacks-of-the-current-serialization-scheme">Drawbacks Of The Current Serialization Scheme</h2>
+
+<ul>
+  <li>The number of bytes in a packet has to be matched on both the sender and receiver sides.</li>
+  <li>For a packet containing a variable number of bytes, for example, the i2c_write command,
+ the number of variable bytes needs to be incorporated as a data field within the packet. The command or report 
+handler then reads that number of bytes from the serial port before proceeding with the packet’s processing.</li>
+  <li>The only data type represented in this scheme is a byte. When a larger data type is needed, 
+the sender needs to disassemble the data into bytes, and the receiver needs to reassemble the bytes
+into the desired data type.</li>
+  <li>The data is in binary form and cannot be easily viewed with a serial monitor.</li>
+</ul>
+
+<h1 id="can-arduinojson-help-resolve-these-drawbacks">Can <a href="https://arduinojson.org/">ArduinoJson</a> Help Resolve These Drawbacks?</h1>
+
+<p>I wanted to explore if there was a better way to serialize
+the data going across the link. <a href="https://arduinojson.org/">ArduinoJson</a> was a possible solution.</p>
+
+<p>ArduinoJson is a JSON library built explicitly for Arduino MCUs. JSON
+allows us to describe the data in a positionally independent manner, using
+key/value pairs. It also directly supports data types larger than a byte.</p>
+
+<p>For example, here is a JSON representation of an i2c_write command packet.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{ "command": i2c_write, "address": I2C_DEVICE_ADDRESS, "bytes_to_write": [byte 1, byte2, ...] }
+</code></pre></div></div>
+<p>The variable portion of the data is represented 
+as an array, and no additional reads are necessary to retrieve them. 
+They are just part of the JSON packet that is retrieved using the key.
+If JSON is a viable solution, we also no longer need to 
+match packet sizes on both the client and server-side.</p>
+
+<h2 id="advantages-of-json">Advantages Of JSON</h2>
+
+<ul>
+  <li>Handles data types larger than a byte.</li>
+  <li>Precludes the need to coordinate packet sizes for the server and client.</li>
+  <li>Because the data is human-readable, the packets can be looked at with a serial monitor.</li>
+</ul>
+
+<p>So why not just go with JSON? Because JSON packets will be larger than the binary packets.</p>
+
+<p>For example, if we build a packet with the schema of:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "count": 0,
+  "type": "r",
+  "device": "i2c",
+  "address": 83,
+  "register": 232,
+  "big_data": 2048,
+  "data":[1,2,3,4,5,6]
+}
+</code></pre></div></div>
+<p>If we implement this schema using the current binary serialization method, we will end up with a 13 byte packet.
+ Unlike the JSON representation, the string values would
+be translated to byte values.  For example, instead of the “device” field being set to “i2c”, it would
+be set to some value, such as 44.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// The data and types we wish to send across the link
+int count = 0;
+byte mtype = 1;
+byte device = 44;
+byte the_register = 232;
+int big_data = 2048;
+byte the_data[6] = {1, 2, 3, 4, 5, 6};
+
+// prebuild the packet
+byte the_buffer[13]= {highByte(count), lowByte(count), mtype, device, the_register, highByte(big_data),
+lowByte(big_data), 1, 2, 3, 4, 5, 6};
+</code></pre></div></div>
+
+<p>Using the same schema with JSON, the packet length expands to 102 bytes. The ArduinoJson library
+also introduces additional overhead in processing time and memory utilization.</p>
+
+<h2 id="messagepack---a-variant-of-json">MessagePack - A Variant Of JSON</h2>
+
+<p>There is a third alternative called
+ <a href="https://msgpack.org/index.html">MessagePack</a> that is supported by ArduinoJson. MessagePack serializes the 
+ data using compression 
+techniques. For the example shown above, the length of the packet is reduced from 102 bytes to 70.</p>
+
+<h2 id="drawbacks-of-arduinojson-and-messagepack">Drawbacks Of ArduinoJson And MessagePack</h2>
+
+<ul>
+  <li>Larger packet lengths.</li>
+  <li>Additional time to transmit the larger packets.</li>
+  <li>Additional processing time for serialization.</li>
+  <li>Larger memory footprint to accommodate the library.</li>
+</ul>
+
+<h1 id="so-is-arduinojson-the-answer">So Is ArduinoJson The Answer?</h1>
+
+<p>The advantages of ArduinoJson over the current serialization scheme are significant,
+but the question remains, do the drawbacks outweigh the benefits?</p>
+
+<p>To find out, I created three test scenarios with a client and server for each scenario. The code was run
+on an Arduino Uno.
+You can <a href="https://github.com/MrYsLab/telemetrix/tree/master/arduino_json_evaluation">view the code for all three scenarios on GitHub.</a></p>
+
+<p>They all use a similar data scheme. Because there is more likely to be a higher
+volume of traffic coming from the Arduino when using Telemetrix, data will be
+generated from the Arduino side only. Each test scenario generates a thousand
+packets. The elapsed time for the 1000 packet transmission is calculated.</p>
+
+<p>Here are the results:</p>
+
+<p><strong>Serialization Times</strong></p>
+
+<p>Current Serialization:      Elapsed time = 1.1839430332183838 seconds</p>
+
+<p>MessagePack Serialization:  Elapsed time = 6.156056642532349  seconds</p>
+
+<p>JSON Serialization:         Elapsed time = 8.810443878173828  seconds</p>
+
+<p><strong>Packet Lengths:</strong></p>
+
+<p>Current Serialization:      13 bytes</p>
+
+<p>MessagePack Serialization:  70 bytes</p>
+
+<p>JSON Serialization:         102 bytes</p>
+
+<p><strong>Arduino Footprint</strong></p>
+
+<p><strong>Current Serialization:</strong>
+Sketch uses 1682 bytes (5%) of program storage space. Maximum is 32256 bytes.</p>
+
+<p>Global variables use 200 bytes (9%) of dynamic memory, leaving 1848 bytes for local variables. Maximum is 2048 bytes.</p>
+
+<p><strong>MessagePack Serialization:</strong> 
+Sketch uses 3576 bytes (11%) of program storage space. Maximum is 32256 bytes.</p>
+
+<p>Global variables use 567 bytes (27%) of dynamic memory, leaving 1481 bytes for local variables. Maximum is 2048 bytes.</p>
+
+<p><strong>JSON Serialization:</strong>
+Sketch uses 5478 bytes (16%) of program storage space. Maximum is 32256 bytes.</p>
+
+<p>Global variables use 514 bytes (25%) of dynamic memory, leaving 1534 bytes for local variables. Maximum is 2048 bytes.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+<p>There are many advantages to using JSON, but unfortunately, 
+the throughput performance could not meet the Telemetrix Project’s needs.  Also, its 
+footprint is large when compared to the original serialization method. Therefore,
+the original serialization scheme for transmitting and receiving serial data will be used.</p>
+
+<p>I am exploring a variant on the current serialization scheme. In this scheme, the packet’s length 
+is calculated and placed in the packet’s 
+first byte, eliminating the need to store the number of bytes in a packet as part of a lookup table.
+ If this variant
+does not add additional overhead, it will be considered to be used sometime in the future. 
+If adopted, a posting on this blog will be made.</p>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Ctelemetrix%2Carduinojson%2F2020%2F10%2F10%2Ftelemtrix-arduinojson.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Evaluating+ArduinoJson%20https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Ctelemetrix%2Carduinojson%2F2020%2F10%2F10%2Ftelemtrix-arduinojson.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Ctelemetrix%2Carduinojson%2F2020%2F10%2F10%2Ftelemtrix-arduinojson.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Evaluating+ArduinoJson&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Ctelemetrix%2Carduinojson%2F2020%2F10%2F10%2Ftelemtrix-arduinojson.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/bots-in-pieces/arduino,telemetrix,hc-sr04,sonar/2020/10/10/phase4-sonar.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Telemetrix Phase 4 - HC-SRO4 Sonar Distance Sensor Support
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/bots-in-pieces/arduino,telemetrix,stm32/2020/10/23/telemetrix-phase-5.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Telemetrix And Telemetrix-AIO
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="/bots-in-pieces/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>Copyright (C) 2019-2021 Alan Yorinks. All Rights Reserved.</p>
+
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/bots-in-pieces/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>

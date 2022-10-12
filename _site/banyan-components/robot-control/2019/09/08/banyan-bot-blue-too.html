@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    <title>Bayan Bot Blue 2 - Explorer Edition</title>
+    <meta name="description" content="Replacing The Crickit With The Explorer Pro">
+    <link rel="canonical" href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/banyan-components/robot-control/2019/09/08/banyan-bot-blue-too.html">
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/main.css">
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/skins/default.css">
+  <link rel="alternate" type="application/atom+xml" title="Bots In Pieces" href="/bots-in-pieces/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  bayan-bot-blue-2-explorer-edition">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/bots-in-pieces/">Home</a></li><li><a href="/bots-in-pieces/posts/">Posts</a></li><li><a href="/bots-in-pieces/categories/">Categories</a></li><li><a href="/bots-in-pieces/tags/">Tags</a></li><li><a href="/bots-in-pieces/search/">Search</a></li><li><a href="/bots-in-pieces/about/">Commenting Policy</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/bots-in-pieces/" class="site-logo" rel="home" title="Bots In Pieces">
+        <img src="/bots-in-pieces/images/logo.png" class="site-logo-img animated fadeInDown" alt="Bots In Pieces">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/bots-in-pieces/">Bots In Pieces</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Physical Computing (And Other Topics) In Easy To Digest "Byte-Size" Morsels</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Bayan Bot Blue 2 - Explorer Edition
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/bots-in-pieces/images/MrYsLab.png" class="author-avatar u-photo" alt="Alan Yorinks"><div class="author-info"><div class="author-name">
+        <span class="p-name">Alan Yorinks</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-lg" title="Twitter"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li></ul>
+
+<span class="read-time">3 min read</span>
+
+    <time class="page-date dt-published" datetime="2019-09-08T12:00:39-04:00"><a class="u-url" href="">September 8, 2019</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">banyan-components</li><li class="page-taxonomy">robot-control</li>
+  </ul>
+
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h1 style="color:rgb(128,0,0); " id="replacing-the-crickit-with-the-explorer-pro">Replacing The Crickit With The Explorer Pro</h1>
+<p style="float:left ; "><img src="/bots-in-pieces/images/banyan-bot-blue-1/exp_up.png" alt="" /></p>
+
+<p><br /> <br /> <br /> <br /> <br /> <br /> <br />
+<br /> <br /> <br /> <br /> <br /></p>
+
+<h1 id="in-this-edition">In this edition:</h1>
+<ul>
+  <li>We substitute the Pimoroni Explorer Pro for the Crickit HAT and
+discuss:
+    <ul>
+      <li>The experiences of performing the substitution.</li>
+      <li>Creating a Banyan Hardware Gateway for the Explorer Pro.</li>
+      <li>Changes needed in the other Banyan components.</li>
+      <li>Controller board recommendation.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="replacement-experiences">Replacement Experiences</h1>
+<p>First,
+the robot had to be rewired to meet the physical needs of the Explorer
+Pro. Then, a new Banyan Hardware Gateway module was created to
+support the Explorer Pro Python library. Both modifications were relatively simple and
+straight forward.</p>
+
+<h2 id="battery-experience">Battery Experience</h2>
+<p>The Explorer Pro was easily powered using 4 NiMH AA cells. I left both
+motors running continuously for 10 minutes, and the batteries had more
+to give. The Crickit HAT, on the other hand, lasted less than two
+minutes without the motors running using the same batteries.</p>
+
+<h2 id="rewiring-experiences">Rewiring Experiences</h2>
+<p>The Explorer Pro, from a physical design point of view, is in my opinion
+not as convenient as that of the Crickit. The Crickit offers +5 and
+ground pins for each of its inputs and outputs and provides for screw
+terminals for its motor connections. The Explorer Pro does not offer
+screw terminals, but in all fairness, the motor leads never dislodged.
+Both +5 and ground had to be broken out to the included mini-breadboard.
+Not a significant problem, but this increased chances for a wiring error
+and a somewhat physically uglier outcome. Certainly not a deal-breaker.</p>
+
+<h2 id="creating-an-explorer-pro-banyan-gateway">Creating an Explorer Pro Banyan Gateway</h2>
+<p>Creating
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/banyan_assets/exp_pro_gateway.py">Explorer Pro Gateway, </a>
+was not particularly challenging and followed the pattern of a typical
+<a href="https://mryslab.github.io/python_banyan/#banyan_gateways/">Banyan Hardware Gateway.</a>
+It takes advantage of the 
+<a href="https://github.com/pimoroni/explorer-hat">Python library supplied by Pimoroni.</a></p>
+
+<h3 id="explorer-pro-capabilities">Explorer Pro Capabilities</h3>
+<p>Here is a list of capabilities of the Explorer Pro HAT. These far exceed
+the needs of the project, but the gateway supports all of these
+features. All were tested and worked flawlessly.</p>
+
+<ul>
+  <li>Four buffered 5V tolerant inputs.</li>
+  <li>Four powered 5V outputs (up to 500mA total across all four channels).</li>
+  <li>Four capacitive touchpads.</li>
+  <li>Four capacitive crocodile clip pads.</li>
+  <li>Four LEDs.</li>
+  <li>Four analog inputs.</li>
+  <li>Two H-bridge motor drivers (up to 200mA per channel; soft PWM control)</li>
+</ul>
+
+<p><a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/test_fixtures/exp_pro_gui.py">A Tkinter GUI</a> is provided to aid in testing.</p>
+
+<h3 id="handling-chatty-analog-inputs-and-testing-anomalies">Handling “Chatty” Analog Inputs And Testing Anomalies</h3>
+<p>The gateway supports all of the Explorer Pro features. For analog
+inputs, because they can be quite “chatty,” a differential threshold
+mechanism was added to allow you to specify how much of a change in
+input voltage must occur before publishing a value change notification.
+You may specify a different value for each of the 4 analog inputs. Use
+the “-t” command-line option to specify the threshold values. The
+default values are 0.3 volts.</p>
+
+<p>Also, because the Banyan Bot Blue does not require the use of analog
+inputs, analog inputs are disabled by default. To turn them on, use the
+“-a true” command-line option when starting the gateway.
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/tests/exp_pro_gateway/exp1.csv">For testing,</a>
+the test makes sure that analog inputs are enabled.</p>
+
+<h3 id="issues">Issues</h3>
+<p>There were 2 issues discovered using the Pimoroni library when
+handling analog input. First, upon occasion, an erroneous value of 12
+volts was returned. The gateway prevents this erroneous value from being
+sent to the robot_control component by “throwing out” any value over 5.1
+volts.</p>
+
+<p>The second issue appears to be related to the library’s threading
+implementation for input values. Input values seemed to clobber one
+other, so I added a <a href="https://docs.python.org/3/library/threading.html#rlock-objects">Python 
+recursive lock</a>
+to protect all input handlers. The data clobbering problem was solved
+although the analog inputs are still chatty.</p>
+
+<p>In testing, for some unknown reason, coverage indicated that the digital 
+input code did not execute. Digital inputs do work correctly but required 
+physical observation to verify.</p>
+
+<h1 id="effect-on-other-banyan-components-for-the-project">Effect On Other Banyan Components For The Project</h1>
+<p>Because the Explorer Pro gateway supports the OneGPIO specification, no
+other components needed to be modified or replaced. They all work “out
+of the box, supporting the “Write Once” philosophy.</p>
+
+<h1 id="controller-board-recommendation">Controller Board Recommendation</h1>
+
+<p>For battery powered projects the winner is The Pimoroni Explorer Pro
+HAT. In spite of its minor shortcomings it is a delight to use.</p>
+
+<h1 id="banyan-bot-blue-comes-to-a-close">Banyan Bot Blue Comes To A Close</h1>
+<p>The Banyan Bot Blue project was designed to illustrate 
+the flexibility and reusable nature of Python Banyan components. 
+I hope that you try Python Banyan and OneGPIO for your next project, 
+and see how easy it is to create an application with a set of reusable Banyan components.</p>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-components%2Frobot-control%2F2019%2F09%2F08%2Fbanyan-bot-blue-too.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Bayan+Bot+Blue+2+-+Explorer+Edition%20https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-components%2Frobot-control%2F2019%2F09%2F08%2Fbanyan-bot-blue-too.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-components%2Frobot-control%2F2019%2F09%2F08%2Fbanyan-bot-blue-too.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Bayan+Bot+Blue+2+-+Explorer+Edition&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-components%2Frobot-control%2F2019%2F09%2F08%2Fbanyan-bot-blue-too.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/bots-in-pieces/banyan-components/robot-control/2019/08/22/banyan-bot-blue-part8.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Banyan Bot Blue Part 8
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/bots-in-pieces/scratch3/gpio/2019/09/15/scratch3-1.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Creating a Scratch3 Extension For GPIO Control - Part 1
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="/bots-in-pieces/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>Copyright (C) 2019-2021 Alan Yorinks. All Rights Reserved.</p>
+
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/bots-in-pieces/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>

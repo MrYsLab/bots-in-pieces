@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    <title>Banyan Bot Blue Part 3</title>
+    <meta name="description" content="An Android App For Robot Control">
+    <link rel="canonical" href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/banyan-bot-blue/android/bluetooth/2019/06/16/banyan-bot-blue-part-3.html">
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/main.css">
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/skins/default.css">
+  <link rel="alternate" type="application/atom+xml" title="Bots In Pieces" href="/bots-in-pieces/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  banyan-bot-blue-part-3">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/bots-in-pieces/">Home</a></li><li><a href="/bots-in-pieces/posts/">Posts</a></li><li><a href="/bots-in-pieces/categories/">Categories</a></li><li><a href="/bots-in-pieces/tags/">Tags</a></li><li><a href="/bots-in-pieces/search/">Search</a></li><li><a href="/bots-in-pieces/about/">Commenting Policy</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/bots-in-pieces/" class="site-logo" rel="home" title="Bots In Pieces">
+        <img src="/bots-in-pieces/images/logo.png" class="site-logo-img animated fadeInDown" alt="Bots In Pieces">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/bots-in-pieces/">Bots In Pieces</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Physical Computing (And Other Topics) In Easy To Digest "Byte-Size" Morsels</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Banyan Bot Blue Part 3
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/bots-in-pieces/images/MrYsLab.png" class="author-avatar u-photo" alt="Alan Yorinks"><div class="author-info"><div class="author-name">
+        <span class="p-name">Alan Yorinks</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-lg" title="Twitter"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li></ul>
+
+<span class="read-time">7 min read</span>
+
+    <time class="page-date dt-published" datetime="2019-06-16T07:24:39-04:00"><a class="u-url" href="">June 16, 2019</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">Banyan-Bot-Blue</li><li class="page-taxonomy">Android</li><li class="page-taxonomy">Bluetooth</li>
+  </ul>
+
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h1 id="an-android-app-for-robot-control">An Android App For Robot Control</h1>
+
+<h1 id="in-this-edition-of-bots-in-pieces-we-will">In this edition of <em>Bots In Pieces</em>, we will:</h1>
+<ol>
+  <li>Discuss the Android app that will control our robot’s motion.</li>
+  <li>Install the app on an Android device.</li>
+  <li>Connect the app to the Bluetooth test server discussed in the <a href="https://mryslab.github.io/bots-in-pieces/banyan-bot-blue/bluetooth/bluetooth-test-server/2019/06/15/banyan-bot-blue-part-2.html"><em>previous post.</em></a></li>
+  <li>Explain the  modifications made to the Android app to better meet our needs.</li>
+</ol>
+
+<h1 id="origins-of-the-android-app">Origins Of The Android App</h1>
+
+<p>In full disclosure, for the most part, the Android control app we will use was developed by
+<a href="http://www.martyncurrey.com/create-a-bluetooth-joypad-with-app-inventor-2/"><em>Martyn Currey</em>.</a> 
+I did however, make some simple modifications to meet the needs of this project.</p>
+
+<p>Martyn developed the app using <a href="https://appinventor.mit.edu/explore/"><em>App Inventor</em></a>, and his article
+does an excellent job at explaining the visual aspects as well as the coding aspects of his project.
+It is well worth the read.</p>
+
+<p>If you are unfamiliar with App Inventor, it is a Web-based IDE that allows you to easily create
+Android apps. It provides a drag-and-drop GUI design editor and a block language for coding
+the program logic. It is fairly easy to use and there are
+ <a href="http://appinventor.mit.edu/explore/ai2/beginner-videos.html"><em>many tutorials available</em></a>
+that explain how to use it.</p>
+
+<p>What did the original app look like on an Android device? Here is a screenshot from the original article:</p>
+
+<p><img src="http://www.martyncurrey.com/wp-content/uploads/2017/08/BluetoothJoyPad_draftLayout_01_800-533x300.png" alt="" /></p>
+
+<h1 id="changes-to-martyns-work">Changes To Martyn’s Work</h1>
+<p>The changes are minor. In the original design, when any of the on-screen buttons are pressed,
+a command consisting of an uppercase letter is sent across the Bluetooth link. When the button is released,
+a command consisting of a lower case letter is sent across the Bluetooth link.</p>
+
+<p>I have retained the concept of upper and lower case commands, however, I changed the command values for 
+the red and green buttons and changed the name of the button displayed.</p>
+
+<p>For the red button, I changed the command <em>from</em> ‘R’ and ‘r’ <em>to</em> ‘S’ and ‘s’. I also changed the display text from 
+<em>One</em> to <em>Spin Right</em></p>
+
+<p>Similarly for the green button, I changed the command <em>from</em> ‘G’ and ‘g’ <em>to</em> ‘W’ and ‘w’. I also changed the display text from 
+<em>Two</em> to <em>Spin Left</em></p>
+
+<p>For the blue button, I only removed the display text, since we will not be using this button for this project.</p>
+
+<p>Here is a summary of button actions and the data generated for each action.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Button</th>
+      <th style="text-align: center">Pressed</th>
+      <th style="text-align: right">Released</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Up</td>
+      <td style="text-align: center">‘U’</td>
+      <td style="text-align: right">‘u’</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Down</td>
+      <td style="text-align: center">‘D’</td>
+      <td style="text-align: right">‘d’</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Left</td>
+      <td style="text-align: center">‘L’</td>
+      <td style="text-align: right">‘l’</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Right</td>
+      <td style="text-align: center">‘R’</td>
+      <td style="text-align: right">‘r’</td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Spin Left</td>
+      <td style="text-align: center">‘S’</td>
+      <td style="text-align: right">’s’</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Spin Right</td>
+      <td style="text-align: center">‘W’</td>
+      <td style="text-align: right">‘w’</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In addition to the button changes, I’ve also added a screen widget to receive
+and display data sent from the Raspberry Pi. This feature was added to 
+demonstrate that two-way communication is possible between client and server over Bluetooth.</p>
+
+<p>If you look at the modified screen below, you will see that a <strong>Report:</strong> label was added to the
+screen. When data is received, it will be displayed next to this label.</p>
+
+<p>And finally, I changed the title of the app to <em>Banyan Bot Blue</em>.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/updated_app_1.jpg" alt="" /></p>
+
+<p>The details of these changes are explained in a <a href="#understanding-the-app-inventor-changes-made-to-the-original-app">section at the bottom of this post.</a></p>
+
+<p>Before looking at the details of the changes, let’s first load and use the app.</p>
+
+<h1 id="running-the-app-on-your-android-device">Running The App On Your Android Device</h1>
+
+<h2 id="getting-the-code">Getting The Code</h2>
+<p>When working with App Inventor, you can save your project to a file that will have a <em>.aia</em> extension.
+This file may be loaded into App Inventor if you wish to view or modify the project.</p>
+
+<p>App Inventor also allows you to create a <em>.apk</em> file, which is an Android executable allowing you to run
+the app on your device.</p>
+
+<p>Both the project file, <em>b_bot_blue.aia</em>, and the app, <em>b_bot_blue.apk</em>, are
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples/tree/master/banyan-bot-blue/android"><em>available for download on Github.</em></a></p>
+
+<h2 id="loading-the-modified-apk-into-your-android-device">Loading The Modified APK Into Your Android Device</h2>
+<p>To run <em>b_bot_blue.apk</em> on your Android device, you will need to <em>sideload</em> it. <a href="https://www.digitaltrends.com/mobile/how-to-sideload-an-apk/"><em>Here are general instructions
+on how to do so</em></a>,
+ but you might want to search for instructions for your specific device.</p>
+
+<h2 id="testing-the-app-with-the-bluetooth-test-server">Testing The App With The BlueTooth Test Server</h2>
+
+<h2 id="step-1">Step 1</h2>
+<p><a href="https://mryslab.github.io/bots-in-pieces/banyan-bot-blue/bluetooth/bluetooth-test-server/2019/06/15/banyan-bot-blue-part-2.html"><em>Follow the instructions</em></a>
+  from this previous post, to pair your Raspberry Pi to your Android device and to enable your Raspberry Pi
+  for serial communications over Bluetooth.</p>
+
+<h2 id="step-2">Step 2</h2>
+<p>Launch the Bluetooth Test Server on your Raspberry Pi with the following command:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">sudo python3 bluetooth_apk_validation_server.py
+</span></code></pre></div></div>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/start_server.png" alt="" /></p>
+
+<h2 id="step-3">Step 3</h2>
+
+<p>Launch the Android app on your Android device.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/AndroidControl.jpg" alt="" /></p>
+
+<h2 id="step-4">Step 4</h2>
+
+<p>Connect the app by pressing the blue <em>Connect</em> button on the upper right
+corner of the Android app. This will bring you to a <em>Connection Screen</em>. It will
+say <em>NOT CONNECTED</em></p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/not_connected.jpg" alt="" /></p>
+
+<h2 id="step-5">Step 5</h2>
+
+<p>Press the blue <em>NOT CONNECTED</em> button on the android device. This will
+bring up a screen to allow you to select a device to connect to. Select the Raspberry Pi
+that was paired earlier from the list of devices.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/select_pair.jpg" alt="" /></p>
+
+<h2 id="step-6">Step 6</h2>
+
+<p>The connection screen should now show that the device is connected. Press the gray
+<strong>BACK</strong> button.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/connected.jpg" alt="" /></p>
+
+<h2 id="step-7">Step 7</h2>
+
+<p>You are now ready to use the app. Notice that the dot in the upper
+left-hand corner turned from red to blue, indicating that you are connected.
+Notice that the <em>Report</em> is no longer blank, but says <em>Hello Banyan Bot</em>. This
+string was sent from the Bluetooth server on the Raspberry Pi.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/hello.jpg" alt="" /></p>
+
+<h2 id="step-8">Step 8</h2>
+
+<p>Press the buttons on the app, and look at the console on the Raspberry Pi. You
+should the button commands printed to the console.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/commands.png" alt="" /></p>
+
+<p>The following sections describe the details of the changes that I made to the original app.</p>
+
+<h1 id="understanding-the-app-inventor-changes-made-to-the-original-app">Understanding The App Inventor Changes Made To The Original App</h1>
+
+<h2 id="loading-the-project-into-app-inventor">Loading The Project Into App Inventor</h2>
+<p>First, <a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/android/b_bot_blue.aia"><em>download b_bot_blue.aia</em>.</a>
+Next, in App Inventor, select <em>Projects</em> from the menu and click on <em>Import project(.aia) from my computer…</em></p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/import_app_project.png" alt="" /></p>
+
+<p>A file-chooser dialog will appear. Select the <em>.aia</em> file to load into the editor.</p>
+
+<h2 id="designer-changes">Designer Changes</h2>
+<p>The App Inventor Editor has 2 modes, <em>Designer</em> and <em>Blocks</em>. You select the mode
+by clicking on either of the buttons located on the top right of the editor.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/blocks_design.png" alt="" /></p>
+
+<p>Here are the design changes I made:</p>
+
+<ol>
+  <li>Changed the title label text from <em>Bluetooth Joypad</em> to <em>Banyan Bot Blue</em>.</li>
+  <li>Changed the button text for the <em>Red</em> and <em>Green</em> buttons.</li>
+  <li>Removed the button text for the Blue button.</li>
+  <li>Added a <em>Report:</em> label next to the title label.</li>
+  <li>Added an empty label that will display incoming data.</li>
+  <li>Added the non-visible <em>timer</em> sensor widget.</li>
+</ol>
+
+<h2 id="changing-the-properties-of-a-gui-widget">Changing The Properties of A GUI Widget</h2>
+<p>If you click on any widget that you’ve dragged into the <em>Designer</em> editor, a <em>Properties</em> menu for that widget
+will appear on the right side of the editor.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/rbutton_1.png" alt="" /> <img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/properties_editor.png" alt="" /></p>
+
+<p>Using the properties editor, you can change 
+the look and feel of a widget. In the screenshot above, the red button was selected and the text
+for the button was changed to <em>Spin Right</em>.</p>
+
+<h2 id="adding-new-widgets">Adding New Widgets</h2>
+<p>To add a widget, select a widget from the <em>User Interface</em> palette. 
+<img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/user_palette.png" alt="" /></p>
+
+<p>Drag and drop the widget onto the <em>Viewer</em> section
+of the editor depicting your design. You will see a new component added to the components window of the editor.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/new_component.png" alt="" /></p>
+
+<p>For this project, the <em>report</em> component is a label that will contain data received
+from the RPi. The Label15 component is the label that contains the text <strong>Report:</strong>.</p>
+
+<p>In general, when making changes to the original project I did not rename the widgets.</p>
+
+<h2 id="adding-the-clock-sensor-widget">Adding The Clock Sensor Widget</h2>
+<p>To receive data from the Raspberry Pi, we need to add the non-visible <em>clock</em> widget to our design.
+To do this, select <em>Sensors</em> from the Palette menu on the left side of the editor, and then drag the clock
+to the center of the editor. You should see the clock added to the list of non-visible components just below
+your screen design.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/clock.png" alt="" /></p>
+
+<h2 id="modified-app-inventor-code-blocks">Modified App Inventor Code Blocks</h2>
+
+<p>To change the behavior of a widget, we need to interact with the code blocks.
+To do this, select <em>Blocks</em> in the upper right of the App Inventor Editor.</p>
+
+<p>Let’s look at the blocks for the red, green and blue buttons.
+Below you will see the original blocks and the modified blocks
+for these buttons. The command values were changed to meet our needs.</p>
+
+<h3 id="original-blocks-for-the-buttons">Original Blocks For The Buttons</h3>
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/orig_blocks.jpg" alt="" /><br />
+<em>Original Commands</em></p>
+
+<h3 id="modified-blocks-for-the-buttons">Modified Blocks for The Buttons</h3>
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/update_blocks.png" alt="" /><br />
+<em>Modified Commands</em></p>
+
+<h2 id="new-blocks-to-receive-and-display-data">New Blocks To Receive and Display Data</h2>
+<p>To receive data, we need to add some code. The blocks below show how to receive
+data from the Raspberry Pi and print the data to the <em>Report</em> section of the app.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/receive_data_blocks.png" alt="" />  <br />
+<em>Blocks Added To Receive Incoming Data</em></p>
+
+<h1 id="coming-up-in-the-next-post">Coming Up In The Next Post</h1>
+
+<p>Now that we have an Android app loaded and ready to go, in the next post, we will start
+building Banyan components to translate the Android commands into motor actions.</p>
+
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-bot-blue%2Fandroid%2Fbluetooth%2F2019%2F06%2F16%2Fbanyan-bot-blue-part-3.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Banyan+Bot+Blue+Part+3%20https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-bot-blue%2Fandroid%2Fbluetooth%2F2019%2F06%2F16%2Fbanyan-bot-blue-part-3.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-bot-blue%2Fandroid%2Fbluetooth%2F2019%2F06%2F16%2Fbanyan-bot-blue-part-3.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Banyan+Bot+Blue+Part+3&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fbanyan-bot-blue%2Fandroid%2Fbluetooth%2F2019%2F06%2F16%2Fbanyan-bot-blue-part-3.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/bots-in-pieces/banyan-bot-blue/bluetooth/bluetooth-test-server/2019/06/15/banyan-bot-blue-part-2.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Banyan Bot Blue Part 2
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/bots-in-pieces/banyan-framework/2019/06/26/banyan-background-4.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Banyan Bot Blue Part 4
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="/bots-in-pieces/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>Copyright (C) 2019-2021 Alan Yorinks. All Rights Reserved.</p>
+
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/bots-in-pieces/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>

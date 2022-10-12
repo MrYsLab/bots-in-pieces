@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    <title>Creating GUIs With Page</title>
+    <meta name="description" content="Back After A Hiatus Once again, I have not been able to post regularly. Thankfully, I am well, and I hope the same is true for you and yours.">
+    <link rel="canonical" href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/gui/tkinter/pymata-rh/2020/08/23/using-stage.html">
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/main.css">
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/skins/default.css">
+  <link rel="alternate" type="application/atom+xml" title="Bots In Pieces" href="/bots-in-pieces/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  creating-guis-with-page">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/bots-in-pieces/">Home</a></li><li><a href="/bots-in-pieces/posts/">Posts</a></li><li><a href="/bots-in-pieces/categories/">Categories</a></li><li><a href="/bots-in-pieces/tags/">Tags</a></li><li><a href="/bots-in-pieces/search/">Search</a></li><li><a href="/bots-in-pieces/about/">Commenting Policy</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/bots-in-pieces/" class="site-logo" rel="home" title="Bots In Pieces">
+        <img src="/bots-in-pieces/images/logo.png" class="site-logo-img animated fadeInDown" alt="Bots In Pieces">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/bots-in-pieces/">Bots In Pieces</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Physical Computing (And Other Topics) In Easy To Digest "Byte-Size" Morsels</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Creating GUIs With Page
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/bots-in-pieces/images/MrYsLab.png" class="author-avatar u-photo" alt="Alan Yorinks"><div class="author-info"><div class="author-name">
+        <span class="p-name">Alan Yorinks</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-lg" title="Twitter"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li></ul>
+
+<span class="read-time">5 min read</span>
+
+    <time class="page-date dt-published" datetime="2020-08-23T12:00:39-04:00"><a class="u-url" href="">August 23, 2020</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">GUI</li><li class="page-taxonomy">tkinter</li><li class="page-taxonomy">pymata-rh</li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">GUI</li>
+  </ul>
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h1 id="back-after-a-hiatus">Back After A Hiatus</h1>
+<p>Once again, I have not been able to post regularly. Thankfully,
+I am well, and I hope the same is true for you and yours.</p>
+
+<p>My excuse this time is that “I’ve been busy.”</p>
+
+<p>I’ve been working on a new Pymata client called <a href="https://mryslab.github.io/pymata4/">pymata4</a>
+ and a Firmata based client for the 
+<a href="https://mryslab.github.io/pymata_rh/index.html">RoboHAT MM1</a>
+and a Scratch extension for the RoboHAT board. Lately, I have been working on GUI for the 
+RoboHAT and thought I would share my discovery of a great GUI building tool.</p>
+
+<h1 id="some-thoughts-about-creating-guis">Some Thoughts About Creating GUIs</h1>
+
+<p>As a programmer, after crafting and then completing an interactive GUI, 
+there is no better feeling than sitting back, admiring my visual 
+masterpiece, and thinking to myself, “Job well done.”  And then I think, “Man, was that ever painful.”</p>
+
+<p>Let’s face it, GUI programming is often tedious and time-consuming. 
+No matter which GUI library you pick, getting the visual aspects “just right” 
+can be an infuriating experience. 
+Coding up the logic that interacts with the GUI widgets is usually quick and 
+straightforward, but not so for getting those pesky widgets looking “just right.”</p>
+
+<p>To aid in getting those visual aesthetics correct, modern GUI libraries include 
+geometry managers to assist in laying out the widgets on the screen. 
+The Python tkinter library includes 3 such geometry managers, namely, 
+the place, pack, and grid managers. <a href="http://zetcode.com/tkinter/layout/">ZetCode</a> describes these follows:</p>
+
+<p>“The place geometry manager positions widgets using absolute positioning. 
+The pack geometry manager organizes widgets in horizontal and vertical boxes. 
+The grid geometry manager places widgets in a two-dimensional grid. “</p>
+
+<p>Why am I discussing tkinter when there is so much else to choose from? 
+The answers are relatively simple – it is already bundled with Python, and I have used it in the past.</p>
+
+<p>When reading tutorials on creating GUIs, 
+you are usually strongly discouraged from using the place geometry manager since it requires 
+you to know the absolute x and y coordinates for each GUI widget on the screen. 
+Both the pack and grid managers use algorithms built into their code to perform screen placement. 
+Essentially, you just instantiate a GUI widget, associate it with the manager, and you are done. 
+Auto-magically, things are placed correctly for you. No-fuss, no muss. Well, that’s the theory. 
+In reality, the correct placement is close, but to get things to look like you may wish, 
+ a lot of “minor” tweaking is required to get everything to look “just right.”</p>
+
+<p>When I go to create a GUI, I usually use the grid manager to do my placement and 
+then spend the next several weeks doing the tweaking. I don’t know about you, 
+but I would rather be coding than tweaking. For me, this is not time well spent.</p>
+
+<p>For my latest GUI endeavor, I wanted to see if a WYSIWYG (What You See Is What You Get) 
+design tool exists for tkinter. With WYSIWIG, 
+you drag and place the widgets visually on the screen, thereby saving some time and frustration.<br />
+The tool then generates the code that instantiates and positions the widgets on the screen. 
+The tool should also have the ability to  create the stubs for the GUI events. 
+If I could find such a tool, I thought the entire GUI experience might be enjoyable and not just 
+at its completion.</p>
+
+<p>The good news is, I found such a tool, and its 
+name is <a href="https://sourceforge.net/projects/page/">Page.</a> The bad news, well, there is no bad news.</p>
+
+<p>Page uses the place layout manager, so what you see is truly what you get, 
+without having to go back and tweak things.</p>
+
+<p>Before getting into a discussion about Page, let me point out that you still 
+need to understand tkinter programming. There is no getting around that. 
+I have used <a href="https://smile.amazon.com/gp/product/B0071QDNLO/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&amp;psc=1">“Modern Tkinter For Busy Programmers”</a>
+  as a learning guide that clearly and succinctly gets to the point. 
+  There is also a <a href="https://tkdocs.com/tutorial/">free online version</a> if you prefer.</p>
+
+<p><img src="/bots-in-pieces/images/page/page1.png" alt="" /></p>
+
+<p>In the screenshot above, you can see Page ready to start a new project. Page displays its main menu, a Widget Toolbar, where you select the widget you wish to use. A Toplevel window, where you place the widgets, an Attribute editor will enable you to quickly modify the widget’s attributes and a Widget Tree that allows you to quickly find a widget you’ve added to the project.</p>
+
+<p>I am not going to spend much time here explaining the details of how to use Page. The Page documentation is extensive and does that very well.</p>
+
+<p>Instead, let me show what I accomplished in under an hour with Page. 
+<img src="/bots-in-pieces/images/page/page2.png" alt="" /></p>
+
+<p>Subsequently, I finished laying out all the tabs for the GUI in under 4 hours!</p>
+
+<p>The purpose of this GUI is to control the GPIO pins and the RoboHAT MM1 controller’s various devices. 
+The screenshot above is that of the first tab of that GUI. 
+This screen allows a user to select a digital output pin mode for all eight RoboHAT “Servo” pins.</p>
+
+<p>Once a pin mode is selected, the user may set the pin’s output value by using the slider widget.</p>
+
+<p>Because Page has a cut and paste feature, it was trivial to recreate all of the widgets for all 8 pins.</p>
+
+<p>After laying out all the widgets, all of the tkinter code, including the event stubs, was created with just 2 clicks of the mouse.</p>
+
+<p>Page has another really nice feature. It separates out the GUI generation code from that of the event stubs. That means you can independently update the GUI and only generate new stub code when you need to. It will even merge the new stub code with the existing code so that you don’t lose your changes.</p>
+
+<p>If you are interested in creating a tkinter GUI for your project, you should seriously consider using Page. The author, Don Rozenberg, supports this project, and IMHO goes above and beyond what most open source developers do. One last thing - make sure that you install ActiveState ActiveTcl as recommended in Page’s documentation. 
+Initially, I didn’t, and it caused some issues when using Linux.</p>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fgui%2Ftkinter%2Fpymata-rh%2F2020%2F08%2F23%2Fusing-stage.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Creating+GUIs+With+Page%20https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fgui%2Ftkinter%2Fpymata-rh%2F2020%2F08%2F23%2Fusing-stage.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fgui%2Ftkinter%2Fpymata-rh%2F2020%2F08%2F23%2Fusing-stage.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Creating+GUIs+With+Page&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Fgui%2Ftkinter%2Fpymata-rh%2F2020%2F08%2F23%2Fusing-stage.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/bots-in-pieces/pymata/arduino/2020/04/05/pymata-express.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Pymata-Express Updated
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/bots-in-pieces/arduino,stm32,firmata/2020/09/20/telemetrix-phase-1.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Introducing The Telemetrix Project
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="/bots-in-pieces/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>Copyright (C) 2019-2021 Alan Yorinks. All Rights Reserved.</p>
+
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/bots-in-pieces/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>

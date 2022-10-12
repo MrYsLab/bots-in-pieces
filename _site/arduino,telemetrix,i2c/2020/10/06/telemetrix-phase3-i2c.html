@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    <title>Phase 3 - I2C Support</title>
+    <meta name="description" content="I2C Support Telemetrix Phase 3 has been released, implementing i2c support. You can view the Python3 API here.">
+    <link rel="canonical" href="https://mryslab.github.io/bots-in-pieces/bots-in-pieces/arduino,telemetrix,i2c/2020/10/06/telemetrix-phase3-i2c.html">
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/main.css">
+  <link rel="stylesheet" href="/bots-in-pieces/assets/css/skins/default.css">
+  <link rel="alternate" type="application/atom+xml" title="Bots In Pieces" href="/bots-in-pieces/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  phase-3-i2c-support">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/bots-in-pieces/">Home</a></li><li><a href="/bots-in-pieces/posts/">Posts</a></li><li><a href="/bots-in-pieces/categories/">Categories</a></li><li><a href="/bots-in-pieces/tags/">Tags</a></li><li><a href="/bots-in-pieces/search/">Search</a></li><li><a href="/bots-in-pieces/about/">Commenting Policy</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+      <a href="/bots-in-pieces/" class="site-logo" rel="home" title="Bots In Pieces">
+        <img src="/bots-in-pieces/images/logo.png" class="site-logo-img animated fadeInDown" alt="Bots In Pieces">
+      </a>
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/bots-in-pieces/">Bots In Pieces</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">Physical Computing (And Other Topics) In Easy To Digest "Byte-Size" Morsels</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">Phase 3 - I2C Support
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><img src="/bots-in-pieces/images/MrYsLab.png" class="author-avatar u-photo" alt="Alan Yorinks"><div class="author-info"><div class="author-name">
+        <span class="p-name">Alan Yorinks</span>
+      </div><ul class="author-links"><li class="author-link">
+            <a class="u-url" rel="me" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-lg" title="Twitter"></i></a>
+          </li><li class="author-link">
+            <a class="u-url" rel="me" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-lg" title="GitHub"></i></a>
+          </li></ul>
+
+<span class="read-time">2 min read</span>
+
+    <time class="page-date dt-published" datetime="2020-10-06T11:00:39-04:00"><a class="u-url" href="">October 6, 2020</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">arduino,telemetrix,i2c</li>
+  </ul>
+
+
+        
+  <h3 class="page-taxonomies-title">Tags</h3>
+  <ul class="page-taxonomies"><li class="page-taxonomy">arduino,i2c</li>
+  </ul>
+
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h1 id="i2c-support">I2C Support</h1>
+<p>Telemetrix Phase 3 has been released, implementing i2c support. You can view the Python3 API
+<a href="https://htmlpreview.github.com/?https://github.com/MrYsLab/telemetrix/blob/master/phase3/api/index.html">here.</a></p>
+
+<p>To use the i2c API, you must first call <em>set_pin_mode_i2c</em> once within your application, independent
+of how many i2c devices your application supports. Once <em>set_pin_mode_i2c</em> is called, the <em>i2c read and write</em> methods 
+ interact with the individual i2c devices. An example i2c application for the ADXL345 accelerometer may be
+  <a href="https://github.com/MrYsLab/telemetrix/blob/master/examples/i2c_adxl345_accelerometer.py">viewed here.</a>.</p>
+
+<h1 id="installing-phase-3">Installing Phase 3</h1>
+
+<ol>
+  <li>
+    <p>Go to the <a href="https://github.com/MrYsLab/telemetrix">telemetrix repository</a> and click on the green 
+code button to download the .zip file.</p>
+  </li>
+  <li>
+    <p>Extract the files into a directory of your choice. A directory, called telemetrix-master, will be created, and
+it will contain all the necessary files.</p>
+  </li>
+  <li>
+    <p>Install the latest Arduino code by opening the Arduino IDE. From the main menu, go to <em>Sketch</em>, 
+select <em>Include Library</em>, and then select <em>Add .ZIP Library</em>. Select the Telemetrix4Arduino.zip file in the 
+telemetrix-master/phase3 directory. Finally, click on <em>File</em> from the IDE main menu, and select <em>Examples</em> and then
+select Telemetrix4Arduino and upload the code to your device.</p>
+  </li>
+  <li>
+    <p>To install the phase3 Python code, cd to telemetrix-master/phase3, and then type:</p>
+  </li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># For Windows:
+
+python setup.py install
+
+
+# Or for macOS and Linux:
+
+
+sudo python3 setup.py install
+</code></pre></div></div>
+<p>You are now ready to try out the examples in the telemtrix-master/examples directory using phase 3 code. 
+Note that you may need to change pin numbers in the examples to match your
+hardware setup. All of the examples require the use of Python 3.</p>
+
+<h1 id="whats-next">What’s Next</h1>
+
+<h2 id="try-arduinojson-for-building-serial-communication-messages">Try ArduinoJSON For Building Serial Communication Messages</h2>
+<p>I want to experiment using ArduinoJson for data transfer between the Python client and the Arduino server. 
+I may also try implementing Telemetrix for the ESP-8266 performing data transfer between the client
+and server over WiFi. I will be basing this off of the following links:</p>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=DeE6Ufsd2kk">Get raw P2P Message from NodeMCU or ESP8266</a></li>
+  <li><a href="https://github.com/shashank-shark/fly-nasa/blob/master/docs/raw-node-message/raw-node.md">Getting raw TCP / IP messages from NodeMCU</a></li>
+</ul>
+
+<h2 id="supporting-the-hc-sr04-and-dht-on-arduino-uno">Supporting The HC-SR04 and DHT on Arduino Uno</h2>
+<p>Here is what the Arduino IDE reports when installing Telemetrix4Arduino for phase 3 on an Uno:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sketch uses 7274 bytes (22%) of program storage space. Maximum is 32256 bytes.
+Global variables use 1471 bytes (71%) of dynamic memory, leaving 577 bytes for local variables. Maximum is 2048 bytes.
+
+</code></pre></div></div>
+<p>Space is becoming tight.
+ I may surround the code supporting these two features with #ifdefs to 
+ make the build configurable by defining values at the top of the file.  If this works out well, users
+can do the same for all the features and then select the supported features they want, but
+depending upon the board being used, they may not be able to select all.</p>
+
+<h1 id="why-esp-8266-or-esp32-support-is-important">Why ESP-8266 or ESP32 Support Is Important</h1>
+<p>For robotics type activities, untethered remote control is a necessity. Communicating
+over TCP/IP provides a robust link and is not as fussy as a Bluetooth link.
+More on this as my experiments progress.</p>
+
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Ctelemetrix%2Ci2c%2F2020%2F10%2F06%2Ftelemetrix-phase3-i2c.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Phase+3+-+I2C+Support%20https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Ctelemetrix%2Ci2c%2F2020%2F10%2F06%2Ftelemetrix-phase3-i2c.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Ctelemetrix%2Ci2c%2F2020%2F10%2F06%2Ftelemetrix-phase3-i2c.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=Phase+3+-+I2C+Support&url=https%3A%2F%2Fmryslab.github.io%2Fbots-in-pieces%2Fbots-in-pieces%2Farduino%2Ctelemetrix%2Ci2c%2F2020%2F10%2F06%2Ftelemetrix-phase3-i2c.html" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+          
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/bots-in-pieces/arduino,telemetrix,servo/2020/10/03/telemetrix-phase2_code-discussion.html">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Phase 2 - Server And Client Details
+
+      </span>
+    </a>
+  
+
+  
+    <a class="page-next" href="/bots-in-pieces/arduino,telemetrix,hc-sr04,sonar/2020/10/10/phase4-sonar.html">
+      <h4 class="page-pagination-label">Next</h4>
+      <span class="page-pagination-title">
+        Telemetrix Phase 4 - HC-SRO4 Sonar Distance Sensor Support
+ <i class="fas fa-arrow-right"></i>
+      </span>
+    </a>
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://twitter.com/BrassFigLigee"><i class="fab fa-twitter-square fa-2x" title="Twitter"></i></a><a class="social-icon" href="https://github.com/MrYsLab"><i class="fab fa-github-square fa-2x" title="GitHub"></i></a><a class="social-icon" href="/bots-in-pieces/atom.xml"><i class="fas fa-rss-square fa-2x" title="Feed"></i></a></div><div class="copyright">
+    
+      <p>Copyright (C) 2019-2021 Alan Yorinks. All Rights Reserved.</p>
+
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/bots-in-pieces/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>
