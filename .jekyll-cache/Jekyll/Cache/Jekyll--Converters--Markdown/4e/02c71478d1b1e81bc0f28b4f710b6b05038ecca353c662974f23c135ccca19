@@ -1,0 +1,69 @@
+I"C<p><img src="/bots-in-pieces/images/unnamed.png" alt="" /></p>
+
+<p>I’ve been working on providing a Bluetooth version of Telemetrix for several devices 
+since before the New Year. To put it mildly, it has been slow going and sometimes 
+exasperating. For those of you who know my work, I prefer to support Linux, macOS, and 
+Windows. Unfortunately, for Bluetooth, both Classic and BLE, this will not be possible. 
+Windows does not seem to be supported for Python, nor for NodeJS. I should have realized
+this when reading articles on developing Bluetooth - Windows is never mentioned.  No 
+Windows test tools or libraries in-sight. The Python PyBluez library 
+can be compiled for Windows, but that involves installing a version of Visual Studio 
+to do so. I would not even think about suggesting that for my Windows users. It would 
+turn into a support nightmare for the users and me.</p>
+
+<p>For Bluetooth classic RFCOMM using 
+PyBlueZ, I do have a working prototype. I also have a working prototype for BLE 
+using the Python Bleak library for the Nordic UART Service. However, Bleak is a 
+Python asyncio library, 
+so it may not be everyone’s
+cup of tea. Bleak, which is supposed to work with Windows, 
+has known Windows issues that make it a no-go on Windows for me.</p>
+
+<p>So what does this boil down to?</p>
+
+<p>Here is a table of devices and their intended Telemetrix support. This should work for 
+both
+Linux and macOS, but I have no way of testing the mac, so there are no guarantees 
+mac will work (but it should).</p>
+
+<p>I also cannot guarantee a timeframe. Since the ESP32 is the easiest device to work 
+with, I will be completing that first, and its code will act as a template for the 
+other devices. Unfortunately, I cannot predict a timeframe since Bluetooth seems
+to enjoy surprising me. Stay tuned for periodic updates as progress is made.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Device</th>
+      <th style="text-align: center">Classic Bluetooth Non-Asyncio</th>
+      <th style="text-align: center">BLE Asyncio With Bleak</th>
+      <th style="text-align: center">BLE Non-Asyncio With PyBlueZ</th>
+      <th style="text-align: center"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">ESP32</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">To Be Investigated</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">micro:bit v2</td>
+      <td style="text-align: center">Device does not support this mode</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">To Be Investigated</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Adafruit CircuitPlayground Bluefruit</td>
+      <td style="text-align: center">Device does not support this mode</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">To Be Investigated</td>
+      <td style="text-align: center"> </td>
+    </tr>
+  </tbody>
+</table>
+
+:ET

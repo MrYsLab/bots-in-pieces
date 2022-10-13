@@ -1,0 +1,54 @@
+I"$<h1 id="implementing-servo-support">Implementing Servo Support</h1>
+
+<p>My original intent for servo motor support was to use a PCA9685 based
+i2c controller and provide the implementation as an example that users
+could expand upon to create a full application.</p>
+
+<p>I intend to still provide support for the PCA9685 in the future but as an 
+installable library. Getting the PCA9685 to work with the existing i2c support should 
+be reasonably simple to get going, 
+so I would see if there is some way to create libraries for device support and have 
+the ability to “optionally install” them at compile time. Creating installable 
+library support will take some thought and experimentation, so I am putting that
+on the back-burner for the moment.</p>
+
+<p>Instead, I am currently experimenting with providing direct PWM support for servo motors. 
+Servo motors require a frequency of 50 Hz. That is to say, that a pulse is generated 
+every 20 ms, sometimes expressed as a period of 20ms. To vary the servo’s position 
+between 0 and 180 degrees, the pulse is set to between 1ms and 2 ms.</p>
+
+<p>Modifying the code on 
+<a href="https://www.raspberrypi.org/forums/viewtopic.php?t=303116">this Raspberry Pi Forum posting,</a>
+I generated the 20ms period without writing any PIO code. However, I have 
+not been able to get the resolution for generating the 180 different pulse lengths for 
+servo control. I will be spending a few days on this, but I am not very hopeful for 
+success on this front.</p>
+
+<p>So, what is plan B? I recently read about an 
+<a href="https://github.com/earlephilhower/arduino-pico">Arduino-Core compatible library</a> being 
+released. I am considering reusing the PIO code in the 
+<a href="https://github.com/earlephilhower/arduino-pico/tree/master/libraries/Servo">servo library.</a></p>
+
+<p>If I do so, I will give the original author full attribution, as so richly deserved.</p>
+
+<p>The original intent of the Telemetrix project was to repurpose Arduino-Core libraries 
+to run on the various Telemetrix supported MCU boards. Using a board-specific 
+Arduino-Core makes porting from one board type to another quick and 
+straightforward.</p>
+
+<p>When I started this project, the Arduino-Core was not available, so I decided to 
+use the Pico C-SDK directly. Part of the fun, for me at least, in doing these types 
+of projects is expanding my knowledge, even when it can be slow going and sometimes 
+frustrating. So, why not use the now available Arduino-Core if porting is likely to be 
+quick? The reason is that many of the available Arduino libraries have yet to be 
+ported to the Pico, so if I want to support some additional devices, such as an 
+HC-SRO4 distance sensor, I would have to generate the PIO code anyway. By keeping 
+control over device support, I do not have to contend with libraries that might break 
+future releases.</p>
+
+<p>Because I am treading where I have limited expertise, things may progress at a 
+somewhat slower pace. I ask for patience since I believe it will result in a 
+better overall user experience in the end.</p>
+
+<p>As always, stay tuned.</p>
+:ET

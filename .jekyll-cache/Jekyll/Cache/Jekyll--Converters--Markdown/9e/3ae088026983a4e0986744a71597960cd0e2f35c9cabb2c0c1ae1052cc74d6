@@ -1,0 +1,62 @@
+I"	<h1 id="pymata-express-version-111-released">Pymata-Express Version 1.11 Released!</h1>
+<p>An update of <a href="https://mryslab.github.io/pymata-express/">Pymata-Express</a>
+has been released. The API has been updated to be consistent with the
+pymata4 API. The format for the data reported in callbacks has been updated
+as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Callback</th>
+      <th>Prior To Version 1.11</th>
+      <th>Version 1.11 And Above</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>analog input</td>
+      <td>[pin, current reported value, pin_mode, timestamp]</td>
+      <td>[pin_mode = 2, pin, current reported value, pin_mode, timestamp]</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>digital input</td>
+      <td>[pin, current reported value, pin_mode, timestamp]</td>
+      <td>[pin_mode = 0, pin, current reported value, pin_mode, timestamp]</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>hc-sr04</td>
+      <td>[pin, distance]</td>
+      <td>[pin_mode=12, trigger pin number, distance, timestamp]</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>i2c</td>
+      <td>[Device address, data bytes]</td>
+      <td>[pin_mode=6, i2c device address, data bytes, timestamp]</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>No other API changes were implemented.</p>
+
+<p>The <a href="https://mryslab.github.io/pymata-express/">User’s Guide</a> has been updated and improved.</p>
+
+<p>Here is a list of its major features:</p>
+
+<ul>
+  <li>Python 3.7 (or higher) compatible.</li>
+  <li>It offers a simplified pure asyncio <a href="https://htmlpreview.github.com/?https://github.com/MrYsLab/pymata-express/blob/master/html/pymata_express/index.html">API.</a></li>
+  <li>Uses asyncio concurrency techniques for high efficiency.</li>
+  <li>It Is <a href="https://github.com/MrYsLab/FirmataExpress">FirmataExpress</a> compatible (link speed runs at 115200)</li>
+  <li>Data change events may be associated with a callback function for asynchronous 
+notification, or polling may be used when a synchronous approach is desired.</li>
+  <li>Each data change event is time-stamped and stored.</li>
+  <li>A <a href="https://github.com/MrYsLab/pymata-express/tree/master/examples">full set of working examples</a>
+ are available for download online.</li>
+</ul>
+
+:ET

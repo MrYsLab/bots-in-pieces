@@ -1,0 +1,6 @@
+I"h<h1 id="why-am-i-evaluating-arduinojson">Why Am I Evaluating ArduinoJson?</h1>
+<p>Currently, all data transferred between the Arduino Server and Python 
+Client is in binary, positionally dependent form. When receiving a serialized
+data packet, the receiver must associate the command or report descriptor with the
+number of bytes that comprise the packet.</p>
+:ET

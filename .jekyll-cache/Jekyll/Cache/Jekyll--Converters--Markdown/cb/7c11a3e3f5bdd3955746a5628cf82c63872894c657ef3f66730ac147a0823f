@@ -1,0 +1,75 @@
+I"5<h1 id="i2c-support">I2C Support</h1>
+<p>Telemetrix Phase 3 has been released, implementing i2c support. You can view the Python3 API
+<a href="https://htmlpreview.github.com/?https://github.com/MrYsLab/telemetrix/blob/master/phase3/api/index.html">here.</a></p>
+
+<p>To use the i2c API, you must first call <em>set_pin_mode_i2c</em> once within your application, independent
+of how many i2c devices your application supports. Once <em>set_pin_mode_i2c</em> is called, the <em>i2c read and write</em> methods 
+ interact with the individual i2c devices. An example i2c application for the ADXL345 accelerometer may be
+  <a href="https://github.com/MrYsLab/telemetrix/blob/master/examples/i2c_adxl345_accelerometer.py">viewed here.</a>.</p>
+
+<h1 id="installing-phase-3">Installing Phase 3</h1>
+
+<ol>
+  <li>
+    <p>Go to the <a href="https://github.com/MrYsLab/telemetrix">telemetrix repository</a> and click on the green 
+code button to download the .zip file.</p>
+  </li>
+  <li>
+    <p>Extract the files into a directory of your choice. A directory, called telemetrix-master, will be created, and
+it will contain all the necessary files.</p>
+  </li>
+  <li>
+    <p>Install the latest Arduino code by opening the Arduino IDE. From the main menu, go to <em>Sketch</em>, 
+select <em>Include Library</em>, and then select <em>Add .ZIP Library</em>. Select the Telemetrix4Arduino.zip file in the 
+telemetrix-master/phase3 directory. Finally, click on <em>File</em> from the IDE main menu, and select <em>Examples</em> and then
+select Telemetrix4Arduino and upload the code to your device.</p>
+  </li>
+  <li>
+    <p>To install the phase3 Python code, cd to telemetrix-master/phase3, and then type:</p>
+  </li>
+</ol>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># For Windows:
+
+python setup.py install
+
+
+# Or for macOS and Linux:
+
+
+sudo python3 setup.py install
+</code></pre></div></div>
+<p>You are now ready to try out the examples in the telemtrix-master/examples directory using phase 3 code. 
+Note that you may need to change pin numbers in the examples to match your
+hardware setup. All of the examples require the use of Python 3.</p>
+
+<h1 id="whats-next">What’s Next</h1>
+
+<h2 id="try-arduinojson-for-building-serial-communication-messages">Try ArduinoJSON For Building Serial Communication Messages</h2>
+<p>I want to experiment using ArduinoJson for data transfer between the Python client and the Arduino server. 
+I may also try implementing Telemetrix for the ESP-8266 performing data transfer between the client
+and server over WiFi. I will be basing this off of the following links:</p>
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=DeE6Ufsd2kk">Get raw P2P Message from NodeMCU or ESP8266</a></li>
+  <li><a href="https://github.com/shashank-shark/fly-nasa/blob/master/docs/raw-node-message/raw-node.md">Getting raw TCP / IP messages from NodeMCU</a></li>
+</ul>
+
+<h2 id="supporting-the-hc-sr04-and-dht-on-arduino-uno">Supporting The HC-SR04 and DHT on Arduino Uno</h2>
+<p>Here is what the Arduino IDE reports when installing Telemetrix4Arduino for phase 3 on an Uno:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sketch uses 7274 bytes (22%) of program storage space. Maximum is 32256 bytes.
+Global variables use 1471 bytes (71%) of dynamic memory, leaving 577 bytes for local variables. Maximum is 2048 bytes.
+
+</code></pre></div></div>
+<p>Space is becoming tight.
+ I may surround the code supporting these two features with #ifdefs to 
+ make the build configurable by defining values at the top of the file.  If this works out well, users
+can do the same for all the features and then select the supported features they want, but
+depending upon the board being used, they may not be able to select all.</p>
+
+<h1 id="why-esp-8266-or-esp32-support-is-important">Why ESP-8266 or ESP32 Support Is Important</h1>
+<p>For robotics type activities, untethered remote control is a necessity. Communicating
+over TCP/IP provides a robust link and is not as fussy as a Bluetooth link.
+More on this as my experiments progress.</p>
+
+:ET

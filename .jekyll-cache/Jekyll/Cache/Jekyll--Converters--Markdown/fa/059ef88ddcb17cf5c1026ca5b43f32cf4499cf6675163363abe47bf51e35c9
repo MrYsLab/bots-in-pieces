@@ -1,0 +1,183 @@
+I"E<h1 id="second-beta-release---i2c-support">Second Beta Release - I2C Support</h1>
+<p>I’ve released the 
+<a href="https://github.com/MrYsLab/telemetrix-rpi-pico">second beta</a>
+of Telemetrix for the Raspberry Pi Pico.
+This release incorporates support for monitoring and controlling i2c devices.
+The Pico supports two i2c ports, and Telemetrix supports both.</p>
+
+<p>There are three API methods supporting i2c.</p>
+
+<p>The first, <a href="https://htmlpreview.github.io/?https://github.
+com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.set_pin_mode_i2c">set_pin_mode_i2c,</a> 
+allows you to  select which of the two i2c 
+ports the device is attached to and the GPIO pins you assign as SDA 
+and SCL.</p>
+
+<p><strong>Note:</strong> This method must be called before using the next two i2c methods.</p>
+
+<p>The second API method, 
+<a href="https://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.i2c_write">i2c_write,</a>
+allows you to write a variable number of bytes to the i2c device on the specified
+i2c port. In 
+addition, you may
+specify if the master retains control of the bus at the end of the transfer. Being 
+able to do so is
+required for some i2c devices.</p>
+
+<p>The last API method,
+<a href="https://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.i2c_read">i2c_read,</a>
+provides a way to retrieve data from an i2c device on the specified i2c port. You 
+specify the number of bytes to return, and 
+you may optionally provide an i2c register used for the read. It also allows you to 
+specify if 
+the master retains control of the bus at the end of the transfer.
+You must also specify a callback function that receives the data reported by the Pico.</p>
+
+<p>To summarize, the i2c support is a generalized view for controlling and monitoring i2c devices. 
+In order to support a specific i2c device, the i2c methods listed above are used to 
+implement control and
+monitoring as described in the device’s spec sheet.</p>
+
+<p>Let’s take a quick look at a
+<a href="https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/examples/i2c_adxl345_accelerometer.py">working example</a> 
+provided for interacting with the ADXL345 3-axis accelerometer.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1"># setup adxl345
+</span>
+    <span class="c1"># device address = 83
+</span>    <span class="n">my_board</span><span class="p">.</span><span class="n">set_pin_mode_i2c</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># time.sleep(.2)
+</span>
+    <span class="c1"># set up power and control register
+</span>    <span class="n">my_board</span><span class="p">.</span><span class="n">i2c_write</span><span class="p">(</span><span class="mi">83</span><span class="p">,</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="c1"># time.sleep(.2)
+</span>    <span class="n">my_board</span><span class="p">.</span><span class="n">i2c_write</span><span class="p">(</span><span class="mi">83</span><span class="p">,</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+    <span class="c1"># time.sleep(.2)
+</span>
+    <span class="c1"># set up the data format register
+</span>    <span class="n">my_board</span><span class="p">.</span><span class="n">i2c_write</span><span class="p">(</span><span class="mi">83</span><span class="p">,</span> <span class="p">[</span><span class="mi">49</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+    <span class="c1"># time.sleep(.5)
+</span>    <span class="n">my_board</span><span class="p">.</span><span class="n">i2c_write</span><span class="p">(</span><span class="mi">83</span><span class="p">,</span> <span class="p">[</span><span class="mi">49</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+    <span class="c1"># time.sleep(.1)
+</span></code></pre></div></div>
+<p>Here we initialize the chip. If you notice, the sleeps are commented out. With 
+Telemetrix, you can run at full speed without having to introduce additional delays. 
+The PICO C-SDK handles things very nicely.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="c1"># read 6 bytes from the data register
+</span>        <span class="k">try</span><span class="p">:</span>
+            <span class="n">my_board</span><span class="p">.</span><span class="n">i2c_read</span><span class="p">(</span><span class="mi">83</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">the_callback</span><span class="p">)</span>
+            <span class="c1"># time.sleep(.3)
+</span>        <span class="k">except</span> <span class="p">(</span><span class="nb">KeyboardInterrupt</span><span class="p">,</span> <span class="nb">RuntimeError</span><span class="p">):</span>
+            <span class="n">my_board</span><span class="p">.</span><span class="n">shutdown</span><span class="p">()</span>
+            <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+</code></pre></div></div>
+<p>The code above is the main loop of the program. It requests 6 bytes, which comprise
+the upper and lower values for the x, y, and z axes.</p>
+
+<p>Consistent with the Telemetrix philosophy, i2c reports are made available to the 
+application via a 
+user-supplied callback 
+function. Callbacks are used because the application is notified as fast as 
+possible of detected data changes on the Pico.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">the_callback</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="s">"""
+    Data is supplied by the library.
+    :param data: [report_type, i2c port, Device address, device read register,
+    number of bytes returned, x data pair, y data pair, z data pair
+    time_stamp]
+    """</span>
+
+    <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'%Y-%m-%d %H:%M:%S'</span><span class="p">,</span> <span class="n">time</span><span class="p">.</span><span class="n">localtime</span><span class="p">(</span><span class="n">time_stamp</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'Raw Data:  </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'ADXL345 Report On: </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s">: '</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'</span><span class="se">\t\t</span><span class="s">i2c_port=</span><span class="si">{</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s"> x-pair=</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s">, '</span>
+          <span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="si">}</span><span class="s">  y-pair=</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="si">}</span><span class="s">, '</span>
+          <span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="si">}</span><span class="s"> z-pair=</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="si">}</span><span class="s">, '</span>
+          <span class="sa">f</span><span class="s">'</span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>The user-provided callback function must supply a single function parameter, called 
+<em>data</em>, in the example above.
+When Telemetrix calls your callback function, it provides a list describing the report 
+from the Pico. A time-stamp is included for every callback to indicate the time that the 
+event occurred.</p>
+
+<p>The elements in the list are described in the API for each callback type. For i2c_read,
+the last line of the method description contains the description of the items in the 
+callback list.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">i2c_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">register</span><span class="p">,</span> <span class="n">number_of_bytes</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">i2c_port</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">no_stop</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+    <span class="n">Read</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">number</span> <span class="n">of</span> <span class="nb">bytes</span> <span class="k">from</span> <span class="n">the</span> <span class="n">specified</span> <span class="n">register</span> <span class="k">for</span> <span class="n">the</span> <span class="n">i2c</span> <span class="n">device</span><span class="p">.</span>
+
+    <span class="p">:</span><span class="n">param</span> <span class="n">address</span><span class="p">:</span> <span class="n">i2c</span> <span class="n">device</span> <span class="n">address</span>
+
+    <span class="p">:</span><span class="n">param</span> <span class="n">register</span><span class="p">:</span> <span class="n">i2c</span> <span class="n">register</span> <span class="p">(</span><span class="ow">or</span> <span class="bp">None</span> <span class="k">if</span> <span class="n">no</span> <span class="n">register</span> <span class="n">selection</span> <span class="ow">is</span> <span class="n">needed</span><span class="p">)</span>
+
+    <span class="p">:</span><span class="n">param</span> <span class="n">number_of_bytes</span><span class="p">:</span> <span class="n">number</span> <span class="n">of</span> <span class="nb">bytes</span> <span class="n">to</span> <span class="n">be</span> <span class="n">read</span>
+
+    <span class="p">:</span><span class="n">param</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Required</span> <span class="n">callback</span> <span class="n">function</span> <span class="n">to</span> <span class="n">report</span> <span class="n">i2c</span> <span class="n">data</span> <span class="k">as</span> <span class="n">a</span> <span class="n">result</span> <span class="n">of</span> <span class="n">read</span> <span class="n">command</span>
+
+    <span class="p">:</span><span class="n">param</span> <span class="n">i2c_port</span><span class="p">:</span> <span class="mi">0</span> <span class="o">=</span> <span class="n">port</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">=</span> <span class="n">port</span> <span class="mi">1</span>
+
+    <span class="p">:</span><span class="n">param</span> <span class="n">no_stop</span><span class="p">:</span> <span class="n">If</span> <span class="n">true</span><span class="p">,</span> <span class="n">master</span> <span class="n">retains</span> <span class="n">control</span> <span class="n">of</span> <span class="n">the</span> <span class="n">bus</span> <span class="n">at</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">transfer</span> <span class="p">(</span><span class="n">no</span> <span class="n">Stop</span> <span class="ow">is</span> <span class="n">issued</span><span class="p">),</span> <span class="ow">and</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">transfer</span> <span class="n">will</span> <span class="n">begin</span> <span class="k">with</span> <span class="n">a</span> <span class="n">Restart</span> <span class="n">rather</span> <span class="n">than</span> <span class="n">a</span> <span class="n">Start</span><span class="p">.</span>
+
+    <span class="n">callback</span> <span class="n">returns</span> <span class="n">a</span> <span class="n">data</span> <span class="nb">list</span><span class="p">:</span> <span class="p">[</span><span class="n">I2C_READ_REPORT</span><span class="p">,</span> <span class="n">i2c_port</span><span class="p">,</span> <span class="n">i2c_device_address</span><span class="p">,</span> <span class="n">count</span> <span class="n">of</span> <span class="n">data</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">data</span> <span class="nb">bytes</span><span class="p">,</span> <span class="n">time</span><span class="o">-</span><span class="n">stamp</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Here is sample output for the ADXL345 example. Both raw and “cooked” data are presented.</p>
+
+<p><img src="/bots-in-pieces/images/adxl_callback.png" alt="" /></p>
+
+<h1 id="some-thoughts-on-working-with-the-pico-c-sdk-versus-the-arduino-core">Some Thoughts On Working With The Pico C-SDK Versus The Arduino-Core</h1>
+
+<p>An Arduino-Core version is coming for the RP2040 chip, but no release date has been 
+announced. That is why I am using the RP2040 native SDK.</p>
+
+<p>Using an Arduino-Core is a familiar API if you have developed Arduino sketches. That 
+may appear to be an advantage. However, things are not always consistent between 
+implementations for the various processors. One advantage of using an Arduino-Core 
+is that you may be able to reuse an existing Arduino library, such as support for a
+specific sensor or actuator. Currently, few support libraries are available for the 
+RP2040, but that is most likely to change over time. It is not clear yet if the 
+Arduino-Core for RP2040 will include PIO support, but I rather doubt it. Assuming I 
+can master programming the PIO, not having access to it would be a major setback.</p>
+
+<p>A major advantage of using the RP2040 C-SDK is that its documentation is excellent. 
+Between the documentation and extensive set of Pico examples, understanding the SDK is 
+very straightforward. And if you run into something where you need some additional 
+help, the Raspberry Pi Forum is a wonderful resource.</p>
+
+<p>I will admit that there is somewhat of a learning curve, but it is not excessively steep.
+I have yet to master the syntax of cmake files but have avoided having to do that by 
+using the existing 
+files provided with the examples.</p>
+
+<p>All in all, I am pleased with the C-SDK, and when the Arduino-Core finally 
+becomes available, I will probably continue using the C-SDK. 
+Time will tell which becomes the predominant development paradigm.</p>
+
+<h1 id="what-comes-next">What Comes Next</h1>
+
+<p>I am currently reading up on the PIO of the RP2040 to provide support for NeoPixels.
+NeoPixels are the next feature. 
+I know that there are examples in existence that I probably can reuse as-is. 
+Still, I want to understand the “magic” of the PIO processors that are an integral part
+of the RP2040, all in preparation for implementing my PIO libraries for devices 
+such as the HC-SR04 distance sensor.</p>
+
+<p>I am also doing some code cleanup. I am eliminating literal values and replacing 
+them with #defines to make the code easier to read and maintain. 
+Also, buffer storage will be defined as global so that it does not use valuable 
+stack space. Finally, I am splitting the .c file into a .c and .h (header) file.
+Again this makes things simpler to understand and maintain and is aligned with 
+standard C coding practices.</p>
+
+<p>So stay tuned!</p>
+:ET

@@ -1,0 +1,281 @@
+I"}9<h1 id="preparing-the-raspberry-pi-for-bluetooth-communication">Preparing The Raspberry Pi For Bluetooth Communication</h1>
+
+<h1 id="in-this-edition-of-bots-in-pieces-we-will">In this edition of <em>Bots In Pieces</em>, we will:</h1>
+
+<ol>
+  <li>Configure the Raspberry Pi for Bluetooth RFCOMM communications.</li>
+  <li>Explain how to pair an Android device with the Raspberry Pi.</li>
+  <li>Install the <a href="https://github.com/pybluez/pybluez"><em>pybluez</em></a> Python package.</li>
+  <li>Install a Bluetooth Server test tool.</li>
+</ol>
+
+<blockquote>
+  <p><strong>Don’t have an Android device? Not to worry!</strong></p>
+
+  <p>In a future post, a <em>tkinter</em> component will be presented that can be
+used to replace the Android app and Bluetooth server. This will allow you
+to drive the robot directly on the Raspberry Pi desktop.</p>
+</blockquote>
+
+<h2 id="configuring-the-raspberry-pi-bluetooth-and-rfcomm-communications">Configuring The Raspberry Pi, Bluetooth, and RFCOMM Communications.</h2>
+
+<p>As you will see, the process is pretty simple to do. Just follow the simple steps below.</p>
+
+<h2 id="enabling-the-raspberry-pi-for-pairing">Enabling The Raspberry Pi For Pairing.</h2>
+
+<h3 id="step-1-update-raspbian---open-a-terminal-and-type">Step 1: Update Raspbian - open a terminal and type:</h3>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">sudo apt-get update
+sudo apt-get upgrade
+</span></code></pre></div></div>
+
+<h3 id="step-2-in-the-terminal-type-the-following">Step 2: In the terminal type the following:</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo rfkill unblock all
+</code></pre></div></div>
+
+<p>This will unblock the Bluetooth device on your RPi if it is in a blocked state.</p>
+
+<h3 id="step-3-invoke-the-bluetoothctl-program">Step 3: Invoke the <em>bluetoothctl</em> program:</h3>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">sudo bluetoothctl
+</span></code></pre></div></div>
+
+<p>Then enter the following three commands:</p>
+
+<p><strong>power on</strong><br />
+<strong>discoverable on</strong><br />
+<strong>pairable on</strong></p>
+
+<p>You should see something like the following in your terminal:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pi@BanyanBot:~ $ sudo bluetoothctl
+[NEW] Controller B8:27:EB:25:1A:EA BanyanBot [default]
+[bluetooth]# power on
+Changing power on succeeded
+[bluetooth]# discoverable on
+Changing discoverable on succeeded
+[bluetooth]# pairable on
+Changing pairable on succeeded
+[bluetooth]# 
+
+</code></pre></div></div>
+
+<p>When first starting <em>bluetoothctl</em> the first line displays the RPi’s Bluetooth MAC address
+and hostname.</p>
+
+<p>For each of the 3 commands, the tool will indicate success or failure.</p>
+
+<h2 id="pairing-the-raspberry-pi-to-an-android-device">Pairing The Raspberry Pi To An Android Device</h2>
+<p>Consult your Android Device Manual for exact instructions. I am 
+using a Kindle Fire Tablet as an example.</p>
+
+<ol>
+  <li>
+    <p>Power On your Android Device.</p>
+  </li>
+  <li>
+    <p>Go to the device’s settings for Bluetooth and turn Bluetooth On.
+<img src="/bots-in-pieces/images/banyan-bot-blue-1/android_settings/android1.jpg" alt="" /></p>
+  </li>
+  <li>
+    <p>Select “Pair A Bluetooth Device.</p>
+  </li>
+  <li>
+    <p>Perform a scan for Bluetooth devices and select the hostname of your Raspberry Pi when the scan completes.
+<img src="/bots-in-pieces/images/banyan-bot-blue-1/android_settings/android2.jpg" alt="" /></p>
+  </li>
+  <li>
+    <p>You should see that the Android device is now paired with your Raspberry Pi
+<img src="/bots-in-pieces/images/banyan-bot-blue-1/android_settings/android3.jpg" alt="" /></p>
+  </li>
+  <li>
+    <p>If you go back to the Raspberry Pi, and look at the output on bluetoothctl, you should
+see something that looks like the following:</p>
+    <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">[bluetooth]#</span><span class="w"> </span>power on
+<span class="go">Changing power on succeeded
+</span><span class="gp">[bluetooth]#</span><span class="w"> </span>discoverable on
+<span class="go">Changing discoverable on succeeded
+[CHG] Controller B8:27:EB:25:1A:EA Discoverable: yes
+</span><span class="gp">[bluetooth]#</span><span class="w"> </span>pairable on
+<span class="go">Changing pairable on succeeded
+[NEW] Device 00:BB:3A:06:A0:24 Alan's Kindle HDX
+[CHG] Device 00:BB:3A:06:A0:24 Modalias: bluetooth:v001Dp1200d1436
+[CHG] Device 00:BB:3A:06:A0:24 UUIDs: 0000110a-0000-1000-8000-00805f9b34fb
+[CHG] Device 00:BB:3A:06:A0:24 UUIDs: 0000110c-0000-1000-8000-00805f9b34fb
+[CHG] Device 00:BB:3A:06:A0:24 UUIDs: 00001200-0000-1000-8000-00805f9b34fb
+[CHG] Device 00:BB:3A:06:A0:24 UUIDs: 00001800-0000-1000-8000-00805f9b34fb
+[CHG] Device 00:BB:3A:06:A0:24 UUIDs: 00001801-0000-1000-8000-00805f9b34fb
+[CHG] Device 00:BB:3A:06:A0:24 ServicesResolved: yes
+[CHG] Device 00:BB:3A:06:A0:24 Paired: yes
+[CHG] Device 00:BB:3A:06:A0:24 ServicesResolved: no
+[CHG] Device 00:BB:3A:06:A0:24 Connected: no
+</span></code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>It shows that pairing was successful. Notice that we are not connected yet.</p>
+
+<h2 id="enabling-the-raspberry-pi-for-rfcomm-serial-communication">Enabling The Raspberry Pi For RFCOMM Serial Communication.</h2>
+
+<ol>
+  <li>Close the bluetoothctl tool by either entering <em>exit</em> or pressing Control-D.</li>
+</ol>
+
+<ol start="2">
+  <li>We are about to make some changes to the <br />
+<strong>/etc/systemd/system/dbus-org.bluez.service</strong> file.</li>
+</ol>
+
+<p>Before doing so, let’s make a back-up copy of the file in case anything goes wrong. In the terminal you have open
+type:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo cp /etc/systemd/system/dbus-org.bluez.service /etc/systemd/system/dbus-org.bluez.service.BACKUP
+</code></pre></div></div>
+<p>This is a very long line so make sure that you copy it all.</p>
+
+<ol start="3">
+  <li>Now we need to make changes to the file. We will modify one line and add a new line.
+Open up the file with your favorite editor using sudo privileges:</li>
+</ol>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">sudo nano /etc/systemd/system/dbus-org.bluez.service
+</span></code></pre></div></div>
+
+<ol start="4">
+  <li>Here is what the file may look like:</li>
+</ol>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">[Unit]
+Description=Bluetooth service
+Documentation=man:bluetoothd(8)
+ConditionPathIsDirectory=/sys/class/bluetooth
+
+[Service]
+Type=dbus
+BusName=org.bluez
+ExecStart=/usr/lib/bluetooth/bluetoothd
+NotifyAccess=main
+</span><span class="gp">#</span><span class="nv">WatchdogSec</span><span class="o">=</span>10
+<span class="gp">#</span><span class="nv">Restart</span><span class="o">=</span>on-failure
+<span class="go">CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+LimitNPROC=1
+ProtectHome=true
+ProtectSystem=full
+
+[Install]
+WantedBy=bluetooth.target
+Alias=dbus-org.bluez.service
+</span></code></pre></div></div>
+
+<ol start="5">
+  <li>In the third line in the [Service] section, we need to add <strong>-C</strong> to the end of the line. Change:</li>
+</ol>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">ExecStart=/usr/lib/bluetooth/bluetoothd
+</span></code></pre></div></div>
+<p>to:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ExecStart=/usr/lib/bluetooth/bluetoothd -C
+</code></pre></div></div>
+
+<ol start="6">
+  <li>And right below that line, we need to add the following new line:
+    <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">ExecStartPost=/usr/bin/sdptool add SP
+</span></code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>The [Service] section should now look like:</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">[Service]
+Type=dbus
+BusName=org.bluez
+ExecStart=/usr/lib/bluetooth/bluetoothd -C
+ExecStartPost=/usr/bin/sdptool add SP
+NotifyAccess=main
+</span><span class="gp">#</span><span class="nv">WatchdogSec</span><span class="o">=</span>10
+<span class="gp">#</span><span class="nv">Restart</span><span class="o">=</span>on-failure
+<span class="go">CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+LimitNPROC=1
+ProtectHome=true
+ProtectSystem=full
+</span></code></pre></div></div>
+
+<ol start="7">
+  <li>Save the file and exit the editor.</li>
+  <li>Reboot the Raspberry Pi.</li>
+</ol>
+
+<h1 id="installing-a-bluetooth-test-server">Installing A Bluetooth Test Server</h1>
+
+<p>In the next post, we will be connecting an Android app to our Raspberry Pi using
+Bluetooth. This app requires a Bluetooth server to be running on the RPi, and so
+let’s install one now.</p>
+
+<h2 id="first-lets-update-pip-to-the-latest-and-greatest">First, Let’s Update <em>pip</em> To The Latest And Greatest.</h2>
+
+<p>The server requires the <a href="https://github.com/pybluez/pybluez"><em>pybluez</em></a> Python package to
+be installed on the Raspberry Pi. Before doing so, let’s take the opportunity to update
+<em>pip</em> on the RPi to the latest version. If you are running Raspbian Buster you can skip this step.</p>
+
+<p>Open a terminal window on your Raspberry Pi and type the following command:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">sudo pip3 install -U pip
+</span></code></pre></div></div>
+<h2 id="install-the-pybluez-library">Install The <em>pybluez</em> Library</h2>
+
+<p>First install the required libraries for pybluez.
+In your console type:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>libbluetooth-dev
+</code></pre></div></div>
+
+<p>Next, in your console type:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo pip3 install pybluez
+</code></pre></div></div>
+
+<h2 id="copy-the-test-server-to-your-raspberry-pi">Copy The Test Server To Your Raspberry Pi</h2>
+<p>The source code for the server <a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/test_fixtures/bluetooth_apk_validation_server.py"><em>may be found at this link</em>.</a>
+Create a <em>banyan-bot-blue</em> directory on your Raspberry Pi, then create a <em>test_fixtures</em> directory. Copy the test
+server to that directory.</p>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">banyan-bot-blue
+└── test_fixtures
+    └── bluetooth_apk_validation_server.py
+</span></code></pre></div></div>
+
+<p>If you look at the server code you will see that the server initially prints out a
+message that it is waiting for a client to connect.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">bluetooth</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="s">'Waiting for client to connect...'</span><span class="p">)</span>
+<span class="n">server_sock</span> <span class="o">=</span> <span class="n">bluetooth</span><span class="p">.</span><span class="n">BluetoothSocket</span><span class="p">(</span><span class="n">bluetooth</span><span class="p">.</span><span class="n">RFCOMM</span><span class="p">)</span>
+
+<span class="n">port</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">server_sock</span><span class="p">.</span><span class="n">bind</span><span class="p">((</span><span class="s">""</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+<span class="n">server_sock</span><span class="p">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>After a successful connection, it sends
+a short text message to the client and then sits in a loop receiving data from the
+client and printing the data to the console.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">client_sock</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="n">server_sock</span><span class="p">.</span><span class="n">accept</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Accepted connection from "</span><span class="p">,</span> <span class="n">address</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="s">'Hello Banyan Bot'</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">encode</span><span class="p">()</span>
+<span class="n">client_sock</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">client_sock</span><span class="p">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)).</span><span class="n">decode</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"received [%s]"</span> <span class="o">%</span> <span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>To run the server it must be invoked with sudo:</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">sudo python3 bluetooth_apk_validation_server.py
+
+</span></code></pre></div></div>
+<p>You should see the <em>Waiting for client to connect…</em> message.
+You can then kill the server.</p>
+
+<h3 id="that-concludes-this-post-next-time---we-build-an-android-app-to-control-the-robot-and-connect-it-to-the-server">That concludes this post. Next time - we build an Android app to control the robot and connect it to the server.</h3>
+
+:ET

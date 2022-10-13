@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Welcome to Bots in Pieces"
 date:  2019-06-08 08:40:39 -0400
 ---
@@ -33,11 +34,11 @@ controlled, Raspberry Pi based roving vehicle.*
 
 ## The Bot
 
-![]({{site.url}}/images/banyan-bot-blue-1/the_bot.jpg)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/the_bot.jpg)
 *The Banyan Bot Blue*
 
 ## The Control App
 ### [(Based On Work By Martyn Currey)](http://www.martyncurrey.com/create-a-bluetooth-joypad-with-app-inventor-2/)
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/AndroidControl.jpg) 
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/AndroidControl.jpg) 
 *The Android Control App On A Kindle Fire Tablet*

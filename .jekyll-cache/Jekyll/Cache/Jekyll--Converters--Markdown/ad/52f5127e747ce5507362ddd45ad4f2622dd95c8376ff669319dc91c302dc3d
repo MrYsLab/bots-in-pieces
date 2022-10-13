@@ -1,0 +1,6 @@
+I"Q<h1 id="pymata-express-version-111-released">Pymata-Express Version 1.11 Released!</h1>
+<p>An update of <a href="https://mryslab.github.io/pymata-express/">Pymata-Express</a>
+has been released. The API has been updated to be consistent with the
+pymata4 API. The format for the data reported in callbacks has been updated
+as follows:</p>
+:ET

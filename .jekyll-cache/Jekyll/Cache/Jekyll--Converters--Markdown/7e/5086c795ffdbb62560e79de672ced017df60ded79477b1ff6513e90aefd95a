@@ -1,0 +1,7 @@
+I"g<h1 id="so-what-is-telemetrix">So, What Is Telemetrix?</h1>
+<p>Telemetrix is a play on the word “telemetry.” Telemetry collects data at remote points and automatically transmits the data to 
+receiving equipment (telecommunication) for monitoring. 
+The <a href="https://github.com/MrYsLab/telemetrix">telemetrix package</a> consists of 2 major
+components, the <a href="https://github.com/MrYsLab/telemetrix/blob/master/phase1/telemetrix/telemetrix.py">Python client</a> 
+and the <a href="https://github.com/MrYsLab/telemetrix/blob/master/phase1/arduino-telemetrix/arduino-telemetrix.ino">Arduino server</a>.</p>
+:ET

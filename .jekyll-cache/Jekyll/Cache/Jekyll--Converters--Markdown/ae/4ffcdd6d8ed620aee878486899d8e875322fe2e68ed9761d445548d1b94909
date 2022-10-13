@@ -1,0 +1,7 @@
+I"m<h1 id="second-beta-release---i2c-support">Second Beta Release - I2C Support</h1>
+<p>I’ve released the 
+<a href="https://github.com/MrYsLab/telemetrix-rpi-pico">second beta</a>
+of Telemetrix for the Raspberry Pi Pico.
+This release incorporates support for monitoring and controlling i2c devices.
+The Pico supports two i2c ports, and Telemetrix supports both.</p>
+:ET

@@ -1,0 +1,32 @@
+I"Ù<p><img src="/bots-in-pieces/images/s3onegpio/s3wrap.png" alt="" /></p>
+
+<p>With the publication of <a href="(https://mryslab.github.io/s3-extend/)">Scratch 3 hardware extensions</a>
+  for the Picoboard and
+Circuit Playground Express, the s3oneGpio Scratch 3 extensions project has come to a close (well,
+for a while at least).</p>
+
+<h1 id="the-new-extension-blocks">The New Extension Blocks</h1>
+
+<h2 id="the-picoboard-blocks">The Picoboard Blocks</h2>
+
+<p><img src="/bots-in-pieces/images/s3onegpio/pico_blocks_en.png" alt="" /></p>
+
+<h2 id="the-circuit-playground-express-cpx-blocks">The Circuit Playground Express (CPX) Blocks</h2>
+<p><img src="/bots-in-pieces/images/s3onegpio/cpx_blocks.png" alt="" /></p>
+
+<h1 id="pymata-cpx">Pymata-cpx</h1>
+
+<p>In addition to the Scratch 3 extensions, <a href="https://mryslab.github.io/pymata-cpx/">a Python API library</a> was developed
+to help support the CPX Scratch extension. This API provides a simple to use Python interface
+for users who wish to reach beyond Scratch programming and to try physical computing with
+user-friendly hardware.</p>
+
+<h1 id="whats-next">Whatâ€™s Next</h1>
+
+<p>I have been playing with <a href="http://arcade.academy/">Arcade</a> and have been experimenting with
+integrating Python Banyan with Arcade. The goal is to create a multi-player game
+that may be distributed across computers.
+Each player would play the game on their individual computers
+and connected via Banyan across a LAN. Stay tuned for any progress.</p>
+
+:ET

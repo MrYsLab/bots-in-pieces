@@ -1,0 +1,51 @@
+I"(<p>It’s launch day, so let’s get started!</p>
+
+<p>Thank you for visiting my new site. For those not familiar with my work,
+I have been <a href="https://github.com/MrYsLab"><em>contributing open source software</em></a> to the community
+for the past several years and have also documented some of my work <a href="http://mryslab.blogspot.com/"><em>on another site blog.</em></a></p>
+
+<h3 id="what-you-can-expect-to-find-on-this-site">What You Can Expect To Find On This Site</h3>
+
+<ul>
+  <li>Small targeted posts
+    <ul>
+      <li>I can be wordy at times, so the goal here is to keep me in check, and keep the posts short and sweet. Wish me luck ;-)</li>
+      <li>A suggested read time is shown for all posts so you can budget your time.</li>
+    </ul>
+  </li>
+  <li>Project Presentations
+    <ul>
+      <li>A Step-by-step (or better yet, component by component) approach to project implementation.</li>
+      <li>Each step presented will include:
+        <ul>
+          <li>Design decision discussions.</li>
+          <li>Design explanations</li>
+          <li>Links to fully functional and reuseable code.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Tips and tricks.</li>
+  <li>Opinion Pieces
+    <ul>
+      <li>Everything from setting up a development environment, to hardware and software reviews.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>So to keep with my pledge of keeping things short and sweet, let’s get to work.</p>
+
+<p><em>Sneak  preview: the first project that will be discussed is a Bluetooth
+controlled, Raspberry Pi based roving vehicle.</em></p>
+
+<h2 id="the-bot">The Bot</h2>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/the_bot.jpg" alt="" />
+<em>The Banyan Bot Blue</em></p>
+
+<h2 id="the-control-app">The Control App</h2>
+<h3 id="based-on-work-by-martyn-currey"><a href="http://www.martyncurrey.com/create-a-bluetooth-joypad-with-app-inventor-2/">(Based On Work By Martyn Currey)</a></h3>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/AndroidControl.jpg" alt="" /> 
+<em>The Android Control App On A Kindle Fire Tablet</em></p>
+:ET

@@ -1,0 +1,56 @@
+I"Þ<h1 id="neopixel-support-has-been-released">NeoPixel Support Has Been Released</h1>
+
+<p>I have just released NeoPixel support for the 
+<a href="https://github.com/MrYsLab/telemetrix-rpi-pico">Pico using Telemetrix.</a></p>
+
+<p>Here are the steps to control a NeoPixel strip.</p>
+
+<ol>
+  <li>
+    <p>First, you must set the pin mode using the
+<a href="https://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.set_pin_mode_neopixel">set_pin_mode_neopixel</a>
+API method. Here you specify the GPIO pin number that the NeoPixel strip is 
+controlled with, the number of NeoPixels in your strip (up to a length of 150 is 
+supported), and RGB fill values.
+<strong>NOTE:</strong> You must call this method before using any 
+of the following control methods</p>
+  </li>
+  <li>
+    <p>To set the colors for a given pixel within your strip, use the 
+<a href="https://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.neo_pixel_set_value">neo_pixel_set_value</a>
+method. Here, you specify the pixel number in the strip, the RGB values, 
+and whether you wish to show the changes immediately or wait until the
+<a href="https://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.neopixel_show">neopixel_show</a>
+method is called.</p>
+  </li>
+  <li>
+    <p>You can turn all the pixels off by using the 
+<a href="https://htmlpreview.github.io/?https://github.com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.neopixel_clear">neopixel_clear</a>
+method. Here you have the choice to affect the changes immediately or not.</p>
+  </li>
+  <li>
+    <p>The final method is
+<a href="https://htmlpreview.github.io/?https://github.
+com/MrYsLab/telemetrix-rpi-pico/blob/master/html/telemetrix_rpi_pico/index.html#telemetrix_rpi_pico.telemetrix_rpi_pico.TelemetrixRpiPico.neopixel_fill">neopixel_fill,</a>
+where you may set all the pixels to the same color. Again, you may set the colors
+immediately or wait until you call neopixel_show.</p>
+  </li>
+</ol>
+
+<p>Here is the code for a <a href="https://github.
+com/MrYsLab/telemetrix-rpi-pico/blob/master/examples/neopixels2.py">demo</a> 
+using these methods.</p>
+
+<p><img src="/bots-in-pieces/images/np_demo.png" alt="" /></p>
+
+<p>Watch a YouTube video of the demo <a href="https://youtu.be/IUSMdDpditc">here.</a></p>
+
+<h1 id="what-is-coming-next">What Is Coming Next</h1>
+
+<p>I am going to take a break from coding to write the Userâ€™s Guide.</p>
+
+<p>Once that is complete, I will be working on support for servo motors using a PCC9625 i2c 
+servo motor board similar to the one shown below.
+<img src="/bots-in-pieces/images/PCA9685.png" alt="" /></p>
+
+:ET

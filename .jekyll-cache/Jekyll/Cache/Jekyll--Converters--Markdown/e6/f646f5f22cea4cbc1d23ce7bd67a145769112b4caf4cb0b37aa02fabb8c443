@@ -1,0 +1,7 @@
+I"h<p>This week phase 5 of <a href="https://github.com/MrYsLab/telemetrix">Telemetrix</a> 
+and the new Python asyncio client, 
+<a href="https://github.com/MrYsLab/telemetrix-aio">Telemetrix-AIO,</a>
+ were both released.
+Phase 5 of Telemetrix retains the original Python API but makes some significant changes
+ to both the client and the server’s internals.</p>
+:ET

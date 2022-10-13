@@ -1,0 +1,29 @@
+I"u<h1 style="color:rgb(128,0,0); " id="success-we-are-a-blinkin-and-a-fadin---just-a-quick-update">Success! We Are A Blinkin’ And A Fadin’ - Just A Quick Update</h1>
+
+<p>Here is the very first Scratch 3 OneGPIO Script
+<img src="/bots-in-pieces/images/s3onegpio/scratch_arduino.png" alt="" /></p>
+
+<p>In this post, we are not going to get into much detail, but I just 
+wanted to share the success.</p>
+
+<p><a href="https://www.youtube.com/watch?v=doSbvU0x8LQ&amp;feature=youtu.be"><img src="http://i3.ytimg.com/vi/doSbvU0x8LQ/maxresdefault.jpg" alt="Video Title" /></a>
+Here is a short video demo of the Scratch 3 OneGPIO Extension. 
+ The script is controlling 2 LEDs on an
+<a href="http://codeshield.diyode.com/">Arduino CodeShield.</a> Click the photo to
+see it in action.</p>
+
+<p>Here is a screenshot of the full complement of OneGPIO Extension blocks.
+<img src="/bots-in-pieces/images/s3onegpio/onegpio_blocks.png" alt="" /></p>
+
+<p>The script was also modified slightly to select a Raspberry Pi and the
+pin numbers were changed to control the LEDs on a
+<a href="https://shop.cyntech.co.uk/products/pibrella">Pibrella.</a> Again, it was
+successful!</p>
+
+<p><img src="/bots-in-pieces/images/s3onegpio/scratch_rpi.png" alt="" /></p>
+
+<p>When the code for all the blocks has been implemented and tested, the
+code and instructions for its use will be made available.</p>
+
+<p>Until next time!</p>
+:ET

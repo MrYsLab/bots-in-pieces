@@ -1,0 +1,501 @@
+I"kc<p style="float:left; "><img src="/bots-in-pieces/images/banyan-bot-blue-1/test.png" alt="" /></p>
+<h1 style="color:blue;  " id="testing-the-bluetooth-gateway">Testing The Bluetooth Gateway</h1>
+
+<p><br /> 
+<br />
+<br /> 
+<br />
+<br /> 
+<br />
+<br /> 
+<br /></p>
+
+<h1 id="in-this-edition-of-bots-in-pieces-we-will">In this edition of <em>Bots In Pieces</em>, we will:</h1>
+<ul>
+  <li>Test The Bluetooth Gateway:
+    <ul>
+      <li>Install the necessary software for testing on the Raspberry Pi.</li>
+      <li>Discuss the <a href="https://mryslab.github.io/python_banyan/#examples_intro/#the-banyan-backplane">Banyan Backplane.</a></li>
+      <li>Learn how to use the <a href="https://mryslab.github.io/python_banyan/#example5/#the-banyan-monitor">Banyan Monitor</a>
+ and <a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/test_fixtures/message_injector.py">Message Injector</a> tools to aid in testing.</li>
+      <li>Use previously tested items as test drivers and monitors to accelerate the test cycle.</li>
+      <li>Discuss the <a href="https://coverage.readthedocs.io/en/v4.5.x/">Python Coverage tool.</a></li>
+      <li>Learn how to automate the tests procedures using the <a href="https://mryslab.github.io/python_banyan/#example8/#launching-components">Banyan Launcher</a> as a <em>test runner.</em></li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Presented here is <em>my</em> approach to testing Python Banyan
+components. Note that the Banyan Framework 
+does not inhibit the use of any testing techniques or test runners. You are free
+to use any tools or techniques with which you are comfortable.</p>
+</blockquote>
+
+<h1 id="some-test-preliminaries">Some Test Preliminaries</h1>
+
+<p>If you have not already done so, install Python Banyan on the Raspberry Pi by opening
+a command window and typing:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pip3 <span class="nb">install </span>python-banyan
+</code></pre></div></div>
+
+<p>Next, we need to 
+install the Banyan Bot Blue project files on the Raspberry Pi.</p>
+
+<p>On your Raspberry Pi, open the browser and go to the 
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples"><em>bots-in-pieces-examples GitHub page.</em></a>
+Click on the green <em>Clone or download</em> button on the page. Unzip the file into any directory
+you wish.</p>
+
+<p>Here is a representation of the file structure after you extract the zip file:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bots-in-pieces-examples-master
+├── banyan-bot-blue
+│   ├── android
+│   │   ├── b_bot_blue.aia
+│   │   └── b_bot_blue.apk
+│   ├── banyan_assets
+│   │   ├── bluetooth_gateway.py
+│   │   ├── crickit_gateway.py
+│   │   ├── __init__.py
+│   │   └── robot_control.py
+│   ├── banyan_templates
+│   │   ├── banyan_component_template.py
+│   │   └── __init__.py
+│   ├── __init__.py
+│   ├── test_fixtures
+│   │   ├── bluetooth_apk_validation_server.py
+│   │   ├── crickit_gui.py
+│   │   ├── __init__.py
+│   │   ├── json_server.py
+│   │   ├── message_injector.py
+│   │   └── rfcomm_server.py
+│   └── tests
+│       ├── bluetooth_gateway
+│       │   ├── btg1.csv
+│       │   ├── btg2.csv
+│       │   ├── btg3.csv
+│       │   ├── btg4.csv
+│       │   ├── btg5.csv
+│       │   ├── __init__.py
+│       │   ├── procedures
+│       │   │   ├── btg1.test_spec.pdf
+│       │   │   ├── btg2.test_spec.pdf
+│       │   │   ├── btg3.test_spec.pdf
+│       │   │   ├── btg4.test_spec.pdf
+│       │   │   └── btg5.test_spec.pdf
+│       │   └── test_results
+│       │       ├── btg1_2_3_4_5_results.pdf
+│       │       ├── btg1_2_3_4_5_summary.pdf
+│       │       ├── btg1_2_3_4_results.pdf
+│       │       ├── btg1_2_3_4_summary.pdf
+│       │       ├── btg1_2_3_results.pdf
+│       │       ├── btg1_2_3_summary.pdf
+│       │       ├── btg1_2_results.pdf
+│       │       ├── btg1_2_summary.pdf
+│       │       ├── btg1_results.pdf
+│       │       └── btg1_summary.pdf
+│       ├── crickit_gateway
+│       │   ├── cr1.csv
+│       │   ├── __init__.py
+│       │   └── test_results
+│       │       ├── cr1_results.pdf
+│       │       └── cr1_summary.pdf
+│       ├── __init__.py
+│       └── motor_control
+│           ├── __init__.py
+│           └── mc1.csv
+├── LICENSE
+└── README.md
+
+</code></pre></div></div>
+
+<p>Next, we need to install xterm on the Raspberry Pi. Open a command window on the Raspberry Pi
+and type:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>xterm
+</code></pre></div></div>
+
+<p>Lastly, we need to install the Python Coverage tool. In the command window, type the following:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt-get <span class="nb">install </span>python3-dev gcc
+</code></pre></div></div>
+
+<p>Then type:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pip3 <span class="nb">install </span>coverage
+</code></pre></div></div>
+
+<h2 id="the-banyan-backplane">The Banyan Backplane</h2>
+
+<p>When a Banyan component initializes, it attempts to connect to the Banyan Backplane
+using two TCP/IP connections, one
+for message publishing and one for message reception.
+The backplane is a command-line executable, automatically installed with Python Banyan.
+To launch the <em>backplane,</em>
+open up a terminal window on the Raspberry Pi and type:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>backplane
+</code></pre></div></div>
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/backplane1.png" alt="" /></p>
+
+<p>When the <em>backplane</em> starts, a familiar Banyan header prints to the console.</p>
+
+<p>Before launching any other Banyan component, you <strong>must</strong> run the <em>backplane.</em> 
+If the backplane is not running when 
+launching a Banyan component, 
+an exception and error message are displayed.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/no_backplane.png" alt="" /></p>
+
+<p><br /></p>
+
+<h1 id="the-banyan-monitor">The Banyan Monitor</h1>
+<p>The <em>Banyan Monitor</em> is a specialized Banyan component that allows you to view all
+published Banyan messages. The monitor is a 
+command-line executable, automatically installed with Python Banyan.</p>
+
+<p>To run the <em>monitor</em>, while the <em>backplane</em> is running, open a new command window and type:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>monitor
+</code></pre></div></div>
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/monitor1.png" alt="" /></p>
+
+<p>Again we see the familiar Banyan header, but since 
+there are no published messages, that is all we see. Let’s remedy that by starting a Banyan component that publishes messages 
+periodically.</p>
+
+<h1 id="the-message-injector-component">The Message Injector Component</h1>
+<p>To demonstrate the monitor, we launch a test fixture used to help test the Banyan Gateway. 
+This Banyan component, unlike the backplane and monitor,
+is not a command-line executable, so we need to launch it manually.  We find the <em>message injector</em> in:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bots-in-pieces-examples-master/banyan-bot-blue/test_fixtures
+</code></pre></div></div>
+
+<p>This component periodically injects Banyan messages into the network. It has a default
+publishing topic of <em>to_bt_gateway</em>. It also subscribes to receive messages with a topic of
+<em>from_bt_gateway.</em></p>
+
+<p>With both the <em>backplane</em> and <em>monitor</em> running, let’s launch the <em>message injector.</em> Open
+a new command window, <em>cd</em> into the directory shown above and type:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 message_injector.py
+</code></pre></div></div>
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/message_injector1.png" alt="" /></p>
+
+<p>Again, we see a familiar Banyan header with the addition of the publishing and subscription
+topics announced.</p>
+
+<p>Look at the <em>monitor</em> window, and you should see <em>injector</em> messages appear as they are published.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/injector-monitor1.png" alt="" /></p>
+
+<p>Each line in the monitor window represents a single Banyan protocol message, and
+it contains
+ both  the publishing topic and the message’s
+payload.</p>
+
+<h1 id="the-banyan-launch-server">The Banyan Launch Server</h1>
+
+<p>I don’t know about you, but having to manually open several command 
+windows and then individually interacting with each one, is not my idea of fun.</p>
+
+<p>Using the Banyan Launcher, the <em>backplane</em>, the <em>monitor</em>,
+the <em>message_injector</em>, and the <em>bluetooth_gateway</em> are all launched from a single command.</p>
+
+<h2 id="understanding-the-banyan-launcher">Understanding The Banyan Launcher</h2>
+
+<p>The Banyan Launcher Server(<strong>bls</strong>) is a command-line executable, automatically installed with Python Banyan.  To use the <em>launcher,</em> you must first
+populate a comma-delimited or <em>csv</em> file.
+This file,
+called the <em>launch specification file</em>, contains a list of the items to be launched and their associated
+launch instructions.</p>
+
+<p>The <em>first line</em> of every <em>launch specification</em> is a comma-delimited list of
+column headings:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>command_string,spawn,topic,append_bp_address,auto_restart,wait
+</code></pre></div></div>
+
+<p>A set of launch specifications, one launch item per line, follows the column headings.</p>
+
+<blockquote>
+  <p><strong>NOTE:</strong> There <em>must not</em> be any spaces before or after the commas on any lines of the
+specification file.</p>
+</blockquote>
+
+<h2 id="the-launch-specification-field-headings">The Launch Specification Field Headings</h2>
+
+<h3 id="command_string">command_string</h3>
+
+<p>In this field, you specify the <strong>shell command</strong> used to launch the item.
+The example below is the command string to launch the <em>message_injector.</em> Notice that it uses 
+relative addressing to find the file because our test runs in the following directory:</p>
+
+<p><strong>bots-in-pieces-master/banyan-bot-blue/tests/bluetooth_gateway</strong></p>
+
+<p><strong>Example:</strong></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 ../../test_fixtures/message_injector.py
+</code></pre></div></div>
+
+<h3 id="spawn">spawn</h3>
+<p>The values for this field are either <strong>yes or no</strong>. If set to <em>yes</em>, each command
+runs in a stand-alone xterm window.</p>
+
+<h3 id="topic">topic</h3>
+<p>Set this field to <strong>local</strong>. 
+The Banyan Launcher can launch commands on a remote computer. 
+ In the remote launch scenario, we set this field to something other than local.</p>
+
+<h3 id="append_bp_address">append_bp_address</h3>
+<p>The values for this field are either <strong>yes or no</strong>. For our purposes, set this field to <strong>no.</strong>
+This field would be set to <em>yes</em> when launching on a remote
+computer, and we wish to inform the remote computer of the backplane address of the local
+computer.</p>
+
+<h3 id="auto_restart">auto_restart</h3>
+<p>The values for this field are either <strong>yes or no</strong>. If set to <strong>yes</strong>, the launcher 
+automatically restarts the command if it should
+die for any reason. We set this to <strong>no.</strong></p>
+
+<h3 id="wait">wait</h3>
+<p>This field specifies a period in <strong>seconds to wait before launching
+the next command</strong> in the file. The wait field allows the command
+to initialize fully before processing the next launch line.</p>
+
+<h1 id="a-sample-launch-specification">A Sample Launch Specification</h1>
+
+<h2 id="btg1csv">btg1.csv</h2>
+<p>Here are the contents of <a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/tests/bluetooth_gateway/btg1.csv">btg1.csv,</a>
+a test that runs the Bluetooth Gateway, accepting its default parameters.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/bg1_launch_spec.png" alt="" /></p>
+
+<p>The first line launches the Banyan Monitor, the second line launches the Bluetooth Gateway, 
+accepting all its default parameters, and the third line launches the message_injector.</p>
+
+<blockquote>
+  <p>When using the Banyan Launcher, it automatically launches the <em>backplane</em>
+without having to specify the <em>backplane</em> in the <em>launch specification file.</em></p>
+</blockquote>
+
+<h1 id="code-coverage">Code Coverage</h1>
+
+<p>We can test the Bluetooth Gateway by stimulating both of its interfaces, that is,
+its RFCOMM interface as well as its Banyan protocol messaging interface.
+We then observe the results of this stimulation and compare that to the expected results.
+Sometimes this type of testing is
+referred to as <a href="http://softwaretestingfundamentals.com/black-box-testing/">BlackBox testing.</a>
+BlackBox testing tests an item’s behavior but provides no information about what is happening
+inside the item under test.</p>
+
+<p><a href="http://softwaretestingfundamentals.com/white-box-testing/">WhiteBox</a> testing provides an 
+internal code view of
+the unit under test.
+A form of WhiteBox testing is called
+code coverage. <a href="https://confluence.atlassian.com/clover/about-code-coverage-71599496.html">Code coverage</a>
+determines which statements in a body of code have executed through a test run, 
+and which statements have not. In general, a code coverage system collects information about the 
+running program and then 
+combines that with source information to generate a report.
+The tool used to perform coverage testing is the
+<em>Python Coverage Tool.</em></p>
+
+<p>By combining the results from both BlackBox and WhiteBox testing, we can determine
+if the unit under test is operating correctly.</p>
+
+<h2 id="testing-with-the-coverage-tool">Testing With The Coverage Tool</h2>
+
+<p>To enable coverage testing for  <em>bluetooth_gateway.py</em>, we issue the following command:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="s2">"sudo coverage run --branch  --append --omit=/usr/lib*,/usr/local* ../../banyan_assets/bluetooth_gateway.py"</span>
+</code></pre></div></div>
+
+<p>Notice that we enclose the entire command in quotes. The bash shell requires 
+this so that it may successfully parse and execute the command.</p>
+
+<h3 id="the-coverage-command-in-detail">The Coverage Command In Detail</h3>
+
+<p>The command requires <strong>sudo</strong> because the Bluetooth library requires it.</p>
+
+<p>The next portion of the command is <strong>coverage run</strong>. The <em>run</em> option instructs the 
+coverage tool to instrument
+the code and to execute the module.</p>
+
+<p>The <strong>--branch</strong> option enables <em>branch</em> coverage. Branch coverage allows us to see the 
+executed and non-executed legs of a branch.</p>
+
+<p>The <strong>--append</strong> option tells <em>coverage</em> to append the results of the current test to previous
+ results. This option allows us to run several different tests on the gateway,
+and then be able to view a single report showing the aggregated results from all the tests.</p>
+
+<p>The <strong>--omit</strong> option limits coverage testing to only the files we wish to test.</p>
+
+<p>Finally, we specify the <strong>path and file name</strong> for the unit under test.</p>
+
+<h2 id="getting-the-coverage-results">Getting The Coverage Results</h2>
+
+<p>The <em>coverage tool</em> can generate HTML coverage reports. 
+To generate HTML reports, we
+use the following command:</p>
+
+<pre><code class="language-base">coverage html -d coverage_html
+</code></pre>
+<p>By executing this command, coverage creates and populates a directory called <em>coverage_html,</em> 
+allowing us to display the report in a Web browser. To view the generated report,
+open up <em>index.html</em>
+in the <em>coverage_html</em> directory using your favorite Web browser.</p>
+
+<h3 id="coverage-summary-report">Coverage Summary Report</h3>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/cover_summary1.png" alt="" /></p>
+
+<p>We see a summary report when opening index.html.
+The report shown above is the result of running the btg1.csv test specification. 
+The report indicates that the unit under test had 153 executable lines
+of code and an execution rate of 68%.</p>
+
+<p>By clicking on the link in the summary report, we can view the detailed coverage report.</p>
+
+<h3 id="coverage-detailed-report">Coverage Detailed Report</h3>
+
+<p>Below is a portion of a detail report that the coverage tool generated:</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/coverage2.png" alt="" /></p>
+
+<p>The report is color-coded. A green bar next to a line of code indicates the line executed; a 
+red bar means that 
+line did not execute, and a yellow bar means that a branch partially executed.</p>
+
+<p>The <em>coverage tool</em> allows you to accumulate test results as
+ each test is run and then generate an aggregated report of all the test runs.</p>
+
+<p>It is good practice 
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples/tree/master/banyan-bot-blue/tests/bluetooth_gateway/test_results">to save the test reports</a> for comparison with future test runs.</p>
+
+<h3 id="test-evaluation">Test Evaluation</h3>
+
+<p>Notice when viewing the full 
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/tests/bluetooth_gateway/test_results/btg1_results.pdf">detailed report</a>
+for btg1.csv, the lines of code that were not executed fall into two categories. The first being
+ the paths that support the command-line options we did not use, and the second, the exception paths.</p>
+
+<p>By examining this report, we can determine that the executed code is sufficient to support the
+Banyan Bot Blue, even though it is only 68% of the total. Since the Bluetooth Gateway was written
+to be configurable through its command-line options, we can add additional tests that thoroughly test the file, and
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples/tree/master/banyan-bot-blue/tests/bluetooth_gateway">four additional tests</a>
+ were devised to do just that.</p>
+
+<p>If you look at the 
+<a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/tests/bluetooth_gateway/test_results/btg1_2_3_4_5_results.pdf">detailed report for the aggregated results,</a>
+coverage achieved is 88%. The 12% of the code not covered were for the exception cases. For our
+purposes, 88% coverage is a good passing percentage.</p>
+
+<h1 id="documenting-test-procedures">Documenting Test Procedures</h1>
+
+<p>Before starting to test, it is beneficial to document the specifications and 
+procedures for
+each test to be run.
+I do this in a somewhat formalized way, and each specification typically contains:</p>
+<ul>
+  <li>The purpose or scope of the test.</li>
+  <li>A list of items and prerequisites necessary to run the test.</li>
+  <li>The test procedure.
+I like to include hyperlinks within the spec to provide any supporting
+documentation that might be helpful.</li>
+</ul>
+
+<p><a href="https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/tests/bluetooth_gateway/procedures/btg1.test_spec.pdf">Here</a> 
+is an example of a test specification for testing the Bluetooth Gateway
+accepting all default command-line parameters.</p>
+
+<p>When you open the file in GitHub, the links are not active, but if you open the file in the
+distribution you downloaded from GitHub, the links are functional.</p>
+
+<h1 id="running-the-test-with-the-banyan-launcher">Running The Test With The Banyan Launcher</h1>
+
+<p>Now that we understand all the tools used in testing the Bluetooth Gateway let’s run
+a test using the Banyan Launcher(<strong>bls</strong>). Here are the steps to do so:</p>
+
+<ol>
+  <li>
+    <p>Close all the command windows we opened previously.</p>
+  </li>
+  <li>Open a new command window and go to
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bots-in-pieces-examples-master/banyan-bot-blue/tests/bluetooth_gateway
+</code></pre></div>    </div>
+  </li>
+  <li>Run the <em>Banyan Launcher</em> using the -f option to specify the test specification file:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bls <span class="nt">-f</span> btg1.csv
+</code></pre></div>    </div>
+    <p><img src="/bots-in-pieces/images/banyan-bot-blue-1/btg1.png" alt="" /></p>
+  </li>
+  <li>The command window displays that bls launched the <em>backplane</em>, <em>monitor</em>, <em>bluetooth_gateway,</em> and the
+<em>message_injector</em>, showing the process ID or <em>PID</em> for each. It also opened up 3 additional xterm windows,
+one each for the <em>monitor</em>, <em>bluetooth_gateway,</em> and <em>message_injector.</em>
+If you look at the <em>monitor</em> window,
+the injector messages appear.</li>
+</ol>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/injector-monitor2.png" alt="" /></p>
+
+<ol start="5">
+  <li>We now want to connect the Android app as discussed in a 
+<a href="https://mryslab.github.io/bots-in-pieces/banyan-bot-blue/android/bluetooth/2019/06/16/banyan-bot-blue-part-3.html">previous posting.</a>
+Start the app and connect it to the Raspberry Pi. The <em>bluetooth_gateway</em> window should indicate that the 
+connection succeeded.</li>
+</ol>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/test1.png" alt="" /></p>
+
+<p>After connecting the app, you should see the value in the <em>Report</em> line change as each message from
+the message injector is received:</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/android-gui/gui_test1.jpg" alt="" /></p>
+
+<ol start="6">
+  <li>Now press the Android app buttons. If you look at the monitor window, you should see both the 
+messages that were published by the
+<em>message injector</em> as well as the messages published by the <em>Bluetooth Gateway.</em></li>
+</ol>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/test_monitor1.png" alt="" /></p>
+
+<ol start="7">
+  <li>If you look at the <em>message_injector</em> window, you should see the messages from the <em>Bluetooth Gateway</em>
+as well. The <em>message injector</em> subscribed to receive those messages. Verify that for each button pressed 
+in the
+Android app generates the expected messaging.</li>
+</ol>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/test_msg_injector1.png" alt="" /></p>
+
+<h2 id="why-manual-interaction-and-not-total-automation">Why Manual Interaction And Not Total Automation?</h2>
+
+<p>At some point in the testing cycle, you must verify that user interfaces work
+as expected. Adding <em>mock</em> type automation adds an unnecessary step, so why not test
+things out as early as possible. Since we tested the Android app in an earlier posting, 
+we can now use it as a test driver. If we do not have a tested component to run portions
+of the test, only then do we create a mocking type component. The message injector is
+an example of this.</p>
+
+<h1 id="stopping-the-test-and-getting-results">Stopping The Test And Getting Results</h1>
+
+<p>To stop the test, go into the <em>Bluetooth Gateway</em> xterm window and type 
+Control-C to stop it. We need to stop the gateway within this window to allow the coverage
+tool to terminate properly and provide results. If you then go into the
+<em>bls</em> command window and press Control-C, all the other xterm windows should close.
+ Now generate a test 
+report as described above to verify expected code execution.</p>
+
+<h1 id="summing-up">Summing Up</h1>
+
+<p>Using the tools and techniques presented in this posting, we demonstrated 
+that Banyan components are testable in an easily reproducible manner. 
+We demonstrated that previously tested components are 
+practical testing drivers and monitors. We also demonstrated
+ the ease of integrating custom test tools, such as the <em>message injector</em>, into the testing suite.</p>
+
+<h1 id="next-time">Next Time</h1>
+
+<p>In the next posting, we discuss the Crickit Gateway component that monitors and controls
+the robot motors and sensors.</p>
+
+:ET

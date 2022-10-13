@@ -1,0 +1,21 @@
+I"p<h1 style="color:rgb(128,0,0); " id="release-10-is-now-available">Release 1.0 Is Now Available</h1>
+
+<p><img src="/bots-in-pieces/images/s3onegpio/extensions.png" alt="" /></p>
+
+<p>Release 1.0 was released earlier today, and an online
+<a href="https://mryslab.github.io/s3-extend/">User’s Guide</a> is now available.</p>
+
+<p>With this release, you can:</p>
+<ul>
+  <li>Control a Raspberry Pi locally or remotely from your PC.</li>
+  <li>Control multiple boards simultaneously and have the controllers
+interact with one another.
+<img src="/bots-in-pieces/images/s3onegpio/multi-boards.png" alt="" /></li>
+  <li>Language translation for the Scratch blocks is available. Currently
+English, Brazilian Portuguese and Portuguese is offered. If you would
+like to contribute a translation, the User’s Guide explains how.</li>
+</ul>
+
+<p>Try it out, and let me know what you think!</p>
+
+:ET

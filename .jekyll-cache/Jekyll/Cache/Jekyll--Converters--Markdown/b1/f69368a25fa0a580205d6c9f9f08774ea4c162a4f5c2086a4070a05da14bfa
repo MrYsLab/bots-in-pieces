@@ -1,0 +1,8 @@
+I"b<p>Both Telemetrix and TelemetrixAIO have been officially released today. A user
+guide is available <a href="https://mryslab.github.io/telemetrix/">online.</a></p>
+
+<p>So what is next? I will be working on a version of Telemetrix4Arduino (the Telemetrix Sketch) for the ESP-8266 so that
+it can be controlled over WiFi.</p>
+
+<p>Stay tuned! Stay Safe!</p>
+:ET

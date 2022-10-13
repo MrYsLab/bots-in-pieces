@@ -1,0 +1,49 @@
+I"�
+<p>Last week, as I was trying to solve the mysteries of 
+Bluetooth programming (more on that in a future post), 
+I received an email announcing the Raspberry Pi Pico’s 
+arrival. Quickly glancing at the Pico’s description, my 
+first thoughts were, “YAAA” (yet another Arduino alternative). 
+I yawned and went back to the frustrations of Bluetooth (or maybe we should call it 
+Root Canal) programming.</p>
+
+<p>Not long after, more emails arrived - one from Sparkfun, 
+another from Adafruit, another from Pimoroni, and more from other 
+hardware vendors. All were announcing they were going to release boards 
+designed around the Raspberry Pi RP2040 chip. Even Arduino announced it is 
+going to get on board with the RP2040.</p>
+
+<p>I was blown away. As significant as the accomplishment of the RP2040 is for 
+the Raspberry Pi team, in my opinion, the real achievement was coordinating releases 
+by all the major hardware vendors. Never before have so many competitors coalesced 
+around a single chip, all announcing on the same day.</p>
+
+<p>Why is this so consequential? First, each hardware manufacturer will be building boards
+to support their own unique eco-system. For example, 
+Adafruit will be building on the Feather, and Sparkfun is 
+developing several unique offerings around their eco-system. 
+This in and of itself is exciting because if you have bought into a 
+manufacturer’s eco-system, you can still use their peripherals with the new chip. 
+This is really neat, but for me, the significant accomplishment is that 
+there will be unified software support structure across all the boards and manufacturers.</p>
+
+<p>With the RP2040, one can program in C if you wish to go that route. 
+And in fact, Arduino will be releasing an Arduino Core for the RP2040. 
+In addition, MicroPython and its derivative, CircuitPython is available 
+right at the starting gate. Not only can you pick a board form factor 
+and hardware eco-system, but your software efforts also have a high 
+probability of being portable between the various boards, form factors, and eco-systems.</p>
+
+<p>I don’t know how the Raspberry Pi folks managed to pull off such a 
+coordinated effort among this modern-day version of a 
+“Team of Rivals.” Pure genius! Imagine coordinating a chip design, 
+software support, and portability between rival manufacturers, and having them all 
+announce on the
+same day is really something to 
+marvel over. And now, even more, are jumping on the bandwagon. Seeed Studio just announced
+Grove support for the Pico. All we need now are for the headers to be pre-soldered on the
+board offerings!</p>
+
+<p>Well done, Raspberry Pi! In this time of great sadness and worry, 
+it is nice to see such cooperation and hope for the future.</p>
+:ET

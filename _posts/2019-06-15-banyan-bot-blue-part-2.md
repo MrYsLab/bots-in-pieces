@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Banyan Bot Blue Part 2"
 date:  2019-06-15 07:55:39 -0400
 categories: Banyan-Bot-Blue Bluetooth Bluetooth-test-server
@@ -79,15 +80,15 @@ using a Kindle Fire Tablet as an example.
 1. Power On your Android Device.
 
 2. Go to the device's settings for Bluetooth and turn Bluetooth On.
-![]({{site.url}}/images/banyan-bot-blue-1/android_settings/android1.jpg)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android_settings/android1.jpg)
 
 3. Select "Pair A Bluetooth Device.
 
 4. Perform a scan for Bluetooth devices and select the hostname of your Raspberry Pi when the scan completes.
-![]({{site.url}}/images/banyan-bot-blue-1/android_settings/android2.jpg)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android_settings/android2.jpg)
 
 5. You should see that the Android device is now paired with your Raspberry Pi
-![]({{site.url}}/images/banyan-bot-blue-1/android_settings/android3.jpg)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android_settings/android3.jpg)
 
 6. If you go back to the Raspberry Pi, and look at the output on bluetoothctl, you should
 see something that looks like the following:
@@ -217,7 +218,7 @@ let's install one now.
 
 The server requires the [*pybluez*](https://github.com/pybluez/pybluez) Python package to
 be installed on the Raspberry Pi. Before doing so, let's take the opportunity to update
-*pip* on the RPi to the latest version.
+*pip* on the RPi to the latest version. If you are running Raspbian Buster you can skip this step.
 
 Open a terminal window on your Raspberry Pi and type the following command:
 ```console
@@ -225,7 +226,13 @@ sudo pip3 install -U pip
 ```
 ## Install The *pybluez* Library
 
+First install the required libraries for pybluez.
 In your console type:
+```bash
+sudo apt-get install libbluetooth-dev
+```
+
+Next, in your console type:
 ```
 sudo pip3 install pybluez
 ```

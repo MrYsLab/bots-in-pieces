@@ -1,0 +1,369 @@
+I"�W<h1 id="understanding-the-banyan-framework">Understanding The Banyan Framework</h1>
+
+<h1 id="in-this-edition-of-bots-in-pieces-we-will">In this edition of <em>Bots In Pieces</em>, we will:</h1>
+<ol>
+  <li>Discuss the basics of the Python Banyan Framework.</li>
+  <li>Discuss the Banyan design philosophy.</li>
+  <li>Install the Python Banyan Framework On The Raspberry Pi</li>
+  <li>Discuss the Banyan components used for the Banyan Blue Bot project.</li>
+  <li>Discuss using <em>Tuning Parameters</em> to allow for maximal component reuse.</li>
+</ol>
+
+<h1 id="banyan-101---the-why-what--and-how">Banyan 101 - The <em>Why</em>, <em>What</em>,  And <em>How</em></h1>
+
+<p>This posting will provide a quick introduction to the Python Banyan Framework.
+After reading this posting, if you would like to
+learn more about the Banyan Framework, please check out <a href="https://mryslab.github.io/python_banyan/"><em>the User’s Guide.</em></a></p>
+
+<blockquote>
+  <p>If you have any questions or comments about this or any other posting, please feel free to leave a
+comment. There is a comment section at the bottom of each posting page. Checkout out our <a href="https://mryslab.github.io/bots-in-pieces/about/"><em>Comment Policy</em>.</a></p>
+</blockquote>
+
+<h2 id="the-why">The <em>Why</em></h2>
+
+<p>The purpose of a software framework is to help you manage the low level, mundane details of your application. 
+This not only
+allows you to concentrate on the problem at hand,
+ but helps to simplify your coding and testing burden. Python Banyan does just that.</p>
+
+<h2 id="the-what">The <em>What</em></h2>
+
+<p>A Banyan application consists of one or more modules known as Banyan components. Each component
+when instantiated automatically, connects itself to the local network by using the Banyan message distribution
+ mechanism, known as the Banyan Backplane.</p>
+
+<p>When a component wishes to share
+information with other components it <em>publishes</em> a <em>Banyan protocol message</em> to the network.</p>
+
+<p>A Banyan protocol message is simply a populated Python dictionary. The <em>keys</em> of the message are typically text strings,
+and the associated value for each key is typically a text string or numeric value. Python Banyan also supports
+Numpy data values, making it simple to share Numpy data within a Banyan application.</p>
+
+<p>All protocol messages are created by you, the application developer.</p>
+
+<p>An example of a Banyan protocol message might be:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">'command'</span><span class="p">:</span> <span class="s">'move_robot'</span><span class="p">,</span> <span class="s">'direction'</span><span class="p">:</span> <span class="s">'forward'</span><span class="p">,</span> <span class="s">'speed'</span><span class="p">:</span> <span class="mi">60</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>When a component publishes a protocol message, it associates a <em>topic</em> with the 
+message and both are published to the network as a single entity.</p>
+
+<p>To publish a message, the component uses one of Python Banyan’s built-in methods, named
+<em>publish_payload.</em></p>
+
+<p>The <em>publish_payload</em> method accepts two parameters, the dictionary comprising the 
+message payload and a topic string.</p>
+
+<p>To publish the message described above with a topic of <em>control_robot</em>, the
+method call would look like:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">'command'</span><span class="p">:</span> <span class="s">'move_robot'</span><span class="p">,</span> <span class="s">'direction'</span><span class="p">:</span> <span class="s">'forward'</span><span class="p">,</span> <span class="s">'speed'</span><span class="p">:</span> <span class="mi">60</span><span class="p">}</span>
+
+<span class="bp">self</span><span class="p">.</span><span class="n">publish_payload</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="s">'control_robot'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>To receive a protocol message, a component <em>subscribes</em> to one or more topics of interest. 
+It will only receive messages that it has subscribed to - the
+framework filters out the rest.</p>
+
+<p>When a component receives a message, the framework calls its <em>incoming_message_processing</em> 
+method. This method is built into the framework - you just need to overwrite its default
+contents.</p>
+
+<p>Here is the source code for this method:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+    <span class="k">def</span> <span class="nf">incoming_message_processing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">payload</span><span class="p">):</span>
+        <span class="s">"""
+        Override this method with a custom Banyan message processor for subscribed messages.
+    
+        :param topic: Message Topic string.
+    
+        :param payload: Message Data.
+        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">external_message_processor</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">external_message_processor</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'this method should be overwritten in the child class'</span><span class="p">,</span> <span class="n">topic</span><span class="p">,</span> <span class="n">payload</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Both the received payload, in the form of a Python dictionary, and its topic string are passed into this
+ method by the framework.
+Unchanged, this method will print the topic and payload to the console.</p>
+
+<p>Typically all of the processing of the message is handled within this method, but you may create
+an alternative method within the component to handle message processing. You do so by setting 
+self.external_message_processor when you instantiate the component.</p>
+
+<h2 id="this-is-a-good-time-to-install-python-banyan">This Is A Good Time To Install Python Banyan</h2>
+
+<p>If you are using the <em>Stretch</em> version of Raspbian and have not already updated your pip3 loader,
+this would be a good time to do so. Open a terminal window and type:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pip3 <span class="nb">install</span> <span class="nt">-U</span> pip
+</code></pre></div></div>
+
+<p>If you are using the <em>Buster</em> version of Raspbian, you do not have to update pip3, unless
+you get an update message from <a href="https://pypi.org/"><em>pypi.</em></a></p>
+
+<p>For this project, we also need to install the 
+<a href="https://github.com/mahmoud/boltons"><em>boltons library</em></a></p>
+
+<p>To install type:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pip3 <span class="nb">install </span>boltons
+</code></pre></div></div>
+
+<p>Next to install python-banyan, type:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pip3 <span class="nb">install </span>python-banyan
+</code></pre></div></div>
+
+<p>On <em>Stretch</em>, this should take about 10-15 minutes. On <em>Buster</em> it should take only about
+2 to 3 minutes.</p>
+
+<p>Once installed, you will be able to import Python Banyan into your project.</p>
+
+<p>In addition to installing the library files, the <em>python-banyan</em> distribution installs 
+3 command line executables: <em>the  backplane</em> the <em>monitor</em>, and the <em>banyan launcher (bls)</em>.</p>
+
+<h2 id="the-backplane">The Backplane</h2>
+<p>Before starting any Banyan component, the 
+<a href="https://mryslab.github.io/python_banyan/#examples_intro/#the-banyan-backplane"><em>Banyan Backplane</em></a>
+ must be running.
+To start the <em>backplane</em>, just type the following in your terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>backplane
+</code></pre></div></div>
+
+<p>You should see something like this in your terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>backplane
+
+<span class="k">******************************************</span>
+Backplane IP address: 192.168.2.188
+Subscriber Port <span class="o">=</span> 43125
+Publisher  Port <span class="o">=</span> 43124
+Loop Time <span class="o">=</span> 0.001 seconds
+<span class="k">******************************************</span>
+</code></pre></div></div>
+
+<p>When any Banyan Component is started, it displays a heading similar to the one above.
+The name of the component is displayed followed by the IP address of the Backplane.
+The Subscriber and Publisher ports are IP ports used by the framework for sending and 
+receiving Banyan protocol messages. The default port values may be <em>tuned</em> by using command line options when invoking the backplane.
+ The <em>Loop Time</em> is the amount of time
+the Banyan <em>event loop</em> waits to check for the possibility of the arrival of the next
+protocol message.
+This also is a tunable value.</p>
+
+<h2 id="the-monitor">The Monitor</h2>
+<p>The <a href="https://mryslab.github.io/python_banyan/#example5/#the-banyan-monitor"><em>monitor</em></a>
+ is a debugging tool that will display all published messages and their 
+associated topics to the console. We will talk more about this later.</p>
+
+<p>If you would like to try a simple Banyan application, please look at
+<a href="https://mryslab.github.io/python_banyan/#example1/"><em>this example</em>.</a> Since we installed python-banyan
+for Python 3, please use python3 when running the example.</p>
+
+<h2 id="the-banyan-launcher">The Banyan Launcher</h2>
+<p>This utility
+<a href="https://mryslab.github.io/python_banyan/#example8/#launching-components"><em>launches</em></a>
+ the <em>backplane</em> and <em>all</em> the components of your
+Banyan application from a single command line.</p>
+
+<h2 id="some-additional-what">Some Additional <em>What</em></h2>
+
+<p>The Banyan Framework at its lowest level uses TCP/IP to manage message communication.
+Items like retransmission and buffering are handled automatically for you as part of the framework. 
+Because TCP/IP is being used, messages are guaranteed to be received in the order that they were
+sent.</p>
+
+<p>The Banyan Framework automatically and transparently handles both connection to the network and data encoding/decoding for
+data transmission and receipt.</p>
+
+<p>It is important to note that Banyan messages are not computer language specific. Versions of the
+Banyan Framework are available for
+<a href="https://github.com/MrYsLab/js-banyan"><em>JavaScript,</em></a> 
+<a href="https://github.com/MrYsLab/javabanyan"><em>Java,</em></a>
+ and <a href="https://github.com/MrYsLab/rb_banyan"><em>Ruby</em>.</a> Each of these languages has an equivalent data
+ structure to the Python dictionary, allowing a Banyan component written in one language to communicate
+ with a component written in another language without any modification to the message or components.</p>
+
+<h2 id="the-how">The <em>How</em></h2>
+
+<p>The Python Banyan Framework is implemented as a <a href="https://github.com/MrYsLab/python_banyan/blob/master/python_banyan/banyan_base/banyan_base.py"><em>Python class.</em></a>
+ To create a Banyan
+component, you create a new class that inherits from the Banyan base class. In that
+way, your component automatically has all the low-level functionality
+built-in.</p>
+
+<p>Typically, the inherited class only has to implement or overwrite 2 methods. The first is
+ the __init__
+method. You may add any initialization code that is specific to your component to this method.
+The second is the <em>incoming_message_processing</em> method discussed above.</p>
+
+<p>Of course, you can add any additional methods that your component may require to do its job.</p>
+
+<h1 id="banyan-based-applications">Banyan Based Applications</h1>
+
+<p>One way of thinking about a Banyan application is to compare it to a <em>factory assembly line</em>. 
+As a Banyan message
+makes its way from its origin to its destination, it is intercepted by intermediary
+Banyan components. Each component provides a <em>value-added service</em> to the data. That
+<em>value added</em> may be as simple as performing a calculation using the incoming data and then publishing
+ the results of its calculation,
+or perhaps, it may transform the data to another form that the next component in line will process.</p>
+
+<h2 id="banyan-application-design-philosophy">Banyan Application Design Philosophy</h2>
+
+<p>When designing a Banyan Component, it is best to limit the scope of processing for the component.
+Not only does this make the component simpler to code, but it also  makes it easier to test.
+This allows you to implement a quality component quickly and with the best chance of reuse in the
+future.</p>
+
+<p>Other than the requirement that you derive your Banyan component from the
+Banyan base class, there are really no other restrictions when using the framework.
+The Banyan Framework is extremely flexible and does not limit your design in any way.
+For example, although not often needed, you can incorporate multi-threading into a Banyan component or even asyncio.
+Banyan also integrates well with other event loop driven frameworks, such as <em>tkinter</em>.</p>
+
+<h1 id="the-banyan-bot-blue-components">The Banyan Bot Blue Components</h1>
+
+<p>The Banyan Bot application is comprised of 3 Banyan components:</p>
+
+<ol>
+  <li>The Bluetooth Gateway</li>
+  <li>The Robot Controller</li>
+  <li>The Hardware Control Gateway. Specifically for this application, the Hardware Control Gateway 
+communicates with and controls
+an <a href="https://www.adafruit.com/product/3957"><em>Adafruit Crickit controller.</em></a>
+If we decide at a later time to swap out the Crickit controller for some other controller, the
+Bluetooth Gateway and Robot Controller will remain unchanged. This allows for maximum flexibility
+in design with minimal recoding.</li>
+</ol>
+
+<h2 id="the-banyan-bluetooth-gateway">The Banyan BlueTooth Gateway</h2>
+
+<p>This Banyan BlueTooth Gateway is a <em>Banyan Protocol Gateway</em>. The function of a Banyan Protocol
+ Gateway is to convert data to and from some protocol other than the Banyan messaging protocol.
+  For this project, we need to convert Bluetooth data into Banyan protocol messages. Another example
+  of a Banyan Protocol Gateway is the 
+  <a href="https://mryslab.github.io/python_banyan/#additional_gateways/#mqtt-gateway"><em>MQTT Gateway.</em></a></p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/bluetooth_gateway.png" alt="" /></p>
+
+<p>In the case of the Bluetooth Gateway, 
+its function is to act as a Bluetooth server, and when Bluetooth data is received over the
+RFCOMM link, it converts that data to a Banyan protocol message. The Bluetooth Gateway
+also has the capability of subscribing to Banyan protocol messages,
+ extracting the data from the message and transmitting
+that data over the RFCOMM link.</p>
+
+<h2 id="the-robot-controller">The Robot Controller</h2>
+
+<p>The Robot Controller subscribes to receive <em>generic</em> robot control commands. It
+translates and publishes those commands as protocol messages that the hardware control component can
+use to control the robot. It also subscribes to receive any report
+data that the hardware control component publishes, such as bumper
+sensor data. It uses that data to autonomously affect robot motion. It also publishes the report
+data so that the user may see the report on their display.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/robotic_gateway.png" alt="" /></p>
+
+<blockquote>
+  <p>Note that none of the components are actually directly aware of any of the other components. 
+A component has no idea which other component published a message it subscribes to and has no idea
+what other components make use of the messages it publishes.</p>
+</blockquote>
+
+<h2 id="the-hardware-controller-crickit-controller">The Hardware Controller (Crickit Controller)</h2>
+
+<p>The Cricket Controller is an instance of a <em>Banyan Hardware Gateway</em>.</p>
+
+<p><img src="/bots-in-pieces/images/banyan-bot-blue-1/crickit_gateway.png" alt="" /></p>
+
+<p>Banyan Hardware Gateways conform to the <a href="https://mryslab.github.io/python_banyan/#gpio_intro/"><em>Banyan OneGPIO Protocol Messaging
+Specification.</em></a></p>
+
+<p>Simply put, OneGPIO protocol messages describe hardware interactions using
+a high-level abstraction that is not specific to any one hardware platform.</p>
+
+<p>The Hardware Gateway translates the generic OneGPIO messages into messages that are
+hardware specific. It also accepts report messages generated by the hardware and
+translates these reports into a Banyan protocol message and then publishes them.</p>
+
+<p>Using OneGPIO, we can easily swap out one hardware control platform for another, just
+by changing the Banyan Hardware Gateway without having to modify any of the other components
+within the application.</p>
+
+<h1 id="tuning-banyan-components">Tuning Banyan Components</h1>
+
+<p>As stated previously, one of the main reasons to use Banyan is because
+it offers the opportunity for maximum code reuse. This means writing the
+code once and being able to use it in different application settings.</p>
+
+<p>Depending upon the application, you may need to change some default
+values for the component
+or you may need to change the component’s <em>interface.</em></p>
+
+<p>We accomplish this by using the
+<a href="https://realpython.com/command-line-interfaces-python-argparse/"><em>Python argparse library.</em></a></p>
+
+<p>The use of argparse is totally optional but all of the Banyan Bot Blue
+components take advantage of argparse.</p>
+
+<p>Argparse allows us to pass in command line options to affect the behavior
+and configuration of a component.</p>
+
+<p>One command line option that argparse automatically generates for us is the
+<em>-h</em> option. The <em>-h</em> option prints a list of all the command line parameters
+available for the component.</p>
+
+<p>In most cases, the default values can be used and so no command line options
+are necessary, but if we need to tune those values, we can do so easily
+without having to edit the code.</p>
+
+<p>Below is the
+help screen for the robot_control component.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pi@BanyanBot:~/banyan-bot-blue/banyan_assets <span class="nv">$ </span>python3 robot_control.py <span class="nt">-h</span>
+usage: robot_control.py <span class="o">[</span><span class="nt">-h</span><span class="o">]</span> <span class="o">[</span><span class="nt">-b</span> BACK_PLANE_IP_ADDRESS]
+                        <span class="o">[</span><span class="nt">-d</span> PUBLISH_TO_HARDWARE_TOPIC]
+                        <span class="o">[</span><span class="nt">-l</span> ADDITIONAL_SUBSCRIBER_LIST <span class="o">[</span>ADDITIONAL_SUBSCRIBER_LIST ...]]
+                        <span class="o">[</span><span class="nt">-n</span> PROCESS_NAME] <span class="o">[</span><span class="nt">-p</span> PUBLISHER_PORT]
+                        <span class="o">[</span><span class="nt">-r</span> PUBLISH_TO_UI_TOPIC] <span class="o">[</span><span class="nt">-s</span> SUBSCRIBER_PORT]
+                        <span class="o">[</span><span class="nt">-t</span> LOOP_TIME] <span class="o">[</span><span class="nt">-u</span> SUBSCRIBE_FROM_UI_TOPIC]
+                        <span class="o">[</span><span class="nt">-v</span> SUBSCRIBE_FROM_HARDWARE_TOPIC]
+
+optional arguments:
+  <span class="nt">-h</span>, <span class="nt">--help</span>            show this <span class="nb">help </span>message and <span class="nb">exit</span>
+  <span class="nt">-b</span> BACK_PLANE_IP_ADDRESS
+                        None or IP address used by Back Plane
+  <span class="nt">-d</span> PUBLISH_TO_HARDWARE_TOPIC
+                        Publishing topic <span class="k">for </span>hardware commands
+  <span class="nt">-l</span> ADDITIONAL_SUBSCRIBER_LIST <span class="o">[</span>ADDITIONAL_SUBSCRIBER_LIST ...]
+                        Banyan topics space delimited: topic1 topic2 topic3
+  <span class="nt">-n</span> PROCESS_NAME       Set process name <span class="k">in </span>banner
+  <span class="nt">-p</span> PUBLISHER_PORT     Publisher IP port
+  <span class="nt">-r</span> PUBLISH_TO_UI_TOPIC
+                        Publishing topic <span class="k">for </span>report messages
+  <span class="nt">-s</span> SUBSCRIBER_PORT    Subscriber IP port
+  <span class="nt">-t</span> LOOP_TIME          Event Loop Timer <span class="k">in </span>seconds
+  <span class="nt">-u</span> SUBSCRIBE_FROM_UI_TOPIC
+                        Topic From User Interface
+  <span class="nt">-v</span> SUBSCRIBE_FROM_HARDWARE_TOPIC
+                        Topic From Hardware
+</code></pre></div></div>
+
+<p>As you can see this component has many options that we can use to tune the component.
+We can manually set the backplane IP address, or change default publishing or subscription
+topics or change several other parameters within the component.</p>
+
+<p>This gives the component optimal flexibility and allows for maximum reuse.</p>
+
+<p>More on these parameters when we address using each component in future posts.</p>
+
+<h1 id="preview-of-the-next-post">Preview Of The Next Post</h1>
+<p>In the next post, we will demonstrate testing and using the Banyan Bot Blue components.
+We will be using the <em>monitor</em> to help us test and we will use the <em>Banyan Launcher</em>
+to start our components. See you next time.</p>
+
+:ET

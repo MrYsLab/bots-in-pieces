@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: "Banyan Bot Blue Part 3"
 date:  2019-06-16 07:24:39 -0400
 categories: Banyan-Bot-Blue Android Bluetooth
@@ -74,7 +75,7 @@ screen. When data is received, it will be displayed next to this label.
 
 And finally, I changed the title of the app to *Banyan Bot Blue*.
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/updated_app_1.jpg)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/updated_app_1.jpg)
 
 
 The details of these changes are explained in a <A href="#understanding-the-app-inventor-changes-made-to-the-original-app">section at the bottom of this post.</A>
@@ -111,13 +112,13 @@ Launch the Bluetooth Test Server on your Raspberry Pi with the following command
 sudo python3 bluetooth_apk_validation_server.py
 ```
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/start_server.png)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/start_server.png)
 
 ## Step 3
 
 Launch the Android app on your Android device.
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/AndroidControl.jpg)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/AndroidControl.jpg)
 
 ## Step 4
 
@@ -125,7 +126,7 @@ Connect the app by pressing the blue *Connect* button on the upper right
 corner of the Android app. This will bring you to a *Connection Screen*. It will
 say *NOT CONNECTED* 
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/not_connected.jpg)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/not_connected.jpg)
 
 ## Step 5
 
@@ -133,14 +134,14 @@ Press the blue *NOT CONNECTED* button on the android device. This will
 bring up a screen to allow you to select a device to connect to. Select the Raspberry Pi
 that was paired earlier from the list of devices.
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/select_pair.jpg)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/select_pair.jpg)
 
 ## Step 6
 
 The connection screen should now show that the device is connected. Press the gray
 **BACK** button.
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/connected.jpg)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/connected.jpg)
 
 ## Step 7
 
@@ -149,14 +150,14 @@ left-hand corner turned from red to blue, indicating that you are connected.
 Notice that the *Report* is no longer blank, but says *Hello Banyan Bot*. This
 string was sent from the Bluetooth server on the Raspberry Pi.
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/hello.jpg)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/hello.jpg)
 
 ## Step 8
 
 Press the buttons on the app, and look at the console on the Raspberry Pi. You
 should the button commands printed to the console.
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/commands.png)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/commands.png)
 
 The following sections describe the details of the changes that I made to the original app.
 
@@ -166,7 +167,7 @@ The following sections describe the details of the changes that I made to the or
 First, [*download b_bot_blue.aia*.](https://github.com/MrYsLab/bots-in-pieces-examples/blob/master/banyan-bot-blue/android/b_bot_blue.aia)
 Next, in App Inventor, select *Projects* from the menu and click on *Import project(.aia) from my computer...*
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/import_app_project.png)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/import_app_project.png)
 
 A file-chooser dialog will appear. Select the *.aia* file to load into the editor.
 
@@ -174,7 +175,7 @@ A file-chooser dialog will appear. Select the *.aia* file to load into the edito
 The App Inventor Editor has 2 modes, *Designer* and *Blocks*. You select the mode
 by clicking on either of the buttons located on the top right of the editor.
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/blocks_design.png)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/blocks_design.png)
 
 
 Here are the design changes I made:
@@ -190,7 +191,7 @@ Here are the design changes I made:
 If you click on any widget that you've dragged into the *Designer* editor, a *Properties* menu for that widget
 will appear on the right side of the editor. 
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/rbutton_1.png) ![]({{site.url}}/images/banyan-bot-blue-1/android-gui/properties_editor.png) 
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/rbutton_1.png) ![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/properties_editor.png) 
 
 
 Using the properties editor, you can change 
@@ -199,12 +200,12 @@ for the button was changed to *Spin Right*.
 
 ## Adding New Widgets
 To add a widget, select a widget from the *User Interface* palette. 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/user_palette.png)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/user_palette.png)
 
 Drag and drop the widget onto the *Viewer* section
 of the editor depicting your design. You will see a new component added to the components window of the editor.
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/new_component.png)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/new_component.png)
 
 For this project, the *report* component is a label that will contain data received
 from the RPi. The Label15 component is the label that contains the text **Report:**.
@@ -217,7 +218,7 @@ To do this, select *Sensors* from the Palette menu on the left side of the edito
 to the center of the editor. You should see the clock added to the list of non-visible components just below
 your screen design.
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/clock.png)
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/clock.png)
 
 
 ## Modified App Inventor Code Blocks
@@ -230,19 +231,19 @@ Below you will see the original blocks and the modified blocks
 for these buttons. The command values were changed to meet our needs.
 
 ### Original Blocks For The Buttons
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/orig_blocks.jpg)  
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/orig_blocks.jpg)  
 *Original Commands*
 
    
 ### Modified Blocks for The Buttons
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/update_blocks.png)  
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/update_blocks.png)  
 *Modified Commands*
 
 ## New Blocks To Receive and Display Data
 To receive data, we need to add some code. The blocks below show how to receive
 data from the Raspberry Pi and print the data to the *Report* section of the app.
 
-![]({{site.url}}/images/banyan-bot-blue-1/android-gui/receive_data_blocks.png)    
+![]({{site.baseurl}}/images/banyan-bot-blue-1/android-gui/receive_data_blocks.png)    
 *Blocks Added To Receive Incoming Data*
 
 # Coming Up In The Next Post

@@ -1,0 +1,10 @@
+I"—<p><a href="https://mryslab.github.io/telemetrix-rpi-pico/">The Userâ€™s Guide</a> 
+has been released for the Telemetrix-Rpi-Pico.</p>
+
+<p>I am now moving on to support for Servo motors. I am beginning with attempting 
+to use PWM support. I am not sure if I will need to actually implement a custom
+PIO version or if the PWM support is flexible enough to provide the timing needed.</p>
+
+<p>Stay tuned.</p>
+
+:ET

@@ -1,0 +1,27 @@
+I"ê<h1 id="pymata4-released">Pymata4 Released!</h1>
+<p><a href="https://mryslab.github.io/pymata4/">Pymata4</a>
+ is the latest in a series of Python clients I‚Äôve developed over the years 
+ for Arduino microcontrollers.</p>
+
+<p>Here is a list of its major features:</p>
+
+<ul>
+  <li>Python 3.7 (or higher) compatible.</li>
+  <li>It offers a simplified <a href="http://htmlpreview.github.io/?https://github.com/MrYsLab/pymata4/blob/master/html/pymata4/index.html">API.</a></li>
+  <li>Uses conventional concurrency techniques (threading) for high efficiency.</li>
+  <li>It Is <a href="https://github.com/MrYsLab/FirmataExpress">FirmataExpress</a> compatible (link speed runs at 115200)</li>
+  <li>Data change events may be associated with a callback function for asynchronous 
+notification, or polling may be used when a synchronous approach is desired.</li>
+  <li>Each data change event is time-stamped and stored.</li>
+  <li>A <a href="https://github.com/MrYsLab/pymata4/tree/master/examples">full set of working examples</a>
+ are available for download online.</li>
+</ul>
+
+<h1 id="pymata4-replaces-pymata-and-pymata-aio">Pymata4 Replaces PyMata and pymata-aio</h1>
+<p>Both the original PyMata library, as well as the pymata-aio library, have been archived.</p>
+
+<p>Use Pymata4 for conventional Python programming, and for asyncio projects, 
+choose 
+<a href="https://mryslab.github.io/pymata-express/">pymata-express.</a></p>
+
+:ET
