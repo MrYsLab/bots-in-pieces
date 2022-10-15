@@ -43,6 +43,7 @@ remote_theme: "mmistakes/so-simple-theme@3.2.0"
 plugins:
   - jekyll-feed
   - jekyll-remote-theme
+  - jekyll-seo-tag
 
 # Site Author
 author:
@@ -127,4 +128,4 @@ defaults:
 
 
 
-copyright: "Copyright (C) 2019-2021 Alan Yorinks. All Rights Reserved."
+copyright: "Copyright (C) 2019-2022 Alan Yorinks. All Rights Reserved."
